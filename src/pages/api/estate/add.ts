@@ -36,7 +36,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         if (!user.isAdmin)
             return res.status(405).json({ message: "user is not admin" });
 
-        const form = new formidable.IncomingForm();
+        const form = new formidable.IncomingForm({ maxFileSize: 350 * 1024 * 1024 });
+
         form.parse(req, async (err, fields, files) => {
             if (err) {
                 return res.status(400).json({message: 'Error parsing form data'});

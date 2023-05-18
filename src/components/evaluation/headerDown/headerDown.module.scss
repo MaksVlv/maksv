@@ -1,0 +1,52 @@
+@import "src/styles/global";
+
+.headerDown {
+
+  position: relative;
+
+  img {
+    width: 100vw;
+    height: 40vh;
+    object-fit: cover;
+    min-height: 500px;
+    filter: brightness(0.25);
+  }
+
+  .info {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    top: 50%;
+    color: $bg-main;
+    font-size: 0.8em;
+    text-align: left;
+    width: 100%;
+    h1 {
+      font-weight: bold;
+      margin-bottom: 30px;
+    }
+    p {
+      font-size: 1.5em;
+      font-weight: 300;
+      width: 60%;
+    }
+  }
+
+
+  @media screen and (max-width: $small) {
+    img {
+      height: 400px;
+      min-height: 300px;
+      min-width: 310px;
+    }
+    .info {
+      font-size: 0.7em;
+      h1 {
+        margin-bottom: 20px;
+      }
+      p {
+        width: 90%;
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.maksv.lv
+
+# Sitemaps
+Sitemap: https://www.maksv.lv/sitemap.xml
+Sitemap: https://www.maksv.lv/server-sitemap.xml

@@ -1,0 +1,44 @@
+@import "src/styles/global";
+
+.sliderSection {
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (max-width: 1250px) {
+    max-width: 600px;
+  }
+
+  .right {
+    display: none;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    z-index: 2;
+  }
+
+  .left {
+    display: none;
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    z-index: 2;
+  }
+
+  @media screen and (max-width: $medium) {
+    .right, .left {
+      display: block;
+    }
+
+    max-width: calc(100vw - 60px);
+    width: 100%;
+  }
+  @media screen and (max-width: $small) {
+    .right, .left {
+      display: block;
+    }
+
+    max-width: calc(100vw - 20px);
+    min-width: 310px;
+  }
+}

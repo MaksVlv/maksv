@@ -1,0 +1,188 @@
+@import "src/styles/global";
+
+.slider {
+
+  padding-right: 0;
+  .slide {
+    position: relative;
+
+    img {
+      width: 100vw;
+      height: 70vh;
+      min-height: 400px;
+      max-height: 880px;
+      object-fit: cover;
+    }
+
+    .buttonBlock {
+      position: absolute;
+      width: 100%;
+      margin: auto;
+      left: 50%;
+      top: 35%;
+      transform: translateX(-50%);
+
+
+      h1 {
+        font-weight: bold;
+        color: $bg-main;
+        width: 50%;
+        margin-bottom: 40px;
+      }
+
+      .button {
+        display: block;
+        text-align: center;
+        background-color: $bg-highlighted;
+        color: $bg-main;
+        padding: 10px 32px;
+        width: 300px;
+        border-radius: 10px;
+        border: 1px solid $bg-highlighted;
+        font-weight: bold;
+
+        &:hover {
+          background-color: $bg-main;
+          color: $bg-highlighted;
+          border: 1px solid $bg-highlighted;
+        }
+      }
+    }
+
+    .info {
+      position: absolute;
+      background-color: $bg-dark;
+      top: 50%;
+      right: 0;
+      color: $bg-main;
+      padding: 10px 25px 10px 25px;
+      font-size: 1.4em;
+      max-width: 700px;
+
+      .price {
+        font-size: 1.9em;
+        font-weight: bold;
+      }
+
+      .params {
+        height: 120px;
+        max-width: 400px;
+        display: none;
+        margin-top: 20px;
+
+        .param {
+          display: flex;
+          align-items: center;
+          margin-right: 19px;
+
+          span {
+            margin-right: 10px;
+          }
+        }
+      }
+
+      &:hover {
+        transform: translateY(-120px);
+
+        .params {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px 0;
+        }
+      }
+
+      .progress {
+        width: 500px;
+        progress {
+          width: 100%;
+          height: 2px;
+          background-color: $neutral;
+
+          &::-webkit-progress-value {
+            background-color: $bg-main;
+            border-radius: 5px;
+          }
+
+          &::-moz-progress-bar {
+            background-color: $bg-main;
+            border-radius: 5px;
+          }
+
+          &::-ms-fill {
+            background-color: $bg-main;
+            border-radius: 5px;
+          }
+        }
+      }
+    }
+
+    @media screen and (max-width: $big) {
+      .buttonBlock {
+        h1 {
+          width: 40%;
+          font-size: 2em;
+        }
+
+        .button {
+          width: 300px;
+        }
+      }
+    }
+    @media screen and (max-width: $medium) {
+      position: relative;
+      .buttonBlock {
+        h1 {
+          display: none;
+        }
+
+        .button {
+          position: absolute;
+          right: 0;
+          bottom: -45.59vh;
+          border-radius: 0;
+          width: 100vw;
+          height: 50px;
+          font-size: 1.4em;
+          padding: unset;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+
+    @media screen and (max-width: $small) {
+      .info {
+        width: 90%;
+        bottom: 49.5px;
+        top: unset;
+
+        .price {
+          font-size: 1.6em;
+        }
+
+        .progress {
+          display: none;
+        }
+
+        .params {
+          height: unset;
+          width: unset;
+          gap: 20px 0;
+          margin-bottom: 20px;
+        }
+
+        &:hover {
+          transform: unset;
+
+          .params {
+            display: flex;
+            flex-wrap: wrap;
+          }
+        }
+
+      }
+    }
+
+  }
+}

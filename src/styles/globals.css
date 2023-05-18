@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Arsenal:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.dragging {
+    background-color: #eeeeee;
+}
+.file_container {
+    width: 100%;
+}
+
+body {
+    font-family: 'Arsenal', sans-serif;
+    min-width: 310px;
+    overflow-x: hidden;
+}
+
+html {
+    scroll-behavior: smooth;
+    background-color: #FFFFFF;
+    overflow-x: hidden;
+}
+
+.wrapper {
+    max-width: 1500px;
+    margin: auto;
+    height: inherit;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+@media screen and (max-width: 600px) {
+    .wrapper {
+        padding: 0 10px;
+    }
+}
+
+a:hover {
+    color: #FFC53C;
+}
+
+.slick-track {
+    /*width: 100vw !important;*/
+    overflow-x: hidden;
+}
+.slick-slider {
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+}
+
+.minusHeader {
+    padding-top: 80px;
+}
+
+.image-gallery-thumbnail-image {
+    height: 50px !important; /* Set the desired height */
+    object-fit: cover;
+}

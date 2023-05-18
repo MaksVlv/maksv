@@ -1,0 +1,39 @@
+@import "src/styles/global";
+
+.achievements {
+  margin-top: 100px;
+  color: $bg-main;
+  background-color: $bg-highlighted;
+
+  .block {
+
+    h2 {
+      padding: 1.2em 0;
+      text-align: center;
+    }
+
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px 0;
+      justify-content: space-around;
+      padding-bottom: 5em;
+
+      .stat {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        h4 {
+          font-size: 3.6em;
+        }
+        p {
+          font-size: 1.5em;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: $medium) {
+    margin-top: 60px;
+  }
+}

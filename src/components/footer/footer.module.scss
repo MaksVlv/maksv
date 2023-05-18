@@ -1,0 +1,111 @@
+@import "src/styles/global";
+
+.footerContainer {
+  background-color: $bg-main;
+
+  .footer {
+    display: flex;
+    flex-direction: column;
+
+    .logo {
+      width: 255px;
+      margin-top: 120px;
+      margin-bottom: 40px;
+    }
+
+    .links {
+      display: flex;
+      margin-bottom: 40px;
+
+      .link {
+        font-size: 1.6em;
+        margin-right: 40px;
+
+        &:hover {
+          color: $bg-highlighted;
+        }
+      }
+    }
+
+    .info {
+      margin-bottom: 24px;
+
+      &.rights {
+        color: $neutral;
+      }
+    }
+
+    .hr {
+      margin-top: 95px;
+      margin-bottom: 95px;
+      width: 95px;
+      height: 2px;
+      background-color: $neutral;
+    }
+
+    @media screen and (max-width: $medium) {
+      font-size: 0.69em;
+
+      .logo {
+        width: 150px;
+        margin-top: 80px;
+        margin-bottom: 30px;
+      }
+
+      .links {
+        margin-bottom: 30px;
+
+        .link {
+          margin-right: 30px;
+        }
+      }
+
+      .info {
+        margin-bottom: 19px;
+      }
+
+      .hr {
+        margin-top: 60px;
+        margin-bottom: 60px;
+      }
+
+    }
+
+    @media screen and (max-width: $small) {
+      font-size: 0.6em;
+
+      .logo {
+        width: 100px;
+        margin-top: 60px;
+        margin-bottom: 20px;
+      }
+
+      .links {
+        margin-bottom: 20px;
+
+        .link {
+          margin-right: 12px;
+          font-size: 1.35em;
+
+          &:last-of-type {
+            margin-right: 0;
+          }
+        }
+      }
+
+      .info {
+        margin-bottom: 12px;
+
+        &.rights {
+          margin-bottom: 42px;
+        }
+      }
+
+      .hr {
+        display: none;
+      }
+
+    }
+
+  }
+}

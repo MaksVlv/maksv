@@ -1,0 +1,43 @@
+@import "src/styles/global";
+
+.prices {
+  color: $bg-dark;
+  background-color: $bg-main;
+
+  .block {
+
+    h2 {
+      padding: 1.2em 0;
+      text-align: center;
+    }
+
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 50px 0;
+      padding-bottom: 5em;
+
+      .stat {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        h4 {
+          font-size: 3em;
+        }
+        p {
+          font-size: 1.5em;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: $medium) {
+    .block {
+      .stats {
+        flex-direction: column;
+      }
+    }
+  }
+}

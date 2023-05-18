@@ -1,0 +1,102 @@
+{
+  "seo": {
+    "title": "Valuation – Maksv",
+    "description": "Maks V valuation ensures high-quality real estate valuation throughout Latvia. We provide fast and reliable service with detailed advice. Satisfied customers, completed projects and more than 10 years of experience.",
+    "keywords": "valuation, real estate, valuation services, Latvia, maksv"
+  },
+  "header": {
+    "section": {
+      "title": "Real estate evaluation",
+      "p": "Maks V valuation provides real estate <br/> valuation services"
+    },
+    "eval": {
+      "title": "Qualitative evaluation",
+      "h3": "Understanding Value: The Importance of Qualitative Assessment",
+      "p1": "Maks V valuation renders real estate valuation services and is an associate member of the Latvian Association of Property Appraisers (LĪVA).",
+      "p2": "We produce high-quality independent real estate appraisal in the shortest possible time. The term of execution depends on many factors: the location of the object, its type, specifics, availability of documentation, etc."
+    },
+    "exp": {
+      "title": "Great experience",
+      "h3": "Great experience",
+      "p1": "Due to our extensive experience, our specialists are well aware of all the peculiarities and possible pitfalls of this process. This allows us to evaluate real estate as efficiently as possible."
+    },
+    "sug": {
+      "title": "Detailed consultation",
+      "h3": "Detailed consultation",
+      "p1": "By contacting us, you will get a detailed consultation. We will answer all your questions and provide you with a list of necessary documents."
+    },
+    "title": "About us",
+    "down": {
+      "title": "Maks V valuation provides real estate valuation services.",
+      "p": "Maks V valuation provides high-quality valuation of all types of real estate throughout Latvia. Our clients are individuals and legal entities. Quality conformity of appraisals is confirmed by certificate of competence issued by Latvian Association of Appraisers. According to Latvian standards (LVS-401: 2013) real estate valuations are done objectively and in optimal time."
+    }
+  },
+  "services": {
+    "title": "Services",
+    "p": "The list of services for the assessment of real estate provided by our company.",
+    "first": {
+      "h3": "Rates and deadlines",
+      "p": "List, cost, and timing of real estate <br/> appraisal services."
+    },
+    "second": {
+      "h3": "Purpose of evaluation",
+      "p": "Situations in which a real estate appraisal <br/> is required."
+    },
+    "third": {
+      "h3": "Who we cooperate with",
+      "p": "Institutions that accept our company’s <br/> evaluations: Seb , BigBank, Uzņēmuma <br/> reģistrs."
+    },
+    "fourth": {
+      "h3": "We evaluate",
+      "p": "Types of real estate that we can <br/> assess."
+    }
+  },
+  "prices": {
+    "title": "Price list",
+    "workDays": "working days",
+    "ser": "Service",
+    "price": "Price",
+    "range": "Terms",
+    "apbuve": "Building plot",
+    "lauk": "Agricultural land",
+    "zeme": "Commercial land",
+    "lauk2": "Rural farm",
+    "h100": "Residential (garden) house up to 100 sqm",
+    "h200": "Residential (garden) house 100-200 sqm",
+    "h300": "Residential house 200-300 sqm",
+    "h500": "Residential house 300-500 sqm",
+    "future": "Residential house future (to the relevant house valuation amount)",
+    "flat": "Serial flat",
+    "spec": "Specs apartment",
+    "new": "New project",
+    "park": "If extra parking or storage",
+    "future2": "If future valuation"
+  },
+  "info": {
+    "title": "How to order",
+    "s1": "Request for assessment",
+    "s2": "Submission of documents",
+    "s3": "Land Registry extract for the apartment",
+    "s4": "Cadastral survey file of the group of premises",
+    "s5": "For a plot of land, extract from the Land Registry",
+    "s6": "Land boundary plan",
+    "h3": "For the valuation of the dwelling",
+    "s7": "Land register extract",
+    "s8": "Land boundary plan",
+    "s9": "Cadastral survey file of the structure",
+    "p": "In the event that the layout does not correspond to the existing layout, a redesign project or a simplified renovation confirmation card is required",
+    "s10": "Organisation of the inspection of the object (handing over the contact details of the seller or his supervisor to the assessors or the client himself arranging the time of the inspection)",
+    "s11": "Payment of the work, according to the invoice presented",
+    "s12": "Preparation of the valuation",
+    "s13": "Certification of the report",
+    "s14": "Sending the work to the client’s e-mail address and/or to the credit institution"
+  },
+  "ach": {
+    "title": "Our achievements",
+    "client": "Satisfied customers",
+    "projects": "Completed projects",
+    "time": "Time spent",
+    "sug": "Recommendations made",
+    "hours": "h"
+  }
+}

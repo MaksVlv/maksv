@@ -1,0 +1,37 @@
+@import "src/styles/global";
+
+.infoSection {
+  margin-top: 80px;
+  color: $bg-dark;
+
+  h2 {
+    margin-bottom: 20px;
+  }
+
+  ul {
+    font-size: 1.2em;
+    li {
+      display: list-item;
+      list-style-position: inside; /* Расположение точек внутри элемента списка */
+      list-style-type: disc;
+    }
+  }
+
+  h3 {
+    font-size: 1.4em;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 15px;
+  }
+
+  p {
+    font-size: 1.2em;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+
+  @media screen and (max-width: $medium) {
+    margin-top: 50px;
+  }
+}

@@ -1,0 +1,45 @@
+@import "src/styles/global";
+
+.params {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+
+  .param {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .label {
+      color: $bg-highlighted;
+      font-weight: bold;
+      font-size: 1.15em;
+
+      &.dark {
+        color: #A3A6A8;
+      }
+
+      &::first-letter {
+        text-transform: uppercase;
+      }
+    }
+
+    .value {
+      height: 35px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.2em;
+
+      &.dark {
+        color: $bg-dark;
+
+        svg {
+          path {
+            fill: $bg-dark;
+          }
+        }
+      }
+    }
+  }
+}

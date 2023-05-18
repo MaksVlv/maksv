@@ -1,0 +1,81 @@
+@import "src/styles/global";
+
+.hr {
+  width: 70%;
+  height: 1px;
+  margin: 60px 0;
+  background-color: $gray;
+
+  @media screen and (max-width: $medium) {
+    width: 100%;
+    margin: 40px 0;
+  }
+}
+
+.page {
+  width: 33px;
+  height: 36px;
+  border-radius: 5px;
+  background-color: $bg-main;
+  color: $neutral;
+  border: 1px solid $neutral;
+  margin-right: 8px;
+  font-weight: bold;
+
+  &.active {
+    background-color: $bg-highlighted;
+    border: 1px solid $bg-highlighted;
+    color: $bg-main;
+  }
+}
+
+.back {
+  margin-left: 20px;
+  padding: 4px 11px;
+  border: 1px solid $neutral;
+  border-radius: 5px;
+  font-weight: bold;
+  color: $neutral;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.next {
+  margin-left: 7px;
+  padding: 4px 11px;
+  border: 1px solid $bg-dark;
+  background-color: $bg-dark;
+  border-radius: 5px;
+  font-weight: bold;
+  color: $bg-main;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.hover {
+    &:hover {
+      background-color: $bg-highlighted;
+    }
+  }
+}
+
+.pages {
+  flex-direction: row;
+
+  @media screen and (max-width: $small) {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+
+  @media screen and (max-width: $small) {
+
+    .back {
+      margin-left: unset;
+    }
+  }
+}

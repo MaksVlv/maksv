@@ -1,0 +1,52 @@
+@import "src/styles/global";
+
+.mobParams {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  .param {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    font-size: 1.2em;
+
+    .label {
+      color: $bg-dark;
+      font-weight: bold;
+      font-size: 1.15em;
+      width: 40%;
+
+      &::first-letter {
+        text-transform: uppercase;
+      }
+    }
+
+    .value {
+      //height: 35px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.2em;
+      color: $bg-dark;
+
+      &.bold {
+        font-weight: bold;
+        font-size: 1.3em;
+      }
+
+      span {
+        width: 40px;
+
+        svg {
+          path {
+            fill: $bg-dark;
+          }
+        }
+      }
+    }
+  }
+}

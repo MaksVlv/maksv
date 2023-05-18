@@ -1,0 +1,64 @@
+{
+  "seo": {
+    "title": "Nekustamais īpašums – Maksv",
+    "description": "Maks V ir jūsu nekustamo īpašumu pavadonis. Meklējiet un atradīsiet savu sapņu nekustamo īpašumu pie mums. Piedāvājumi visiem garšas un vēlmju priekšnoteikumiem.",
+    "keywords": "nekustamais īpašums, Maksv, meklēšana, piedāvājumi, pilsētas īpašums, rajona īpašums, cenas, stāvi, istabas, dzīvojamā platība, zemes platība, sērija, sapņu īpašums"
+  },
+  "headerSection": {
+    "h1": "Nekustamais īpašums",
+    "p1": "Mēs vienmēr esam gatavi piedāvāt jums daļu no jūsu sapņu īpašuma",
+    "p2": "<strong>Maks V</strong> ir jūsu nekustamo īpašumu pavadonis"
+  },
+  "filter": {
+    "search": "Meklēt",
+    "title": {
+      "h2": "Īpašuma meklēšana",
+      "p": "Šeit ir apkopoti visi mūsu piedāvājumi katrai gaumei un vēlmei."
+    },
+    "back": "Atpakaļ",
+    "searchPlaceholder": "Meklējamais vārds vai frāze",
+    "rent": {
+      "label": "Operācija",
+      "buy": "Pirkt uzreiz",
+      "rent": "Izīrē"
+    },
+    "type": "Tips",
+    "advanced": "Paplašināta meklēšana",
+    "city": "Pilsēta",
+    "district": "Rajons",
+    "price": "Cena",
+    "priceFrom": "Cena no",
+    "priceTill": "Cena līdz",
+    "from": "No",
+    "till": "Līdz",
+    "floors": "Stāvi",
+    "floor": "Stāvs",
+    "rooms": "Istabas",
+    "livingArea": "Dzīvojamā platība",
+    "landArea": "Zemes platība",
+    "series": "Sērija",
+    "gateHeight": "Vārtu augstums",
+    "size": "Izmērs",
+    "reset": "Dzēst",
+    "sort": "Kārtot pēc:",
+    "dateUp": "Datums augstošā",
+    "dateDown": "Datums dilstošā",
+    "priceUp": "Cēna augstošā",
+    "priceDown": "Cēna dilstošā"
+  },
+  "pagination": {
+    "back": "Atpakaļ",
+    "next": "Nākamā",
+    "page": "Lapa ",
+    "of": ". no "
+  },
+  "info": {
+    "contactUs": {
+      "title": "Interesē?"
+    },
+    "description": "Apraksts",
+    "location": "Lokācija",
+    "similar": "Līdzīgi objekti"
+  },
+  "empty": "Nav atrasts neviens rezultāts Jūsu pieprasījumam"
+}

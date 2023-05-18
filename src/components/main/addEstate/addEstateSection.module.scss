@@ -1,0 +1,31 @@
+@import "src/styles/global.scss";
+@import "src/components/main/sliderOffer/sliderOffer.module";
+
+.add {
+  padding-bottom: 30px;
+
+  .slide {
+    .info {
+      p {
+        &:first-of-type {
+          margin-bottom: 20px;
+        }
+      }
+      .button {
+        background-color: $bg-highlighted;
+        color: $bg-main;
+      }
+    }
+  }
+
+  @media screen and (max-width: $medium) {
+    .slide {
+      .info {
+        h3 {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+
+}

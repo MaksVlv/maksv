@@ -1,0 +1,39 @@
+{
+  "seo": {
+    "title": "Būvniecība – Maksv",
+    "description": "Maks V ir uzticams būvniecības pakalpojumu sniedzējs. Mūsu speciālisti veic kvalitatīvu konstrukciju un ātru projektu izpildi. Saņemiet detalizētu konsultāciju un nepieciešamo dokumentu sarakstu. Veicam remontu, renovāciju un privāto būvniecību.",
+    "keywords": "būvniecība, Maksv, būvniecības pakalpojumi, konstrukcija, ātra izpilde, konsultācija, remonts, renovācija, privātā būvniecība"
+  },
+  "title": "Būvniecība",
+  "p": "Maks V sniedz būvniecības pakalpojumus",
+  "slider": {
+    "first": {
+      "button": "Kvalitatīva konstrukcija",
+      "title": "Maks V: Jūsu uzticamais būvniecības pakalpojumu sniedzējs",
+      "p1": "Maks V būve sniedz objektu būvniecības pakalpojumus.",
+      "p2": "Mēs veidojam projektus pēc iespējas ātrāk. Izpildes laiks ir atkarīgs no daudziem faktoriem: būvlaukuma atrašanās vietas, projekta, dokumentācijas, būvmateriālu pieejamības."
+    },
+    "second": {
+      "p": "Pateicoties mūsu lielajai pieredzei, mūsu speciālisti pārzina visas šī procesa īpatnības un iespējamās nepilnības. Tas ļauj mums veikt īpašuma novērtēšanu pēc iespējas efektīvāk."
+    },
+    "third": {
+      "p": "Sazinoties ar mums, jūs saņemsiet detalizētu konsultāciju. Mēs atbildēsim uz visiem jūsu jautājumiem un sniegsim jums nepieciešamo dokumentu sarakstu."
+    }
+  },
+  "services": {
+    "p": "Objekta būvniecības pakalpojumu saraksts.",
+    "second": {
+      "h3": "Būvniecības izaicinājums"
+    },
+    "fourth": {
+      "p": "Nekustamā īpašuma veidi, ko mēs varam <br/> projektēt un būvēt."
+    }
+  },
+  "prices": {
+    "title": "Cenas",
+    "fix": "Remonts",
+    "renovation": "Renovācija",
+    "private": "Privātā būvniecība"
+  },
+  "partners": "Partneri"
+}

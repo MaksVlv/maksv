@@ -1,0 +1,47 @@
+@import "src/styles/global";
+
+.headerSection {
+  position: relative;
+
+  img {
+    width: 100vw;
+    height: 70vh;
+    min-height: 500px;
+    max-height: 880px;
+    object-fit: cover;
+  }
+
+  .buttonBlock {
+    position: absolute;
+    width: 100%;
+    margin: auto;
+    left: 50%;
+    top: 30%;
+    transform: translateX(-50%);
+    color: $bg-main;
+
+
+    h1 {
+      font-weight: bold;
+      margin-bottom: 40px;
+      font-size: 3.5em;
+    }
+    p {
+      font-size: 1.5em;
+      margin-bottom: 20px;
+      width: 40%;
+    }
+
+    @media screen and (max-width: $small) {
+      font-size: 1.1em;
+      top: 20%;
+      h1 {
+        margin-bottom: 15px;
+      }
+      p {
+        margin-bottom: 10px;
+        width: 70%;
+      }
+    }
+  }
+}

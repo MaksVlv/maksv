@@ -1,0 +1,61 @@
+@import "src/styles/global";
+
+.select {
+  height: 45px;
+  padding: 0 50px;
+  border: 1px solid #BCBCBC;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  &.disabled {
+    cursor: not-allowed;
+  }
+
+  .placeholder {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .selectSVG {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 2%;
+
+    &.rotate {
+      top: 44%;
+      transform: rotate(180deg);
+    }
+  }
+
+  .options {
+    border-radius: 5px;
+    border-left: 1px solid #BCBCBC;
+    border-right: 1px solid #BCBCBC;
+    border-bottom: 1px solid #BCBCBC;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: $bg-main;
+    display: flex;
+    flex-direction: column;
+    max-height: 200px;
+    overflow: auto;
+    z-index: 2;
+    overflow-x: hidden;
+
+    .option {
+      padding: 3px 50px;
+
+      &:hover {
+        cursor: pointer;
+        background-color: #BCBCBC;
+      }
+
+    }
+  }
+}

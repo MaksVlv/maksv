@@ -1,0 +1,158 @@
+@import "src/styles/global";
+.headerContainer {
+  height: 80px;
+  position: fixed;
+  z-index: 500;
+  width: 100%;
+  font-weight: bold;
+  transition: background-color 0.5s ease;
+
+  .header {
+    display: flex;
+    align-items: center;
+
+    .logo {
+      height: 80px;
+    }
+
+    .nav {
+      font-size: 1.2em;
+      flex: 1;
+      justify-self: flex-end;
+      display: flex;
+      justify-content: flex-end;
+      gap: 3%;
+
+      .link {
+        font-weight: 600;
+        color: $bg-dark;
+
+        &.active {
+          color: $bg-highlighted;
+        }
+
+        &:hover {
+          color: $bg-highlighted;
+        }
+      }
+    }
+
+    .languages {
+      display: flex;
+      gap: 24px;
+      margin-left: 5%;
+
+      img {
+        width: 24px;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+
+    .burger {
+      display: none;
+      width: 37px;
+      height: 26.7px;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      .line {
+        width: 100%;
+        height: 6px;
+        background-color: $bg-dark;
+        border-radius: 1px;
+      }
+
+      .del {
+        display: none;
+      }
+
+      &.opened {
+        :nth-child(1) {
+          transform: rotate(45deg) translate(10px, 10px);
+        }
+        :nth-child(2) {
+          transform: rotate(-45deg) translate(5px, -3px);
+        }
+      }
+    }
+
+    @media screen and (max-width: $medium) {
+      font-size: 0.85em;
+
+
+
+      .languages {
+        gap: 10px;
+        margin-left: 2%;
+
+        img {
+          width: 18px;
+        }
+      }
+    }
+
+    @media screen and (max-width: $small + 150) {
+      justify-content: space-between;
+
+      .logo {
+        height: 60px;
+        img {
+          height: 60px;
+          width: 99px;
+        }
+      }
+
+      .nav, .languages {
+        display: none;
+      }
+
+      .burger {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+      }
+
+
+
+      .burgerOpen {
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background-color: $bg-main;
+        color: $bg-dark;
+
+        .navMobile {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          font-size: 1.5em;
+          gap: 15px;
+          padding: 20px 0;
+
+          .languages {
+            display: flex;
+            gap: 20px;
+            img {
+              width: 22px;
+            }
+          }
+
+          .link {
+            &.active {
+              color: $bg-highlighted;
+            }
+          }
+
+        }
+      }
+    }
+
+  }
+}

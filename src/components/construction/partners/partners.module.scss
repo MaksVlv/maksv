@@ -1,0 +1,58 @@
+@import "src/styles/global";
+
+.achievements {
+  color: $bg-main;
+  background-color: $bg-highlighted;
+
+  .block {
+
+    h2 {
+      padding: 1.2em 0;
+      text-align: center;
+    }
+
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px 0;
+      justify-content: flex-start;
+      padding-bottom: 5em;
+
+      .stat {
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        h4 {
+          font-size: 2em;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: $medium) {
+    .block {
+
+      .stats {
+
+        .stat {
+          width: 25%;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: $small) {
+    .block {
+
+      .stats {
+        flex-direction: column;
+        gap: 10px 0;
+        .stat {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

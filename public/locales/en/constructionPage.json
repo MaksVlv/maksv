@@ -1,0 +1,39 @@
+{
+  "seo": {
+    "title": "Construction – Maksv",
+    "description": "Maks V is a reliable provider of construction services. Our specialists perform high-quality construction and fast project execution. Get a detailed consultation and list of required documents. We carry out repairs, renovations and private construction.",
+    "keywords": "construction, Maksv, construction services, construction, quick execution, consultation, repair, renovation, private construction"
+  },
+  "title": "Construction",
+  "p": "Maks V provides construction services",
+  "slider": {
+    "first": {
+      "button": "Quality construction",
+      "title": "Maks V: Your reliable construction service provider",
+      "p1": "Maks V provides services for the construction of facilities.",
+      "p2": "We perform the construction of facilities in the shortest possible time. The execution time depends on many factors: site location, design, documentation, availability of construction materials."
+    },
+    "second": {
+      "p": "Due to our extensive experience, our specialists are well aware of all the peculiarities and possible pitfalls of this process. This allows us to evaluate real estate as efficiently as possible."
+    },
+    "third": {
+      "p": "By contacting us, you will get a detailed consultation. We will answer all your questions and provide you with a list of necessary documents."
+    }
+  },
+  "services": {
+    "p": "List of services for the construction of facilities.",
+    "second": {
+      "h3": "The task of construction"
+    },
+    "fourth": {
+      "p": "Types of real estate we can design and <br/> build."
+    }
+  },
+  "prices": {
+    "title": "Prices",
+    "fix": "Repairing",
+    "renovation": "Renovation",
+    "private": "Private development"
+  },
+  "partners": "Partners"
+}

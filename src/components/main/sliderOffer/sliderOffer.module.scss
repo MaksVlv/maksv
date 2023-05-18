@@ -1,0 +1,197 @@
+@import "src/styles/global";
+
+.sliderAbout {
+  background-color: $bg-dark;
+  color: $bg-main;
+
+  h2 {
+    font-weight: bold;
+    padding: 50px 0;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+  }
+
+  .slideChange {
+    display: flex;
+    margin-bottom: 60px;
+
+    button {
+      flex: 1;
+      text-align: left;
+      padding: 10px 10px;
+      font-size: 1.4em;
+      border-bottom: 2px solid $neutral;
+
+      &.active {
+        border-color: $bg-highlighted;
+        &:hover {
+          color: $bg-main;
+        }
+      }
+      &:hover {
+        color: $bg-highlighted;
+      }
+    }
+  }
+
+  .slide {
+    display: flex;
+    height: 450px;
+    justify-content: flex-start;
+    margin-bottom: 50px;
+
+    img {
+      width: 30%;
+      object-fit: contain;
+      margin-right: 5%;
+    }
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20px 0;
+
+      h3 {
+        font-size: 2.5em;
+        font-weight: bold;
+      }
+
+      p {
+        font-weight: 400;
+        font-size: 1.2em;
+      }
+
+      .button {
+        display: block;
+        text-align: center;
+        color: $bg-highlighted;
+        padding: 10px 32px;
+        width: 300px;
+        border-radius: 10px;
+        border: 1px solid $bg-highlighted;
+        font-weight: bold;
+
+        &:hover {
+          background-color: $bg-main;
+          color: $bg-highlighted;
+          border: 1px solid $bg-highlighted;
+        }
+      }
+    }
+  }
+
+  .progress {
+    display: none;
+    position: absolute;
+    top: 330px;
+    width: 100%;
+
+    progress {
+      width: 100%;
+      height: 2px;
+      background-color: $bg-main;
+
+      &:after {
+        background-color: red;
+      }
+      &::-webkit-progress-value {
+        background-color: $bg-highlighted;
+        border-radius: 5px;
+      }
+
+      &::-moz-progress-bar {
+        background-color: $bg-highlighted;
+        border-radius: 5px;
+      }
+
+      &::-ms-fill {
+        background-color: $bg-highlighted;
+        border-radius: 5px;
+      }
+      progress::-webkit-progress-bar {
+        background-color: $bg-main;
+        width: 100%;
+      }
+      progress::-moz-progress-bar {
+        background-color: $bg-main;
+        width: 100%;
+      }
+    }
+  }
+
+  @media screen and (max-width: $medium) {
+    h2 {
+      padding-top: 28px;
+      padding-bottom: 20px;
+    }
+
+    .slideChange {
+      display: none;
+    }
+
+    .slide {
+      flex-direction: column;
+      height: unset;
+
+      img {
+        width: 100%;
+        height: 300px;
+        border-radius: 10px;
+        object-fit: cover;
+      }
+
+      .info {
+        h3 {
+          margin-top: 70px;
+          margin-bottom: 30px;
+        }
+        p {
+          margin-bottom: 25px;
+        }
+        .button {
+          margin-top: 15px;
+        }
+      }
+    }
+    .progress {
+      width: 100%;
+      display: block;
+
+      p {
+        font-size: 1.4em;
+      }
+    }
+  }
+
+  @media screen and (max-width: $small) {
+
+    .slide {
+      flex-direction: column;
+      height: unset;
+      margin-bottom: 10px;
+
+      img {
+        width: 100%;
+        height: 300px;
+        border-radius: 10px;
+        object-fit: cover;
+      }
+
+      .info {
+        h3 {
+          margin-top: 60px;
+          margin-bottom: 30px;
+        }
+        p {
+          margin-bottom: 25px;
+        }
+
+        .button {
+          width: 250px;
+        }
+      }
+    }
+  }
+
+}

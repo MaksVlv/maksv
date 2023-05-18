@@ -1,0 +1,9 @@
+import React from "react";
+
+export default function LivingArea() {
+    return (
+        <svg width="38" height="20" viewBox="0 0 38 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M34 0H3.99996C2.15829 0 0.666626 1.49167 0.666626 3.33333V16.6667C0.666626 18.5083 2.15829 20 3.99996 20H34C35.8416 20 37.3333 18.5083 37.3333 16.6667V3.33333C37.3333 1.49167 35.8416 0 34 0ZM34 16.6667H3.99996V3.33333H7.33329V10H10.6666V3.33333H14V10H17.3333V3.33333H20.6666V10H24V3.33333H27.3333V10H30.6666V3.33333H34V16.6667Z" fill="white"/>
+        </svg>
+    )
+}

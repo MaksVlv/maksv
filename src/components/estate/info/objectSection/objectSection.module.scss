@@ -1,0 +1,70 @@
+@import "src/styles/global";
+
+.objectSection {
+
+  margin-top: 100px;
+
+  @media screen and (max-width: $medium) {
+    margin-top: 30px;
+  }
+
+}
+
+.photos, .prices {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+
+  .photoBlock {
+    flex: 1;
+  }
+
+  .contactUs {
+    flex: 0.2;
+    background-color: #F7F7F6;
+    border-radius: 19px;
+    padding: 32px 41px;
+    height: 350px;
+    color: $bg-dark;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    h3 {
+      font-size: 1.6em;
+      color: $bg-dark;
+    }
+    p {
+      font-weight: bold;
+      color: $bg-dark;
+      display: flex;
+      gap: 10px;
+      font-size: 1.1em;
+      margin-bottom: 15px;
+    }
+
+    .button {
+      width: 100%;
+      text-align: center;
+      padding: 10px 0;
+      background-color: $bg-highlighted;
+      border: 1px solid $bg-highlighted;
+      border-radius: 5px;
+      color: $bg-main;
+      font-weight: bold;
+
+      &:hover {
+        color: $bg-highlighted;
+        background-color: $bg-main;
+      }
+    }
+  }
+
+  @media screen and (max-width: $medium) {
+    .contactUs {
+      display: none;
+      flex: 0;
+    }
+  }
+
+}

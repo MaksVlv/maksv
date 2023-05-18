@@ -1,0 +1,53 @@
+{
+  "seo": {
+    "title": "Maksv — Real estate in Latvia",
+    "description": "We are specialists in the real estate market in Latvia. We offer professional assistance in the search, purchase and registration of real estate. Our team guarantees an individual approach and quick problem solving. Buy an apartment, private house, land, commercial property or investment property with MaksV and achieve your real estate goals.",
+    "keywords": "Maksv, Real estate, Property market, Property search, Property purchase, Professional assistance, Individual approach, Quick solution to problems, Apartments, Private houses, Commercial properties, Investment properties, Construction, Real estate valuation, Latvian Association of Property Appraisers, Dream house, Buying a house, Home Selling, Marketing Strategies"
+  },
+  "slider": {
+    "h1": "Your Dream Home Is Always Available With Us"
+  },
+  "info": {
+    "aboutUs": {
+      "title": "About Us",
+      "p": "SIA “Maks V” has been stably working in the Latvian real estate market since 1998 and provides professional assistance to its clients in search, purchase, registration of real estate, etc. Each client is guaranteed an individual approach and solution of tasks in the shortest possible time.\nOver the years we have formed a high level team of experts, collected an extensive database of objects, actively cooperating with the credit institutions and various governmental agencies. All this allows us to work successfully, develop and provide consistently high quality of our services."
+    },
+    "estate": {
+      "title": "Real Estate",
+      "p": "Apartments, private homes, land, commercial real estate and investment property – with the help of professional work “Maks V” everyone can achieve the desired result in real estate transactions!"
+    },
+    "construction": {
+      "title": "Construction",
+      "p": "The company “Maks V” is engaged in construction of houses on a turnkey basis from a wide range of building materials"
+    },
+    "evaluation": {
+      "title": "Evaluation",
+      "p": "Maks V provides real estate valuation services and is an associate member of the Latvian Association of Property Appraisers (LĪVA)."
+    }
+  },
+  "offer": {
+    "title": "What do we offer?",
+    "state": {
+      "h3": "Your dream home is waiting for you: discover the best real estate!",
+      "p": "Our site offers real estate sales - the solution to find your dream home. Discover the best property that suits your wishes and requirements. We are ready to help you achieve your goals when buying a home."
+    },
+    "evaluation": {
+      "h3": "Comprehensive real estate appraisal",
+      "p": "Gain confidence in your investment decisions with a professional real estate appraisal tailored to your specific needs and goals."
+    },
+    "construction": {
+      "h3": "Dream Building: Unleashing the Potential of Excellence in Construction",
+      "p": "Using innovation and experience, our construction services deliver unrivaled quality, reliability and customer satisfaction, ensuring your project exceeds expectations."
+    }
+  },
+  "button": {
+    "info": "Additional information",
+    "contactUs": "Contact us"
+  },
+  "sell": {
+    "title": "Grow the potential of your property: list your property for sale today!",
+    "h3": "Add your property for sale",
+    "p1": "Using our extensive network, experience and customized marketing strategies, we provide you with a platform to showcase your property and attract buyers.",
+    "p2": "Don't miss out on the opportunity to maximize the value of your property and make a successful sale!"
+  }
+}

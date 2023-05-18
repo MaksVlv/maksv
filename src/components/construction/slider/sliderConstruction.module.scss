@@ -1,0 +1,22 @@
+@import "src/styles/global";
+@import "src/components/main/sliderOffer/sliderOffer.module";
+
+.sliderAbout {
+  background-color: #222221;
+  position: relative;
+
+  .slide {
+
+    .info {
+      justify-content: flex-start;
+
+      h3 {
+        margin-bottom: 5%;
+      }
+
+      p:first-of-type {
+        margin-bottom: 3%;
+      }
+    }
+  }
+}

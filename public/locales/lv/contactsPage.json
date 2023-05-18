@@ -1,0 +1,36 @@
+{
+  "seo": {
+    "title": "Kontakti – Maksv",
+    "description": "Maks V piedāvā kontaktinformāciju, lai jūs varētu sazināties ar mums. Mēs esam gatavi palīdzēt un atbildēt uz jūsu jautājumiem. Gaidām jūsu zvanu, e-pastu vai ziņojumu. Sazinieties ar mums un saņemiet profesionālu atbalstu.",
+    "keywords": "kontakti, Maksv, sazinieties ar mums, palīdzība, jautājumi, adrese, tālrunis, e-pasts"
+  },
+  "header": {
+    "title": "Mūsu Kontakti",
+    "p": "Mēs jums palīdzēsim visos jautājumos, kas ir <br/> mūsu kompetencē"
+  },
+  "p": "Mēs gaidām jūsu zvanu un vienmēr esam gatavi palīdzēt!",
+  "address": "Adrese",
+  "tel": "Tālrunis",
+  "email": "E-pasts",
+  "form": {
+    "title": "Sazinieties ar mums",
+    "name": "Vārds / Uzvārds*",
+    "namePlaceholder": "Jūsu Vārds / Uzvārds",
+    "phone": "Tālrunis",
+    "phonePlaceholder": "Jūsu Tālruņa Numurs",
+    "email": "Email*",
+    "emailPlaceholder": "Jūsu email",
+    "category": "Kategorija*",
+    "categoryPlaceholder": "Izvēlieties Kategoriju",
+    "categorySolar": "Saules paneļi",
+    "categoryCarports": "Karporti",
+    "categoryCleaning": "Tīrīšana",
+    "categoryOther": "Cits",
+    "message": "Ziņojums*",
+    "messagePlaceholder": "Pastāstiet mums par saviem sapņiem",
+    "button": "SŪTĪT",
+    "buttonLoading": "LOADING",
+    "buttonSend": "NOSŪTĪTS",
+    "buttonError": "KĻŪDA"
+  }
+}

@@ -38,7 +38,7 @@ export default function Form({ emailJSPublic }: FormProps) {
 
         loading();
 
-        emailjs.sendForm('service_ldtnsfx', 'template_hmmlcrn', formRef.current, emailJSPublic)
+        emailjs.sendForm('service_ohgcgq5', 'template_uei3fr9', formRef.current, emailJSPublic)
             .then((_res) => {
                 sent();
             }, (_err) => {

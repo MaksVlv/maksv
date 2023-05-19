@@ -82,6 +82,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
         if (file && file.preview === estate.mainImage)
             return;
         setLoading(true);
+        toast.warn("Sending image");
         const formData = new FormData();
         formData.append('estate', JSON.stringify({...estate, images: [], mainImage: ''}));
         formData.append('mainImage', file.file);
@@ -98,19 +99,26 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
         if (typeof length === 'undefined')
             return;
         setLoading(true);
-        const formData = new FormData();
-        formData.append('estate', JSON.stringify({...estate, images: [], mainImage: ''}));
+        toast.warn("Sending image/s");
+
         let start = files.length - length - 1
+        const imageRequests: any = [];
         for (let i = start; i < files.length; i++) {
-            formData.append(`image${i}`, files[i].file);
+            const formDataImages = new FormData();
+            formDataImages.append('estate', JSON.stringify({...estate, images: [], mainImage: ''}));
+            formDataImages.append(`image`, files[i].file);
+            imageRequests.push(axios.post("estate/update?update=image", formDataImages, { headers: { "Content-Type": 'multipart/form-data', Authorization: `Bearer ${localStorage.getItem("token")}` } }))
         }
-        axios.post(`estate/update?update=image`, formData, { headers: { "Content-Type": 'multipart/form-data', Authorization: `Bearer ${localStorage.getItem("token")}` } }).then(res => {
-            toast.success(`Estate images added - ` + estate.name.lv)
-            // @ts-ignore
-            setEstate({...estate, images: res.data.images })
-        }, err => {
-            toast.error(err.response.data.message || "Error occurred")
-        }).finally(() => setLoading(false));
+        Promise.all(imageRequests).then(_res => {
+            axios.get(`estate/info?id=${estateOld._id}`).then(res => {
+                // @ts-ignore
+                setEstate({...estate, images: res.data.images })
+                setLoading(false);
+            })
+        }).catch(_err => {
+            toast.success("Not all images are uploaded, please check estate")
+            setLoading(false);
+        })
     }
 
     const imagesDelete = (files: Image[], url: string) => {
@@ -391,10 +399,10 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
                         </form>
                         <hr className={"mt-6 mb-6"}/>
                         <div className="block text-gray-700 font-bold mt-6">Main image:</div>
-                        <Upload one={true} onFileChange={(file: Image[]) => mainImageChange(file[0])} filesOld={[estate.mainImage]} deleteImg={false} />
+                        <Upload one={true} onFileChange={(file: Image[]) => mainImageChange(file[0])} filesOld={[estate.mainImage]} deleteImg={false} loading={(state: boolean) => setLoading(state)} />
 
                         <div className="block text-gray-700 font-bold mt-6">Images:</div>
-                        <Upload onFileChange={(files: Image[], length: number | undefined) => imagesChange(files, length)} filesOld={estate.images} onDeleteImg={(files: Image[], url: string) => imagesDelete(files, url)}/>
+                        <Upload onFileChange={(files: Image[], length: number | undefined) => imagesChange(files, length)} filesOld={estate.images} onDeleteImg={(files: Image[], url: string) => imagesDelete(files, url)} loading={(state: boolean) => setLoading(state)} />
 
                         <hr className={"mt-6 mb-6"}/>
 

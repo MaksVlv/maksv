@@ -6,7 +6,7 @@ import District from '@/models/District';
 import jwt from "jsonwebtoken";
 
 cloudinary.v2.config({
-    cloud_name: "artemijss",
+    cloud_name: "dv139dkum",
     api_key: process.env.CLOUDINARY_API_KEY,
     api_secret: process.env.CLOUDINARY_API_SECRET
 });
@@ -42,6 +42,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const form = new formidable.IncomingForm({ maxFileSize: 4.5 * 1024 * 1024 });
         form.parse(req, async (err, fields, files) => {
             if (err) {
+                console.log(err)
                 return res.status(400).json({message: 'Error parsing form data'});
             }
 

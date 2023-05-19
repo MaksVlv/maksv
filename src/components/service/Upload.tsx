@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import FileUpload from 'react-drag-n-drop-image';
 import styles from "../admin/styles/admin.module.scss";
-import { toast } from "react-toastify";
+import {toast} from "react-toastify";
+import imageCompression from 'browser-image-compression';
+
 
 interface Image {
-    file: {
-        name: string,
-        size: number
-    },
+    file: File,
     preview: string
 }
 
@@ -16,19 +15,61 @@ interface UploadProps {
     one?: boolean,
     filesOld?: string[],
     deleteImg?: boolean,
-    onDeleteImg?: (files: Image[], url: string) => void
+    onDeleteImg?: (files: Image[], url: string) => void,
+    loading?: (state: boolean) => void
 }
 
-const Upload = ({ onFileChange, one = false, filesOld = [], deleteImg = true, onDeleteImg }: UploadProps) => {
+const Upload = ({ onFileChange, one = false, filesOld = [], deleteImg = true, onDeleteImg, loading }: UploadProps) => {
     const [files, setFiles] = useState<Image[]>([]);
 
-    const onChange = (file: Image[]) => {
+    const compressImage = async (file: File) => {
+        try {
+
+            const options = {
+                maxSizeMB: 4.5,
+                useWebWorker: true
+            };
+
+            const compressedBlob = await imageCompression(file, options);
+
+            const compressedFile = new File([compressedBlob], file.name, {
+                type: compressedBlob.type,
+                lastModified: file.lastModified
+            });
+
+            const preview = URL.createObjectURL(compressedBlob);
+
+            return {
+                file: compressedFile,
+                preview: preview
+            };
+        } catch (error) {
+            console.error('Error compressing image:', error);
+            throw error;
+        }
+    };
+
+    const onChange = async (file: Image[]) => {
+
+        toast.warn("Compressing images")
+
+        if (loading) {
+            loading(true);
+        }
+        const compressedFiles = await Promise.all(file.slice(files.length - file.length).map((f: Image) => compressImage(f.file)));
+        if (loading)
+            loading(false);
+
+        const existedFiles = file.slice(0, files.length)
+
+        file = [...existedFiles, ...compressedFiles as Image[]]
+
         file = file.filter((f) => {
             if (f.file.size > 4.5 * 1024 * 1024) {
                 toast.error(f.file.name + " is too big (>4.5)");
                 return false;
             }
-            return true; // оставляем файл в новом массиве
+            return true;
         });
 
         if (file.length === 0)
@@ -38,6 +79,7 @@ const Upload = ({ onFileChange, one = false, filesOld = [], deleteImg = true, on
             const newFiles = [...file];
             newFiles.splice(0, 1);
             setFiles(newFiles);
+            onFileChange(newFiles);
             return;
         }
         if (one && file.length > 2) {
@@ -71,7 +113,8 @@ const Upload = ({ onFileChange, one = false, filesOld = [], deleteImg = true, on
 
     useEffect(() => {
         if (filesOld)
-            setFiles(filesOld.map(str => ({file: {name: '', size: 0}, preview: str})))
+            //@ts-ignore
+            setFiles(filesOld.map(str => ({file: {}, preview: str})))
     }, [])
 
     return (

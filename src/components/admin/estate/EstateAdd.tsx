@@ -298,10 +298,10 @@ export default function EstateAdd({ onCloseClick, onSave }: EstateAddProps) {
                             </div>
 
                             <div className="block text-gray-700 font-bold mt-6">Main image:</div>
-                            <Upload one={true} onFileChange={(file: Image[]) => setEstate({...estate, mainImage: file[0]})} />
+                            <Upload one={true} onFileChange={(file: Image[]) => setEstate({...estate, mainImage: file[0]})} loading={(state: boolean) => setLoading(state)} />
 
                             <div className="block text-gray-700 font-bold mt-6">Images:</div>
-                            <Upload onFileChange={(files: Image[]) => imagesChange(files)} />
+                            <Upload onFileChange={(files: Image[]) => imagesChange(files)} loading={(state: boolean) => setLoading(state)} />
 
                             <hr className={"mt-5 mb-6"}/>
 

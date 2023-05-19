@@ -4,7 +4,10 @@ import styles from "../admin/styles/admin.module.scss";
 import { toast } from "react-toastify";
 
 interface Image {
-    file: {},
+    file: {
+        name: string,
+        size: number
+    },
     preview: string
 }
 
@@ -20,6 +23,16 @@ const Upload = ({ onFileChange, one = false, filesOld = [], deleteImg = true, on
     const [files, setFiles] = useState<Image[]>([]);
 
     const onChange = (file: Image[]) => {
+        file = file.filter((f) => {
+            if (f.file.size > 4.5 * 1024 * 1024) {
+                toast.error(f.file.name + " is too big (>4.5)");
+                return false;
+            }
+            return true; // оставляем файл в новом массиве
+        });
+
+        if (file.length === 0)
+            return;
 
         if (one && file.length === 2) {
             const newFiles = [...file];
@@ -58,7 +71,7 @@ const Upload = ({ onFileChange, one = false, filesOld = [], deleteImg = true, on
 
     useEffect(() => {
         if (filesOld)
-            setFiles(filesOld.map(str => ({file: {}, preview: str})))
+            setFiles(filesOld.map(str => ({file: {name: '', size: 0}, preview: str})))
     }, [])
 
     return (

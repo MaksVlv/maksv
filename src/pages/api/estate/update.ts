@@ -39,7 +39,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             return res.status(405).json({ message: "user is not admin" });
 
 
-        const form = new formidable.IncomingForm();
+        const form = new formidable.IncomingForm({ maxFileSize: 4.5 * 1024 * 1024 });
         form.parse(req, async (err, fields, files) => {
             if (err) {
                 return res.status(400).json({message: 'Error parsing form data'});
@@ -148,8 +148,6 @@ const addMainImage = async (estateObj: any, files: formidable.Files, req: NextAp
 
 const addImage = async (estateObj: any, files: formidable.Files, req: NextApiRequest, res: NextApiResponse) => {
 
-    const estate = await Estate.findById(estateObj._id);
-
     // image add
     const fileNames = Object.keys(files)
     let imageUrls = [];
@@ -163,8 +161,11 @@ const addImage = async (estateObj: any, files: formidable.Files, req: NextApiReq
         imageUrls.push(result.secure_url);
     }
 
-    estate.images = [...estate.images, ...imageUrls];
-    await estate.save();
+    const estate = await Estate.findOneAndUpdate(
+        { _id: estateObj._id },
+        { $push: { images: { $each: imageUrls } } },
+        { new: true }
+    );
 
     return res.status(200).json({ images: estate.images });
 }

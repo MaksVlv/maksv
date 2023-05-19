@@ -41,18 +41,28 @@ export default function EstateAdd({ onCloseClick, onSave }: EstateAddProps) {
         setLoading(true);
         const formData = new FormData();
         formData.append('mainImage', estate.mainImage.file);
-        for (let i = 0; i < estate.images.length; i++) {
-            formData.append(`image${i}`, estate.images[i].file);
-        }
         formData.append('estate', JSON.stringify({...estate, images: [], mainImage: ''}));
 
         axios.post("estate/add", formData, { headers: { "Content-Type": 'multipart/form-data', Authorization: `Bearer ${localStorage.getItem("token")}` } }).then(res => {
-            toast.success("Estate added!")
-            onSave();
-            onCloseClick();
+            const imageRequests: any = [];
+            for (let i = 0; i < estate.images.length; i++) {
+                const formDataImages = new FormData();
+                formDataImages.append('estate', JSON.stringify({...res.data, images: [], mainImage: ''}));
+                formDataImages.append(`image`, estate.images[i].file);
+                imageRequests.push(axios.post("estate/update?update=image", formDataImages, { headers: { "Content-Type": 'multipart/form-data', Authorization: `Bearer ${localStorage.getItem("token")}` } }))
+            }
+            Promise.all(imageRequests).catch(_err => {
+                toast.success("Not all images are uploaded, please check estate")
+            }).finally(() => {
+                toast.success("Estate added!")
+                onSave();
+                onCloseClick();
+                setLoading(false);
+            })
         }, err => {
             toast.error(err.response.data.message || "Error occurred" );
-        }).finally(() => setLoading(false))
+            setLoading(false);
+        })
     };
 
     useEffect(() => {

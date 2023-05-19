@@ -36,7 +36,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         if (!user.isAdmin)
             return res.status(405).json({ message: "user is not admin" });
 
-        const form = new formidable.IncomingForm({ maxFileSize: 350 * 1024 * 1024 });
+        const form = new formidable.IncomingForm({ maxFileSize: 4.5 * 1024 * 1024 });
 
         form.parse(req, async (err, fields, files) => {
             if (err) {
@@ -45,7 +45,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
             try {
 
-                if (!files.mainImage || Object.keys(files).length <= 1 || !fields.estate) {
+                if (!files.mainImage || !fields.estate) {
                     return res.status(400).json({message: 'Invalid data'});
                 }
 
@@ -107,29 +107,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 await dbConnect();
 
                 let mainImageUrl = '';
-                let imageUrls = [];
 
                 // @ts-ignore
                 let result = await cloudinary.uploader.upload(files.mainImage.filepath);
                 mainImageUrl = result.secure_url;
                 delete files.mainImage
 
-                const fileNames = Object.keys(files)
-
-                for (let i = 0; i < fileNames.length; i++) {
-                    // @ts-ignore
-                    let result = await cloudinary.uploader.upload(files[fileNames[i]].filepath);
-                    if (!result.secure_url)
-                        throw "no image secure_url"
-
-                    imageUrls.push(result.secure_url);
-                }
-
-                // mainImageUrl = "https://res.cloudinary.com/artemijss/image/upload/v1682090503/wqd4f4zjw9xzquedua09.jpg"
-                // imageUrls = ["https://res.cloudinary.com/artemijss/image/upload/v1682090517/qqrzzr3zmzkwjvgkzdxs.jpg", "https://res.cloudinary.com/artemijss/image/upload/v1682090531/wakpkv8twyl1lmui87po.jpg"]
-
                 typedEstate.mainImage = mainImageUrl;
-                typedEstate.images = imageUrls;
 
 
                 const newEstate = new Estate(typedEstate);

@@ -23,6 +23,7 @@ export default function EstatePage({ estate, googleApi }: EstatePageProps) {
         <MainContainer
             title={`${estate.name[i18n.language]} | Maksv`}
             description={estate.description[i18n.language]}
+            ogImage={estate.mainImage}
             headerBackgroundDefault={true}
         >
             <div className={"minusHeader"}>

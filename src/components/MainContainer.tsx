@@ -10,10 +10,11 @@ interface MainContainer {
     title?: string | null,
     description?: string | null,
     keywords?: string | null,
-    headerBackgroundDefault?: boolean
+    headerBackgroundDefault?: boolean,
+    ogImage?: string
 }
 
-const MainContainer = ({ children, title, description, keywords, headerBackgroundDefault }: MainContainer) => {
+const MainContainer = ({ children, title, description, keywords, headerBackgroundDefault, ogImage }: MainContainer) => {
 
     const router = useRouter();
 
@@ -29,7 +30,11 @@ const MainContainer = ({ children, title, description, keywords, headerBackgroun
 
                 <meta property="og:type" content="website" />
                 <meta property="og:url" content={"https://www.maksv.lv" + (router.locale === "lv" ? "" : "/" + router.locale) + router.pathname} />
-                <meta property="og:image" content="https://www.maksv.lv/ogImage.jpg" />
+                {ogImage ?
+                    <meta property="og:image" content={ogImage} />
+                    :
+                    <meta property="og:image" content="https://www.maksv.lv/ogImage.jpg" />
+                }
                 {title && <meta property="og:title" content={ title } />}
                 {description && <meta property="og:description" content={ description } />}
                 <meta property="og:locale" content={router.locale} />

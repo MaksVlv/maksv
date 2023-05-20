@@ -6,6 +6,7 @@
   width: 100%;
   font-weight: bold;
   transition: background-color 0.5s ease;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0)); /* Градиентное затемнение от 50% прозрачности к 70% */
 
   .header {
     display: flex;

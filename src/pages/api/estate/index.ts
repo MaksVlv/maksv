@@ -8,7 +8,7 @@ import City from '@/models/City';
 import cloudinary from "cloudinary";
 
 cloudinary.v2.config({
-    cloud_name: "artemijss",
+    cloud_name: "dv139dkum",
     api_key: process.env.CLOUDINARY_API_KEY,
     api_secret: process.env.CLOUDINARY_API_SECRET
 });

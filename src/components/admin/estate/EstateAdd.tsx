@@ -62,11 +62,14 @@ export default function EstateAdd({ onCloseClick, onSave }: EstateAddProps) {
                     const formDataImages = new FormData();
                     formDataImages.append('estate', JSON.stringify({...res.data, images: [], mainImage: ''}));
                     formDataImages.append(`image`, imagesSpliced[k][i].file);
-                    imageRequests.push(axios.post("estate/update?update=image", formDataImages, { headers: { "Content-Type": 'multipart/form-data', Authorization: `Bearer ${localStorage.getItem("token")}` } }))
+                    await axios.post("estate/update?update=image", formDataImages, { headers: { "Content-Type": 'multipart/form-data', Authorization: `Bearer ${localStorage.getItem("token")}` } }).catch(_err => {
+                        toast.success("Not all images are uploaded, please check estate later")
+                    })
+                    // imageRequests.push(axios.post("estate/update?update=image", formDataImages, { headers: { "Content-Type": 'multipart/form-data', Authorization: `Bearer ${localStorage.getItem("token")}` } }))
                 }
-                await Promise.all(imageRequests).catch(_err => {
-                    toast.success("Not all images are uploaded, please check estate later")
-                })
+                // await Promise.all(imageRequests).catch(_err => {
+                //     toast.success("Not all images are uploaded, please check estate later")
+                // })
             }
             toast.success("Estate added!")
 
@@ -239,7 +242,7 @@ export default function EstateAdd({ onCloseClick, onSave }: EstateAddProps) {
                                     id="estateCity"
                                     className="block appearance-none w-full bg-white border focus:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
                                     value={estate.city}
-                                    onChange={(e) => {setEstate({...estate, city: e.target.value}); getDistricts(e.target.value)}}
+                                    onChange={(e) => {setEstate({...estate, city: e.target.value, district: ""}); getDistricts(e.target.value)}}
                                 >
                                     <option value="" disabled>Select estate city</option>
                                     {

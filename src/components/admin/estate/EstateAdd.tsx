@@ -65,16 +65,17 @@ export default function EstateAdd({ onCloseClick, onSave }: EstateAddProps) {
                     imageRequests.push(axios.post("estate/update?update=image", formDataImages, { headers: { "Content-Type": 'multipart/form-data', Authorization: `Bearer ${localStorage.getItem("token")}` } }))
                 }
                 await Promise.all(imageRequests).catch(_err => {
-                    toast.success("Not all images are uploaded, please check estate")
-                }).finally(() => {
-                    toast.success("Estate added!")
-                    onSave();
-                    onCloseClick();
-                    setLoading(false);
+                    toast.success("Not all images are uploaded, please check estate later")
                 })
             }
+            toast.success("Estate added!")
+
         }, err => {
             toast.error(err.response.data.message || "Error occurred" );
+            setLoading(false);
+        }).finally(() => {
+            onSave();
+            onCloseClick();
             setLoading(false);
         })
     };

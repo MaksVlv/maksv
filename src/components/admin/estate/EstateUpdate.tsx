@@ -111,7 +111,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
 
         let start = files.length - length - 1
 
-        const imagesSpliced = chunkArray(files.slice(start, files.length), 5);
+        const imagesSpliced = chunkArray(files.slice(start + 1, files.length), 5);
 
         for (let k = 0; k < imagesSpliced.length; k++) {
             const imageRequests: any = [];
@@ -119,7 +119,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
             for (let i = 0; i < imagesSpliced[k].length; i++) {
                 const formDataImages = new FormData();
                 formDataImages.append('estate', JSON.stringify({...estate, images: [], mainImage: ''}));
-                formDataImages.append(`image`, files[i].file);
+                formDataImages.append(`image`, imagesSpliced[k][i].file);
                 imageRequests.push(axios.post("estate/update?update=image", formDataImages, {
                     headers: {
                         "Content-Type": 'multipart/form-data',
@@ -127,17 +127,15 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
                     }
                 }))
             }
-            await Promise.all(imageRequests).then(_res => {
-                axios.get(`estate/info?id=${estateOld._id}`).then(res => {
-                    // @ts-ignore
-                    setEstate({...estate, images: res.data.images})
-                    setLoading(false);
-                })
-            }).catch(_err => {
-                toast.success("Not all images are uploaded, please check estate")
-                setLoading(false);
+            await Promise.all(imageRequests).catch(_err => {
+                toast.success("Not all images are uploaded, please check estate later")
             })
         }
+
+        axios.get(`estate/info?id=${estateOld._id}`).then(res => {
+            // @ts-ignore
+            setEstate({...estate, images: res.data.images})
+        }).finally(() => setLoading(false))
     }
 
     const imagesDelete = (files: Image[], url: string) => {

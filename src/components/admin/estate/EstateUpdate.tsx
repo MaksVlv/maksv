@@ -95,30 +95,49 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
         }).finally(() => setLoading(false));
     }
 
-    const imagesChange = (files: Image[], length: number | undefined) => {
+    const imagesChange = async (files: Image[], length: number | undefined) => {
         if (typeof length === 'undefined')
             return;
         setLoading(true);
         toast.warn("Sending image/s");
 
+        const chunkArray = (arr: any[], size: number) => {
+            const result = [];
+            for (let i = 0; i < arr.length; i += size) {
+                result.push(arr.slice(i, i + size));
+            }
+            return result;
+        };
+
         let start = files.length - length - 1
-        const imageRequests: any = [];
-        for (let i = start; i < files.length; i++) {
-            const formDataImages = new FormData();
-            formDataImages.append('estate', JSON.stringify({...estate, images: [], mainImage: ''}));
-            formDataImages.append(`image`, files[i].file);
-            imageRequests.push(axios.post("estate/update?update=image", formDataImages, { headers: { "Content-Type": 'multipart/form-data', Authorization: `Bearer ${localStorage.getItem("token")}` } }))
-        }
-        Promise.all(imageRequests).then(_res => {
-            axios.get(`estate/info?id=${estateOld._id}`).then(res => {
-                // @ts-ignore
-                setEstate({...estate, images: res.data.images })
+
+        const imagesSpliced = chunkArray(files.slice(start, files.length), 5);
+
+        for (let k = 0; k < imagesSpliced.length; k++) {
+            const imageRequests: any = [];
+
+            for (let i = 0; i < imagesSpliced[k].length; i++) {
+                const formDataImages = new FormData();
+                formDataImages.append('estate', JSON.stringify({...estate, images: [], mainImage: ''}));
+                formDataImages.append(`image`, files[i].file);
+                imageRequests.push(axios.post("estate/update?update=image", formDataImages, {
+                    headers: {
+                        "Content-Type": 'multipart/form-data',
+                        Authorization: `Bearer ${localStorage.getItem("token")}`
+                    }
+                }))
+            }
+            await Promise.all(imageRequests).then(_res => {
+                axios.get(`estate/info?id=${estateOld._id}`).then(res => {
+                    // @ts-ignore
+                    setEstate({...estate, images: res.data.images})
+                    setLoading(false);
+                })
+            }).catch(_err => {
+                toast.success("Not all images are uploaded, please check estate")
                 setLoading(false);
             })
-        }).catch(_err => {
-            toast.success("Not all images are uploaded, please check estate")
-            setLoading(false);
-        })
+        }
     }
 
     const imagesDelete = (files: Image[], url: string) => {

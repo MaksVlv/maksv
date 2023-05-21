@@ -43,22 +43,36 @@ export default function EstateAdd({ onCloseClick, onSave }: EstateAddProps) {
         formData.append('mainImage', estate.mainImage.file);
         formData.append('estate', JSON.stringify({...estate, images: [], mainImage: ''}));
 
-        axios.post("estate/add", formData, { headers: { "Content-Type": 'multipart/form-data', Authorization: `Bearer ${localStorage.getItem("token")}` } }).then(res => {
-            const imageRequests: any = [];
-            for (let i = 0; i < estate.images.length; i++) {
-                const formDataImages = new FormData();
-                formDataImages.append('estate', JSON.stringify({...res.data, images: [], mainImage: ''}));
-                formDataImages.append(`image`, estate.images[i].file);
-                imageRequests.push(axios.post("estate/update?update=image", formDataImages, { headers: { "Content-Type": 'multipart/form-data', Authorization: `Bearer ${localStorage.getItem("token")}` } }))
+        const chunkArray = (arr: any[], size: number) => {
+            const result = [];
+            for (let i = 0; i < arr.length; i += size) {
+                result.push(arr.slice(i, i + size));
             }
-            Promise.all(imageRequests).catch(_err => {
-                toast.success("Not all images are uploaded, please check estate")
-            }).finally(() => {
-                toast.success("Estate added!")
-                onSave();
-                onCloseClick();
-                setLoading(false);
-            })
+            return result;
+        };
+
+        axios.post("estate/add", formData, { headers: { "Content-Type": 'multipart/form-data', Authorization: `Bearer ${localStorage.getItem("token")}` } }).then(async res => {
+
+            const imagesSpliced = chunkArray(estate.images, 5);
+
+            for (let k = 0; k < imagesSpliced.length; k++) {
+                const imageRequests: any = [];
+
+                for (let i = 0; i < imagesSpliced[k].length; i++) {
+                    const formDataImages = new FormData();
+                    formDataImages.append('estate', JSON.stringify({...res.data, images: [], mainImage: ''}));
+                    formDataImages.append(`image`, imagesSpliced[k][i].file);
+                    imageRequests.push(axios.post("estate/update?update=image", formDataImages, { headers: { "Content-Type": 'multipart/form-data', Authorization: `Bearer ${localStorage.getItem("token")}` } }))
+                }
+                await Promise.all(imageRequests).catch(_err => {
+                    toast.success("Not all images are uploaded, please check estate")
+                }).finally(() => {
+                    toast.success("Estate added!")
+                    onSave();
+                    onCloseClick();
+                    setLoading(false);
+                })
+            }
         }, err => {
             toast.error(err.response.data.message || "Error occurred" );
             setLoading(false);

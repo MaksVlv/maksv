@@ -7,3 +7,4 @@ export {default as LivingArea} from './livingArea';
 export {default as GateHeight} from './gateHeight';
 export {default as Series} from './series';
 export {default as Size} from './size';
+export {default as Cadastral} from './cadastral';

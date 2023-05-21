@@ -1,5 +1,5 @@
 import React from "react";
-import { City, District, Floor, GateHeight, LandArea, LivingArea, Rooms, Series, Size } from "../../../../assets/params";
+import { City, District, Floor, GateHeight, LandArea, LivingArea, Rooms, Series, Size, Cadastral } from "../../../../assets/params";
 import { useTranslation } from "next-i18next";
 import { IEstate } from "../../../../types";
 import style from "./params.module.scss";
@@ -86,6 +86,14 @@ export default function Params ({ estate, dark }: ParamsProps) {
                     <div className={style.label + ` ${dark ? style.dark : ""}`}>{t("estatePage:filter.size")}</div>
                     <div className={style.value + ` ${dark ? style.dark : ""}`}>
                         <span><Size /></span>{estate.size}
+                    </div>
+                </div>
+            )}
+            {estate.cadastralNumber && (
+                <div className={style.param}>
+                    <div className={style.label + ` ${dark ? style.dark : ""}`}>{t("estatePage:filter.cadastral")}</div>
+                    <div className={style.value + ` ${dark ? style.dark : ""}`}>
+                        <span><Cadastral /></span>{estate.cadastralNumber}
                     </div>
                 </div>
             )}

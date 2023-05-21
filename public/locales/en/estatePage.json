@@ -44,7 +44,8 @@
     "dateUp": "Date asc",
     "dateDown": "Date desc",
     "priceUp": "Price asc",
-    "priceDown": "Price desc"
+    "priceDown": "Price desc",
+    "cadastral": "Catastral number"
   },
   "pagination": {
     "back": "Back",

@@ -31,10 +31,18 @@
       gap: 10px;
       font-size: 1.2em;
 
+      svg {
+        fill: $bg-main;
+        path {
+          fill: $bg-main;
+        }
+      }
+
       &.dark {
         color: $bg-dark;
 
         svg {
+          fill: $bg-dark;
           path {
             fill: $bg-dark;
           }

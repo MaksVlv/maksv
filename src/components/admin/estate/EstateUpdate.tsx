@@ -114,22 +114,18 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
         const imagesSpliced = chunkArray(files.slice(start + 1, files.length), 5);
 
         for (let k = 0; k < imagesSpliced.length; k++) {
-            const imageRequests: any = [];
 
             for (let i = 0; i < imagesSpliced[k].length; i++) {
                 const formDataImages = new FormData();
                 formDataImages.append('estate', JSON.stringify({...estate, images: [], mainImage: ''}));
                 formDataImages.append(`image`, imagesSpliced[k][i].file);
-                imageRequests.push(axios.post("estate/update?update=image", formDataImages, {
+                await axios.post("estate/update?update=image", formDataImages, {
                     headers: {
                         "Content-Type": 'multipart/form-data',
                         Authorization: `Bearer ${localStorage.getItem("token")}`
                     }
-                }))
+                }).catch(_err => toast.success("Not all images are uploaded, please check estate later"))
             }
-            await Promise.all(imageRequests).catch(_err => {
-                toast.success("Not all images are uploaded, please check estate later")
-            })
         }
 
         axios.get(`estate/info?id=${estateOld._id}`).then(res => {

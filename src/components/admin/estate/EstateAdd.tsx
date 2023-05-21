@@ -56,7 +56,6 @@ export default function EstateAdd({ onCloseClick, onSave }: EstateAddProps) {
             const imagesSpliced = chunkArray(estate.images, 5);
 
             for (let k = 0; k < imagesSpliced.length; k++) {
-                const imageRequests: any = [];
 
                 for (let i = 0; i < imagesSpliced[k].length; i++) {
                     const formDataImages = new FormData();
@@ -65,11 +64,7 @@ export default function EstateAdd({ onCloseClick, onSave }: EstateAddProps) {
                     await axios.post("estate/update?update=image", formDataImages, { headers: { "Content-Type": 'multipart/form-data', Authorization: `Bearer ${localStorage.getItem("token")}` } }).catch(_err => {
                         toast.success("Not all images are uploaded, please check estate later")
                     })
-                    // imageRequests.push(axios.post("estate/update?update=image", formDataImages, { headers: { "Content-Type": 'multipart/form-data', Authorization: `Bearer ${localStorage.getItem("token")}` } }))
                 }
-                // await Promise.all(imageRequests).catch(_err => {
-                //     toast.success("Not all images are uploaded, please check estate later")
-                // })
             }
             toast.success("Estate added!")
 

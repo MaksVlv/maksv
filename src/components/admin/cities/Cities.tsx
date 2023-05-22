@@ -36,6 +36,7 @@ export default function Cities() {
     }, [pagination.page, forceUpdate])
 
     const searchChange = (e: any) => {
+        setLoading(true);
         clearTimeout(timeoutId.current);
         setSearch(e.target.value);
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from '../styles/admin.module.scss';
 import { Pagination } from '../Pagination';
 import CityAdd from './CityAdd';
@@ -6,12 +6,19 @@ import CityUpdate from './CityUpdate';
 import { toast } from "react-toastify";
 import axios from "axios";
 
+
+interface IPagination {
+    pages: number,
+    page: number,
+    size: number
+}
+
 export default function Cities() {
 
     const [cities, setCities] = useState([]);
     const [search, setSearch] = useState('');
     const [forceUpdate, setForceUpdate] = useState(0);
-    const [pagination, setPagination] = useState({
+    const [pagination, setPagination] = useState<IPagination>({
         pages: 0,
         page: 0,
         size: 4
@@ -21,8 +28,28 @@ export default function Cities() {
     const [isOpenUp, setIsOpenUp] = useState('');
     const [isOpenAdd, setIsOpenAdd] = useState(false);
 
+    const timeoutId = useRef<NodeJS.Timeout | undefined>(undefined);
+
 
     useEffect(() => {
+        getData(pagination, search);
+    }, [pagination.page, forceUpdate])
+
+    const searchChange = (e: any) => {
+        clearTimeout(timeoutId.current);
+        setSearch(e.target.value);
+
+        timeoutId.current = setTimeout(() => {
+            getData({...pagination, page: 0}, e.target.value, true);
+        }, 700)
+    }
+
+    const getData = (pagination: IPagination, search: string, reset: boolean = false) => {
+        setLoading(true)
+        if (reset) {
+            setPagination({...pagination, page: 0})
+            setSearch(search)
+        }
         axios.get(`city?size=${pagination.size}&page=${pagination.page}&search=${search}`).then(res => {
             setPagination({ ...pagination, pages: res.data.pages })
             setCities(res.data.data)
@@ -31,7 +58,7 @@ export default function Cities() {
             toast.error("Error occurred with loading cities")
             setLoading(false)
         })
-    }, [pagination.page, search, forceUpdate])
+    }
 
     return (
         <section className="bg-white rounded-lg w-full container mx-auto px-8">
@@ -42,7 +69,7 @@ export default function Cities() {
                     className="block w-full h-full py-2 pr-4 pl-8 text-sm leading-5 rounded-full text-gray-900 placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:shadow-outline-blue focus:border-blue-300 focus:text-gray-900 sm:text-sm sm:leading-5 opacity-100"
                     placeholder="Search"
                     value={search}
-                    onChange={(e) => {setPagination({...pagination, page: 0}); setSearch(e.target.value)}}
+                    onChange={(e) => {searchChange(e)}}
                 />
                 <div className="absolute inset-y-0 left-0 flex items-center">
                     <svg

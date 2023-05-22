@@ -5,7 +5,6 @@ import { City, District, LandArea, Floor, LivingArea, Rooms, Series, GateHeight,
 import { IEstate } from '../../../types';
 import Skeleton from 'react-loading-skeleton'
 import Link from "next/link";
-import {number} from "prop-types";
 
 interface EstatesProps {
     estate: IEstate[],

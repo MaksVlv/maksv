@@ -1,6 +1,9 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+import mongoose from 'mongoose';
 import dbConnect from '@/utils/dbConnect';
 import Estate from '@/models/Estate';
+import District from '@/models/District';
+import City from '@/models/City';
 
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -30,6 +33,10 @@ const estateInfoGet = async (req: NextApiRequest, res: NextApiResponse) => {
             id = req.query.id as string
         else
             return res.status(400).json({ message: "Enter city id" })
+
+
+        const DistrictModel = await District.findById(id);
+        const CityModel = await City.findById(id);
 
         const estate = await Estate.findById(id).populate('district').populate('city');
 

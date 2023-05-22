@@ -67,13 +67,12 @@ export default function EstateAdd({ onCloseClick, onSave }: EstateAddProps) {
                 }
             }
             toast.success("Estate added!")
-
-        }, err => {
-            toast.error(err.response.data.message || "Error occurred" );
-            setLoading(false);
-        }).finally(() => {
             onSave();
             onCloseClick();
+        }, err => {
+            toast.error(err.response.data.message || "Error occurred" );
+            console.log(err.response.data || err)
+        }).finally(() => {
             setLoading(false);
         })
     };
@@ -358,7 +357,7 @@ export default function EstateAdd({ onCloseClick, onSave }: EstateAddProps) {
                                 &&
                                 <div className={"flex flex-col"}>
                                     <div className="block text-gray-700 font-bold mb-4 text-center" style={{ textTransform: "uppercase" }}>{ estate.type.en }</div>
-                                    <div className="block text-gray-700 font-bold mb-2">Land Area:</div>
+                                    <div className="block text-gray-700 font-bold mb-2">{estate.type.lv === "Autostāvvietas" ? "Area:" : "Land Area:"}</div>
                                     <input
                                         required={true}
                                         type={"number"}
@@ -408,7 +407,7 @@ export default function EstateAdd({ onCloseClick, onSave }: EstateAddProps) {
                             &&
                             <div className={"flex flex-col"}>
                                 <div className="block text-gray-700 font-bold mb-4 text-center" style={{ textTransform: "uppercase" }}>{ estate.type.en }</div>
-                                <div className="block text-gray-700 font-bold mb-2">Land Area:</div>
+                                <div className="block text-gray-700 font-bold mb-2">Area:</div>
                                 <input
                                     required={true}
                                     type={"number"}

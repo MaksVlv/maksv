@@ -36,6 +36,14 @@
       &.bold {
         font-weight: bold;
         font-size: 1.3em;
+        flex-direction: column;
+        gap: unset;
+        align-items: flex-start;
+
+        span {
+          font-size: 0.8em;
+          width: unset;
+        }
       }
 
       span {

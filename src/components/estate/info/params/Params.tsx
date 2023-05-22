@@ -35,7 +35,7 @@ export default function Params ({ estate, dark }: ParamsProps) {
             )}
             {estate.landArea && (
                 <div className={style.param}>
-                    <div className={style.label + ` ${dark ? style.dark : ""}`}>{t("estatePage:filter.landArea")}</div>
+                    <div className={style.label + ` ${dark ? style.dark : ""}`}>{estate.type.en !== "Parking" && estate.type.en !== "Restaurants, cafes, offices" ? t("estatePage:filter.landArea") : t("estatePage:filter.landArea2")}</div>
                     <div className={style.value + ` ${dark ? style.dark : ""}`}>
                         <span><LandArea /></span>{estate.landArea} m²
                     </div>

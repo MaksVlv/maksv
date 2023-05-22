@@ -30,7 +30,7 @@ interface Estate extends Document {
 
     rooms?: number,
     livingArea?: number,
-    floor?: number,
+    floor?: string,
     series?: {
         lv: string,
         ru: string,
@@ -139,7 +139,7 @@ const estateSchema: Schema = new Schema<Estate>({
         type: Number,
     },
     floor: {
-        type: Number,
+        type: String,
     },
     series: {
         lv: {

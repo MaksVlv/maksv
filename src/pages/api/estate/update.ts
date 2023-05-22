@@ -61,7 +61,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 estate.landArea = Number(estate.landArea);
                 estate.livingArea = Number(estate.livingArea);
                 estate.rooms = Number(estate.rooms);
-                estate.floor = Number(estate.floor);
+                if (estate.type.en !== "Flats")
+                    estate.floor = Number(estate.floor);
                 estate.gateHeight = Number(estate.gateHeight);
 
                 switch (update) {
@@ -337,7 +338,7 @@ function validateHouse(house: any): boolean {
 function validateFlat(flat: any): boolean {
     const { rooms, floor, livingArea, series } = flat;
 
-    if (typeof rooms !== 'number' || rooms < 0 || typeof floor !== 'number' || floor < 0 || typeof livingArea !== 'number' || livingArea < 0 || typeof series !== 'object') {
+    if (typeof rooms !== 'number' || rooms < 0 || typeof floor !== 'string' || floor.trim().length === 0 || typeof livingArea !== 'number' || livingArea < 0 || typeof series !== 'object') {
         return false;
     }
 

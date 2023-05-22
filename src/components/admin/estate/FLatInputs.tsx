@@ -46,8 +46,7 @@ const FlatInputs = ({ onParamChange }: IFlatInputs) => {
             <div className="block text-gray-700 font-bold mb-2">Floor:</div>
             <input
                 required={true}
-                type={"number"}
-                min={0}
+                type={"text"}
                 name="flatFloor"
                 id="flatFloor"
                 className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"

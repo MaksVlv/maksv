@@ -35,7 +35,7 @@ export default function Home({ estate }: HomeProps) {
 
 export async function getServerSideProps({ locale }: GetServerSidePropsContext) {
     const { data } = await axios.get(process.env.NEXT_PUBLIC_SERVER_URL + 'estate?size=4')
-
+    console.log(data.data)
     const estate = data.data
 
     return {

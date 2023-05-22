@@ -66,7 +66,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 estate.landArea = Number(estate.landArea)
                 estate.livingArea = Number(estate.livingArea)
                 estate.rooms = Number(estate.rooms)
-                estate.floor = Number(estate.floor)
+                if (type !== "Flats")
+                    estate.floor = Number(estate.floor)
                 estate.gateHeight = Number(estate.gateHeight)
 
                 estate.description.en = estate.description.en.replace(/\n/g, "<br/>");
@@ -124,13 +125,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
             } catch (e) {
                 console.log(e);
-                return res.status(500).json({ message: 'Internal Server Error' });
+                return res.status(500).json({ err: e, message: 'Internal Server Error' });
             }
         });
 
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ message: 'Internal Server Error' });
+        return res.status(500).json({ err: error, message: 'Internal Server Error' });
     }
 }
 
@@ -166,7 +167,7 @@ interface IHouse extends ICommon {
 
 interface IFlat extends ICommon {
     rooms: number,
-    floor: number,
+    floor: string,
     livingArea: number,
     series: ILangText
 }
@@ -243,7 +244,7 @@ function validateHouse(house: any): boolean {
 function validateFlat(flat: any): boolean {
     const { rooms, floor, livingArea, series } = flat;
 
-    if (typeof rooms !== 'number' || rooms < 0 || typeof floor !== 'number' || floor < 0 || typeof livingArea !== 'number' || livingArea < 0 || typeof series !== 'object') {
+    if (typeof rooms !== 'number' || rooms < 0 || typeof floor !== 'string' || floor.trim().length === 0 || typeof livingArea !== 'number' || livingArea < 0 || typeof series !== 'object') {
         return false;
     }
 

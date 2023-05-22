@@ -1,5 +1,16 @@
 import React from "react";
-import { City, District, Floor, GateHeight, LandArea, LivingArea, Rooms, Series, Size } from "../../../../assets/params";
+import {
+    Cadastral,
+    City,
+    District,
+    Floor,
+    GateHeight,
+    LandArea,
+    LivingArea,
+    Rooms,
+    Series,
+    Size
+} from "../../../../assets/params";
 import { useTranslation } from "next-i18next";
 import { IEstate } from "../../../../types";
 import style from "./mobParams.module.scss";
@@ -33,7 +44,7 @@ export default function MobParams ({ estate }: MobParamsProps) {
             )}
             {estate.landArea && (
                 <div className={style.param}>
-                    <div className={style.label}>{t("estatePage:filter.landArea")}:</div>
+                    <div className={style.label}>{estate.type.en !== "Parking" && estate.type.en !== "Restaurants, cafes, offices" ? t("estatePage:filter.landArea") : t("estatePage:filter.landArea2")}:</div>
                     <div className={style.value}>
                         <span><LandArea /></span>{estate.landArea} m²
                     </div>
@@ -87,10 +98,30 @@ export default function MobParams ({ estate }: MobParamsProps) {
                     </div>
                 </div>
             )}
+            {estate.cadastralNumber && (
+                <div className={style.param}>
+                    <div className={style.label}>{t("estatePage:filter.cadastral")}:</div>
+                    <div className={style.value}>
+                        <span><Cadastral /></span>{estate.cadastralNumber}
+                    </div>
+                </div>
+            )}
             <div className={style.param}>
                 <div className={style.label}>{t("estatePage:filter.price")}:</div>
                 <div className={style.value + " " + style.bold}>
-                    {Number(estate.price.toFixed(2)).toLocaleString('lv', { style: 'currency', currency: 'EUR' })} {estate.rent ? t("params:month") : ''}
+                    {
+                        Number(estate.price.toFixed(2)).toLocaleString('lv', { style: 'currency', currency: 'EUR' })
+                    }
+                    {
+                        estate.rent ? t("params:month") : ''
+                    }
+                    {
+                        estate.type.en === "Flats" || estate.type.en === "Land" ?
+                            //@ts-ignore
+                            <span>({Number((estate.price / (estate.livingArea || estate.landArea)).toFixed(2)).toLocaleString('lv', { style: 'currency', currency: 'EUR' })}/m²)</span>
+                            :
+                            ""
+                    }
                 </div>
             </div>
         </div>

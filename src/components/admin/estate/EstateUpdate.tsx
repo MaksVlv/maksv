@@ -504,8 +504,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
                                 <div className="block text-gray-700 font-bold mb-2">Floor:</div>
                                 <input
                                     required={true}
-                                    type={"number"}
-                                    min={0}
+                                    type={"text"}
                                     name="flatFloor"
                                     id="flatFloor"
                                     className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -538,7 +537,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
                                     >
                                         <option value="" disabled>Select flat series</option>
                                         {Object.keys(series).map((key, i) => (
-                                            <option value={key}>{series[key].en}</option>
+                                            <option value={key} key={key}>{series[key].en}</option>
                                         ))}
                                     </select>
                                     <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
@@ -608,7 +607,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
                         <form onSubmit={(e: React.SyntheticEvent) => handleNameSubmit(e, "landOnly")}>
                             <div className={"flex flex-col"}>
                                 <div className="block text-gray-700 font-bold mb-4 text-center" style={{ textTransform: "uppercase" }}>{ estate.type.en }</div>
-                                <div className="block text-gray-700 font-bold mb-2">Land Area:</div>
+                                <div className="block text-gray-700 font-bold mb-2">{estate.type.lv === "Autostāvvietas" ? "Area:" : "Land Area:"}</div>
                                 <input
                                     required={true}
                                     type={"number"}
@@ -680,7 +679,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
                         <form onSubmit={(e: React.SyntheticEvent) => handleNameSubmit(e, "cafe")}>
                             <div className={"flex flex-col"}>
                                 <div className="block text-gray-700 font-bold mb-4 text-center" style={{ textTransform: "uppercase" }}>{ estate.type.en }</div>
-                                <div className="block text-gray-700 font-bold mb-2">Land Area:</div>
+                                <div className="block text-gray-700 font-bold mb-2">Area:</div>
                                 <input
                                     required={true}
                                     type={"number"}

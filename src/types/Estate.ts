@@ -48,7 +48,7 @@ export type IEstate = {
 
     rooms?: string,
     livingArea?: string,
-    floor?: string,
+    floor?: number,
     series?: {
         [key: string]: string,
         lv: string,

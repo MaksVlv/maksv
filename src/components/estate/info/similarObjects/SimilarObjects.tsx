@@ -47,6 +47,21 @@ export default function SimilarObjects({ estate }: SimilarObjectsProps) {
                                 {estate.series && (<div className={style.param}><span><Series /></span>{estate.series[i18n.language]}</div>)}
                                 {estate.gateHeight && (<div className={style.param}><span><GateHeight /></span>{estate.gateHeight} m</div>)}
                                 {estate.size && (<div className={style.param}><span><Size /></span>{estate.size}</div>)}
+                                {(estate.type.en === "Flats" || estate.type.en === "Land") && (
+                                    <div className={style.param}>
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" height="25px" width="25px" version="1.1" id="Layer_1" viewBox="0 0 291.929 291.929" xmlSpace="preserve">
+                                            <g>
+                                                <path d="M264.95,191.544h-42.461c-9.537,0-10.403,3.957-11.689,12.427   c-3.474,20.405-22.958,32.887-46.354,32.887c-26.861,0-48.479-21.135-50.22-45.379h60.04c7.367,0,12.564-2.544,12.564-12.327   V166.99c0-9.756-5.197-12.017-12.564-12.017h-60.468v-18.126h60.468c7.367,0,12.564-2.535,12.564-12.327v-12.163   c0-9.765-5.197-12.327-12.564-12.327h-59.602c3.036-22.101,23.934-45.388,49.5-45.388c23.396,0,36.662,9.218,45.78,23.241   c3.465,5.106,3.902,13.166,13.002,13.166h41.877c9.966,0,13.439-3.556,13.439-13.74C272.627,23.35,219.061,0,165.321,0   C114.217,0,51.095,34.583,49.791,100.021h-23.56c-7.786,0-12.564,2.544-12.564,12.327v12.163c0,9.774,4.769,12.327,12.564,12.327   H41.22v18.117H26.231c-7.786,0-12.564,2.544-12.564,12.327v11.88c0,9.756,4.769,12.327,12.564,12.327h23.533v1.714   c0,66.705,63.131,98.726,114.682,98.726c53.739,0,113.496-32.267,113.496-87.101C277.942,194.634,274.478,191.544,264.95,191.544z"/>
+                                            </g>
+                                        </svg>
+                                    </span>
+                                        {
+                                            //@ts-ignore
+                                            Number((estate.price / (estate.livingArea || estate.landArea)).toFixed(2)).toLocaleString('lv', { style: 'currency', currency: 'EUR' })
+                                        }/m²
+                                    </div>
+                                )}
                             </div>
                         </button>
                         ))

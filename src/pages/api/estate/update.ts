@@ -233,7 +233,7 @@ const changePrice = async (estate: any, req: NextApiRequest, res: NextApiRespons
 }
 
 const changeRent = async (estate: any, req: NextApiRequest, res: NextApiResponse) => {
-    if (!estate.rent || typeof estate.rent !== 'boolean')
+    if (typeof estate.rent !== 'boolean')
         return res.status(400).json({ message: 'Rent is mandatory' });
 
     const newEstate = await Estate.findOneAndUpdate({ _id: estate._id }, { rent: estate.rent })

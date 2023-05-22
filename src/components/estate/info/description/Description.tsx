@@ -28,7 +28,7 @@ export default function Description({ estate, googleApi }: DescriptionProps) {
                     Number(estate.price.toFixed(2)).toLocaleString('lv', { style: 'currency', currency: 'EUR' })
                 }
                 {
-                    estate.rent ? t("params:month") : ''
+                    estate.rent ? " " + t("params:month") : ''
                 }
                 {
                     estate.type.en === "Flats" || estate.type.en === "Land" ?

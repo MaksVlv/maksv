@@ -116,6 +116,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
                 typedEstate.mainImage = mainImageUrl;
 
+                if (JSON.parse(req.query.disabled as string) && req.query.disabled === "true")
+                    typedEstate.disabled = true;
 
                 const newEstate = new Estate(typedEstate);
 
@@ -156,6 +158,7 @@ interface ICommon {
     mainImage: string,
     images: string[],
     type: ILangText,
+    disabled?: boolean
 }
 
 interface IHouse extends ICommon {

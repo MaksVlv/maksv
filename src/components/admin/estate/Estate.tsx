@@ -51,7 +51,7 @@ export default function Estates() {
             setPagination({...pagination, page: 0})
             setSearch(search)
         }
-        axios.get(`estate?size=${pagination.size}&page=${pagination.page}&search=${search}`).then(res => {
+        axios.get(`estate?size=${pagination.size}&page=${pagination.page}&search=${search}&disabled=true`).then(res => {
             setPagination({ ...pagination, pages: res.data.pages })
             setEstates(res.data.data)
             setLoading(false)
@@ -90,7 +90,7 @@ export default function Estates() {
                 <div className={styles.table}>
                     {estates.length > 0 ?
                         estates.map((estate, i) =>
-                            <div className={styles.row} key={i} onClick={() => {setIsOpenUp(i.toString())}}>
+                            <div className={styles.row} style={{ backgroundColor: `${estate.disabled ? "#FFCDD2" : ""}` }} key={i} onClick={() => {setIsOpenUp(i.toString())}}>
                                 <div className={"text-black font-bold text-1xl " + styles.info} style={{ width: "5%" }}><img src={estate.mainImage} alt={estate.name.lv +"MainImage"}/></div>
                                 <div className={"text-black font-bold text-1xl " + styles.info}>{estate.name.lv}</div>
                                 <div className={"text-black font-bold text-1xl " + styles.info} style={{ width: "7%" }}>{estate.type.en}</div>
@@ -186,4 +186,5 @@ export interface IEstate {
     cadastralNumber?: string,
     size?: string,
     gateHeight?: number,
+    disabled?: boolean
 }

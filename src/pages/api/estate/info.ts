@@ -43,6 +43,9 @@ const estateInfoGet = async (req: NextApiRequest, res: NextApiResponse) => {
         if (!estate)
             return res.status(400).json({ message: "There is no estate with this id" })
 
+        if (!req.query.disabled && estate.disabled)
+            return res.status(400).json({ message: "Estate is disabled" })
+
         return res.status(200).json(estate);
 
     } catch (error) {

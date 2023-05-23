@@ -24,7 +24,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
 
 
     useEffect(() => {
-        axios.get(`estate/info?id=${estateOld._id}`).then(res => {
+        axios.get(`estate/info?id=${estateOld._id}&disabled=true`).then(res => {
             setEstate(res.data)
             setLoading(false);
         }, err => {
@@ -150,6 +150,21 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
 
     const changeSeries = (e: ChangeEvent<HTMLSelectElement>) => {
         setEstate({...estate, series: series[e.target.value]})
+    }
+
+    const changeDraft = (status: boolean) => {
+        setLoading(true);
+        const formData = new FormData();
+        formData.append('estate', JSON.stringify({...estate, images: [], mainImage: ''}));
+        formData.append('disabled', JSON.stringify(status));
+        axios.post(`estate/update?update=disabled`, formData, { headers: { "Content-Type": 'multipart/form-data', Authorization: `Bearer ${localStorage.getItem("token")}` } }).then(res => {
+            toast.success(`Estate changed - ` + estate.name.lv)
+            // @ts-ignore
+            setEstate({...estate, disabled: !estate.disabled })
+            onUpdate();
+        }, err => {
+            toast.error(err.response.data.message || "Error occurred")
+        }).finally(() => setLoading(false));
     }
 
     if (loading)
@@ -718,7 +733,26 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
                         }
 
                     </div>
-                    <div className="flex justify-end relative">
+                    <div className="flex justify-end relative mt-10">
+                        {!estate.disabled &&
+                            <button
+                                className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded disabled:cursor-not-allowed"
+                                disabled={loading}
+                                style={{marginRight: "auto"}}
+                                onClick={() => changeDraft(true)}
+                            >
+                                To drafts
+                            </button>
+                        }
+                        {estate.disabled &&
+                            <button
+                                className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded disabled:cursor-not-allowed"
+                                disabled={loading}
+                                onClick={() => changeDraft(false)}
+                            >
+                                Publish
+                            </button>
+                        }
                         <button
                             type="button"
                             className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded ml-4 disabled:cursor-not-allowed"

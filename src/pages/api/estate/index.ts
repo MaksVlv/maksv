@@ -45,7 +45,10 @@ const estateGet = async (req: NextApiRequest, res: NextApiResponse) => {
                 { "type.lv": { $regex: page.Search, $options: 'i' } },
                 { "type.ru": { $regex: page.Search, $options: 'i' } },
                 { "type.en": { $regex: page.Search, $options: 'i' } },
-            ]
+            ],
+            disabled: {
+                $in: [false, null]
+            }
         };
 
         if (req.query.rent && req.query.rent === "true")
@@ -96,6 +99,15 @@ const estateGet = async (req: NextApiRequest, res: NextApiResponse) => {
             const gateHeightFrom = req.query.gateHeightFrom || 0;
             const gateHeightTill = req.query.gateHeightTill || Number.MAX_SAFE_INTEGER;
             query["gateHeight"] = {$gte: gateHeightFrom, $lte: gateHeightTill};
+        }
+
+        if (req.query.disabled) {
+            query["disabled"] = {$in: [false, null, true]};
+        }
+
+        if (page.Search === "draft" && req.query.disabled) {
+            delete query["$or"];
+            query["disabled"] = true;
         }
 
         if (req.query.series)

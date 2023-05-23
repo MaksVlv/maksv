@@ -25,8 +25,10 @@ export default function EstateAdd({ onCloseClick, onSave }: EstateAddProps) {
     const [loading, setLoading] = useState<boolean>(false);
 
 
-    const handleSubmit = (event: React.SyntheticEvent) => {
-        event.preventDefault();
+    const handleSubmit = (event: React.SyntheticEvent | null, disabled = false) => {
+        if (event) {
+            event.preventDefault();
+        }
         if (!estate.location.lat && !estate.location.lng) {
             toast.error("Click location on map!")
             return;
@@ -51,7 +53,7 @@ export default function EstateAdd({ onCloseClick, onSave }: EstateAddProps) {
             return result;
         };
 
-        axios.post("estate/add", formData, { headers: { "Content-Type": 'multipart/form-data', Authorization: `Bearer ${localStorage.getItem("token")}` } }).then(async res => {
+        axios.post(`estate/add?disabled=${disabled}`, formData, { headers: { "Content-Type": 'multipart/form-data', Authorization: `Bearer ${localStorage.getItem("token")}` } }).then(async res => {
 
             const imagesSpliced = chunkArray(estate.images, 5);
 
@@ -437,11 +439,19 @@ export default function EstateAdd({ onCloseClick, onSave }: EstateAddProps) {
 
                             <div className="flex justify-end relative">
                                 <button
+                                    className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded disabled:cursor-not-allowed"
+                                    disabled={loading}
+                                    style={{ marginRight: "auto" }}
+                                    onClick={() => handleSubmit(null, true)}
+                                >
+                                    Save as draft
+                                </button>
+                                <button
                                     type="submit"
                                     className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded disabled:cursor-not-allowed"
                                     disabled={loading}
                                 >
-                                    Save
+                                    Publish
                                 </button>
                                 <button
                                     type="button"

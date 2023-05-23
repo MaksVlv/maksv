@@ -109,6 +109,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                         const url = fields.url as string
                         return await deleteImage(estate, url, req, res);
                         break;
+                    case "disabled":
+                        const disabled = fields.disabled as string
+                        return await changeDisabled(estate, disabled, req, res);
+                        break;
                     default:
                         return res.status(400).json({ message: "Update type is not supported" })
                 }
@@ -209,6 +213,14 @@ const changeName = async (estate: any, req: NextApiRequest, res: NextApiResponse
         return res.status(400).json({ message: "Estate with this name already created" })
 
     const newEstate = await Estate.findOneAndUpdate({ _id: estate._id }, { name: estate.name })
+    return res.status(200).json({ newEstate });
+}
+
+const changeDisabled = async (estate: any, disabled: string, req: NextApiRequest, res: NextApiResponse) => {
+    if (disabled !== "true" && disabled !== "false")
+        return res.status(400).json({ message: 'Disabled status is mandatory' });
+
+    const newEstate = await Estate.findOneAndUpdate({ _id: estate._id }, { disabled: JSON.parse(disabled) })
     return res.status(200).json({ newEstate });
 }
 

@@ -23,7 +23,7 @@ const estateIdsGet = async (req: NextApiRequest, res: NextApiResponse) => {
     try {
         await dbConnect();
 
-        const ids = await Estate.find({}, '_id');
+        const ids = await Estate.find({}, '_id').ne('disabled', true);
 
         return res.status(200).json(ids);
 

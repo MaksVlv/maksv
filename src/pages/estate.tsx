@@ -21,7 +21,7 @@ export default function Estate() {
     const [pagination, setPagination] = useState({
         pages: 0,
         page: 0,
-        size: 6
+        size: 12
     });
     const [filter, setFilter] = useState<Filter>(emptyFilter);
     const estatesSectionRef = useRef<HTMLDivElement>(null);

@@ -31,7 +31,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
             toast.error(err.response.data.message || "Error occurred")
             onCloseClick();
         })
-        axios.get('city?size=10000').then(res => {
+        axios.get('city?size=10000&sort=name.lv:asc').then(res => {
             setCities(res.data.data);
         }, _err => {
             toast.error("Error with loading cities, try again");
@@ -68,7 +68,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
 
     const getDistricts = (cityId: string) => {
         setEstate({...estate, city: { ...estate.city, _id: cityId }, district: { name: { lv: '', ru: '', en: ''}, _id: '' }});
-        axios.get(`city/district?city=${cityId}`).then(res => {
+        axios.get(`city/district?city=${cityId}&sort=name.lv:asc`).then(res => {
             setDistricts(res.data);
         }, _err => {
             toast.error("Error with loading districts, try again");

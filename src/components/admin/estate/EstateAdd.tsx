@@ -80,7 +80,7 @@ export default function EstateAdd({ onCloseClick, onSave }: EstateAddProps) {
     };
 
     useEffect(() => {
-        axios.get('city?size=10000').then(res => {
+        axios.get('city?size=10000&sort=name.lv:asc').then(res => {
             setCities(res.data.data);
         }, _err => {
            toast.error("Error with loading cities, try again");
@@ -89,7 +89,7 @@ export default function EstateAdd({ onCloseClick, onSave }: EstateAddProps) {
     }, [])
 
     const getDistricts = (cityId: string) => {
-        axios.get(`city/district?city=${cityId}`).then(res => {
+        axios.get(`city/district?city=${cityId}&sort=name.lv:asc`).then(res => {
             setDistricts(res.data);
         }, _err => {
             toast.error("Error with loading districts, try again");

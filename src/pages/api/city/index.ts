@@ -99,12 +99,22 @@ const cityPost = async (req: NextApiRequest, res: NextApiResponse) => {
     }
 }
 
+type SortOrder = 'asc' | 'desc';
+
 const cityGet = async (req: NextApiRequest, res: NextApiResponse) => {
 
     try {
         await dbConnect();
 
         const page = new Page(req)
+
+        let sortKey: string = 'createdAt';
+        let sortVal: SortOrder = 'desc';
+        if (req.query.sort) {
+            let sort = req.query.sort as string
+            sortKey = sort.split(':')[0]
+            sortVal = sort.split(':')[1] as SortOrder
+        }
 
         const cities = await City.find({
             $or: [
@@ -113,7 +123,7 @@ const cityGet = async (req: NextApiRequest, res: NextApiResponse) => {
                 { "name.en": { $regex: page.Search, $options: 'i' } },
             ]
         }).limit(page.Size).skip(page.Size * page.Page).sort({
-            createdAt: "desc"
+            [sortKey]: sortVal
         });
 
         const citiesCount = await City.find({

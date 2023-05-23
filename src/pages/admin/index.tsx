@@ -44,7 +44,7 @@ export default function Index() {
 
     return (
         <div className="bg-gray-100 min-h-screen" style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"" }}>
-            <div className="container mx-auto px-4 pt-12">
+            <div className="container mx-auto px-4 pt-12 pb-20">
                 <h1 className="text-3xl font-bold mb-8">Maksv Admin Panel</h1>
 
                 <Cities />

@@ -70,6 +70,8 @@ const districtDelete = async (req: NextApiRequest, res: NextApiResponse) => {
     }
 }
 
+type SortOrder = 'asc' | 'desc';
+
 const districtGet = async (req: NextApiRequest, res: NextApiResponse) => {
 
     try {
@@ -77,14 +79,26 @@ const districtGet = async (req: NextApiRequest, res: NextApiResponse) => {
 
         const city = req.query.city
 
+        let sortKey: string = 'createdAt';
+        let sortVal: SortOrder = 'desc';
+        if (req.query.sort) {
+            let sort = req.query.sort as string
+            sortKey = sort.split(':')[0]
+            sortVal = sort.split(':')[1] as SortOrder
+        }
+
         if (city || city !== "undefined") {
 
-            const districts = await District.find({ city: city })
+            const districts = await District.find({ city: city }).sort({
+                [sortKey]: sortVal
+            });
 
             return res.status(200).json(districts)
         }
 
-        const districts = await District.find()
+        const districts = await District.find().sort({
+            [sortKey]: sortVal
+        });
 
         return res.status(200).json(districts)
 

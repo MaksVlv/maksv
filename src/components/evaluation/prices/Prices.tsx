@@ -11,7 +11,7 @@ export default function Prices() {
 
 
     return (
-        <div className={styles.pricesSection + " wrapper"}>
+        <div className={styles.pricesSection + " wrapper"} id={"prices"}>
             <h2>{t("evaluationPage:prices.title")}</h2>
             <div className={styles.prices}>
                 <div className={styles.table}>

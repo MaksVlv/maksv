@@ -62,10 +62,10 @@ export default function CityAdd({ onCloseClick, onSave }: CityAddProps) {
             <div className="fixed inset-0 bg-gray-900 opacity-50" style={{ zIndex: 1 }}/>
             <div className="fixed inset-0 flex items-center justify-center z-10">
                 <div className="bg-white rounded-lg shadow-lg p-8 w-full" style={{maxHeight: "90vh", maxWidth: "800px", overflow: "auto"}}>
-                    <div className="text-lg font-medium mb-4">Add new city & district</div>
+                    <div className="text-lg font-medium mb-4">Add new city/municipality & district/township</div>
                     <div className="mb-6">
                         <form onSubmit={handleSubmit}>
-                            <div className="block text-gray-700 font-bold mb-2">City:</div>
+                            <div className="block text-gray-700 font-bold mb-2">City/municipality:</div>
                             <div className="mb-4 flex justify-between gap-3">
                                 <div className={"flex-1"}>
                                     <input
@@ -107,7 +107,7 @@ export default function CityAdd({ onCloseClick, onSave }: CityAddProps) {
                             <hr className={"mt-5 mb-6"}/>
                             {districts.map((district, index) => (
                                 <div className="relative" key={index}>
-                                    <div className="block text-gray-700 font-bold mb-2">District:</div>
+                                    <div className="block text-gray-700 font-bold mb-2">District/township:</div>
                                     <div className="mb-4 flex justify-between gap-3">
                                         <div className={"flex-1"}>
                                             <input

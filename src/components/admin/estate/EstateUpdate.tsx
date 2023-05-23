@@ -337,7 +337,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
                         </form>
                         <hr className={"mt-6 mb-6"}/>
                         <form onSubmit={(e: React.SyntheticEvent) => handleNameSubmit(e, "location")}>
-                            <div className="mt-4 block text-gray-700 font-bold mb-2">City:</div>
+                            <div className="mt-4 block text-gray-700 font-bold mb-2">City/municipality:</div>
                             <div className="relative inline-block w-full">
                                 <select
                                     required={true}
@@ -347,7 +347,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
                                     value={estate.city._id}
                                     onChange={(e) => {getDistricts(e.target.value)}}
                                 >
-                                    <option value="" disabled>Select estate city</option>
+                                    <option value="" disabled>Select estate city/municipality</option>
                                     {
                                         cities.map((city, i) => (
                                             <option value={city._id} key={i + city._id}>{city.name.lv}</option>
@@ -362,7 +362,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
                                 </div>
                             </div>
 
-                            <div className="mt-4 block text-gray-700 font-bold mb-2">District:</div>
+                            <div className="mt-4 block text-gray-700 font-bold mb-2">District/township:</div>
                             <div className="relative inline-block w-full mb-4">
                                 <select
                                     required={true}
@@ -372,7 +372,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
                                     value={estate.district._id}
                                     onChange={(e) => setEstate({...estate, district: { ...estate.district, _id: e.target.value}})}
                                 >
-                                    <option value="" disabled>Select estate district</option>
+                                    <option value="" disabled>Select estate district/township</option>
                                     {
                                         districts.map((district, i) => (
                                             <option value={district._id} key={i}>{district.name.lv}</option>

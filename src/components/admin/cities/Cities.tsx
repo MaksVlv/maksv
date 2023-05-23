@@ -63,7 +63,7 @@ export default function Cities() {
 
     return (
         <section className="bg-white rounded-lg w-full container mx-auto px-8">
-            <h1 className="w-full text-center text-2xl font-bold pt-8 pb-3">Cities & Districts</h1>
+            <h1 className="w-full text-center text-2xl font-bold pt-8 pb-3">City/municipality & District/township</h1>
             <div className="relative mb-6">
                 <input
                     type="text"

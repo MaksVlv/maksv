@@ -132,10 +132,10 @@ export default function CityUpdate({ cityId, onCloseClick, onUpdate }: CityUpdat
                     <svg onClick={deleteCity} className={styles.delete} xmlns="http://www.w3.org/2000/svg" fill={"none"} width="24" height="24" viewBox="0 0 24 24">
                         <path d="M3 6v18h18v-18h-18zm5 14c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712z"/>
                     </svg>
-                    <div className="text-lg font-medium mb-4">Update city & districts</div>
+                    <div className="text-lg font-medium mb-4">Update city/municipality & district/township</div>
                     <div className="mb-6">
                         <form onSubmit={onSubmit}>
-                            <div className="block text-gray-700 font-bold mb-2">City:</div>
+                            <div className="block text-gray-700 font-bold mb-2">City/municipality:</div>
                             <div className="mb-4 flex justify-between gap-3">
                                 <div className={"flex-1"}>
                                     <input
@@ -177,7 +177,7 @@ export default function CityUpdate({ cityId, onCloseClick, onUpdate }: CityUpdat
                             <hr className={"mt-5 mb-6"}/>
                             {city.districts.map((district, index) => (
                                 <div className="relative" key={index}>
-                                    <div className="block text-gray-700 font-bold mb-2">District:</div>
+                                    <div className="block text-gray-700 font-bold mb-2">District/township:</div>
                                     <div className="mb-4 flex justify-between gap-3">
                                         <div className={"flex-1"}>
                                             <input

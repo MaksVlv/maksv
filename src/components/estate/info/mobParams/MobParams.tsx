@@ -14,6 +14,7 @@ import {
 import { useTranslation } from "next-i18next";
 import { IEstate } from "../../../../types";
 import style from "./mobParams.module.scss";
+import {formatArea, hectaresBool} from "../../../../utils/hectares";
 
 
 interface MobParamsProps {
@@ -30,7 +31,7 @@ export default function MobParams ({ estate }: MobParamsProps) {
                 <div className={style.param}>
                     <div className={style.label}>{estate.type.en !== "Parking" && estate.type.en !== "Restaurants, cafes, offices" ? t("estatePage:filter.landArea") : t("estatePage:filter.landArea2")}:</div>
                     <div className={style.value}>
-                        <span><LandArea /></span>{estate.landArea} m²
+                        <span><LandArea /></span>{formatArea(estate.landArea)} {hectaresBool(estate.landArea) ? "ha" : "m²"}
                     </div>
                 </div>
             )}

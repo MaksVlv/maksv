@@ -61,7 +61,7 @@ export type IEstate = {
         ru: string,
         en: string,
     },
-    landArea?: string,
+    landArea?: number,
     cadastralNumber?: string,
     size?: string,
     gateHeight?: number,

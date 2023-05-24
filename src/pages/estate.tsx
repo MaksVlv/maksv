@@ -29,7 +29,7 @@ export default function Estate() {
 
     useEffect(() => {
         setLoading(true);
-        axios.get(`estate?size=${pagination.size}&page=${pagination.page}&search=${filter.search}&rent=${filter.rent}&type=${filter.type}&city=${filter.city}&district=${filter.district}&priceFrom=${filter.priceFrom}&priceTill=${filter.priceTill}&floorFrom=${filter.floorFrom}&floorTill=${filter.floorTill}&roomsFrom=${filter.roomsFrom}&roomsTill=${filter.roomsTill}&livingAreaFrom=${filter.livingAreaFrom}&livingAreaTill=${filter.livingAreaTill}&landAreaFrom=${filter.landAreaFrom}&landAreaTill=${filter.landAreaTill}&gateHeightFrom=${filter.gateHeightFrom}&gateHeightTill=${filter.gateHeightTill}&series=${filter.series}&sort=${filter.sort}`)
+        axios.get(`estate?size=${pagination.size}&page=${pagination.page}&search=${filter.search}&rent=${filter.rent}&type=${filter.type}&city=${filter.city}&district=${filter.district}&priceFrom=${filter.priceFrom}&priceTill=${filter.priceTill}&floorFrom=${filter.floorFrom}&floorTill=${filter.floorTill}&roomsFrom=${filter.roomsFrom}&roomsTill=${filter.roomsTill}&livingAreaFrom=${filter.livingAreaFrom}&livingAreaTill=${filter.livingAreaTill}&landAreaFrom=${filter.landAreaFrom}&landAreaTill=${filter.landAreaTill}&gateHeightFrom=${filter.gateHeightFrom}&gateHeightTill=${filter.gateHeightTill}&series=${filter.series}&sort=${filter.sort}&assignment=${filter.assignment}`)
             .then(res => {
             setEstates(res.data.data);
             setPagination({...pagination, pages: res.data.pages});
@@ -93,5 +93,6 @@ const emptyFilter = {
     series: '',
     gateHeightFrom: '',
     gateHeightTill: '',
-    sort: 'createdAt:desc'
+    sort: 'createdAt:desc',
+    assignment: ''
 }

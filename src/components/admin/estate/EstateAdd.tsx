@@ -78,8 +78,8 @@ export default function EstateAdd({ onCloseClick, onSave }: EstateAddProps) {
             onSave();
             onCloseClick();
         }, err => {
-            toast.error(err.response.data.message || "Error occurred" );
-            console.log(err.response.data || err)
+            toast.error(err.response?.data.message || "Error occurred" );
+            console.log(err)
         }).finally(() => {
             setLoading(false);
         })

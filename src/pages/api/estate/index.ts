@@ -6,6 +6,7 @@ import Estate from '@/models/Estate';
 import District from '@/models/District';
 import City from '@/models/City';
 import cloudinary from "cloudinary";
+import {$gte} from "sift";
 
 cloudinary.v2.config({
     cloud_name: "dv139dkum",
@@ -72,9 +73,24 @@ const estateGet = async (req: NextApiRequest, res: NextApiResponse) => {
         }
 
         if (req.query.floorFrom || req.query.floorTill) {
-            const floorFrom = req.query.floorFrom || 0;
-            const floorTill = req.query.floorTill || Number.MAX_SAFE_INTEGER;
-            query["floor"] = {$gte: floorFrom, $lte: floorTill};
+            const floorFrom = Number(req.query.floorFrom) || 0;
+            const floorTill = Number(req.query.floorTill) || Number.MAX_SAFE_INTEGER;
+            query["$expr"] = {
+                $and: [
+                    {
+                        $gte: [
+                            { $toInt: { $arrayElemAt: [{ $split: ['$floor', '/'] }, 0] } },
+                            floorFrom
+                        ]
+                    },
+                    {
+                        $lte: [
+                            { $toInt: { $arrayElemAt: [{ $split: ['$floor', '/'] }, 0] } },
+                            floorTill
+                        ]
+                    }
+                ]
+            };
         }
 
         if (req.query.roomsFrom || req.query.roomsTill) {
@@ -112,6 +128,9 @@ const estateGet = async (req: NextApiRequest, res: NextApiResponse) => {
 
         if (req.query.series)
             query["series.en"] = req.query.series;
+
+        if (req.query.assignment)
+            query["assignment.en"] = req.query.assignment;
 
         if (req.query.no)
             query["_id"] = { $ne: req.query.no };

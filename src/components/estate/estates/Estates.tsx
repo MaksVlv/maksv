@@ -5,6 +5,7 @@ import { City, District, LandArea, Floor, LivingArea, Rooms, Series, GateHeight,
 import { IEstate } from '../../../types';
 import Skeleton from 'react-loading-skeleton'
 import Link from "next/link";
+import {formatArea, hectaresBool} from "../../../utils/hectares";
 
 interface EstatesProps {
     estate: IEstate[],
@@ -56,7 +57,7 @@ const Estates = forwardRef<HTMLDivElement, EstatesProps>(
                         <div className={style.params}>
                             {estate.city && (<div className={style.param}><span><City /></span>{estate.city.name[i18n.language]}</div>)}
                             {estate.district && (<div className={style.param}><span><District /></span>{estate.district.name[i18n.language]}</div>)}
-                            {estate.landArea && (<div className={style.param}><span><LandArea /></span>{estate.landArea} m²</div>)}
+                            {estate.landArea && (<div className={style.param}><span><LandArea /></span>{formatArea(estate.landArea)} {hectaresBool(estate.landArea) ? "ha" : "m²"}</div>)}
                             {estate.floor && (
                                 <div className={style.param}><span><Floor /></span>{estate.floor} {
                                     estate.type.en === "Houses"

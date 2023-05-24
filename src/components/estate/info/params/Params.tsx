@@ -3,6 +3,7 @@ import { City, District, Floor, GateHeight, LandArea, LivingArea, Rooms, Series,
 import { useTranslation } from "next-i18next";
 import { IEstate } from "../../../../types";
 import style from "./params.module.scss";
+import { formatArea, hectaresBool } from "../../../../utils/hectares";
 
 
 interface ParamsProps {
@@ -21,7 +22,7 @@ export default function Params ({ estate, dark }: ParamsProps) {
                 <div className={style.param}>
                     <div className={style.label + ` ${dark ? style.dark : ""}`}>{estate.type.en !== "Parking" && estate.type.en !== "Restaurants, cafes, offices" ? t("estatePage:filter.landArea") : t("estatePage:filter.landArea2")}</div>
                     <div className={style.value + ` ${dark ? style.dark : ""}`}>
-                        <span><LandArea /></span>{estate.landArea} m²
+                        <span><LandArea /></span>{formatArea(estate.landArea)} {hectaresBool(estate.landArea) ? "ha" : "m²"}
                     </div>
                 </div>
             )}

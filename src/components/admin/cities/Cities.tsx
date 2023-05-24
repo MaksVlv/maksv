@@ -21,7 +21,7 @@ export default function Cities() {
     const [pagination, setPagination] = useState<IPagination>({
         pages: 0,
         page: 0,
-        size: 4
+        size: 10
     });
 
     const [loading, setLoading] = useState<boolean>(true);

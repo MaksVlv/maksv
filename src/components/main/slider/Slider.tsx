@@ -5,6 +5,7 @@ import Slider from 'react-slick';
 import styles from './slider.module.scss';
 import Link from "next/link";
 import { City, District, LandArea, Floor, LivingArea, Rooms, GateHeight, Series, Size } from '../../../assets/params';
+import {formatArea, hectaresBool} from "../../../utils/hectares";
 
 
 const settings = {
@@ -84,7 +85,7 @@ export default function SliderSection({ data }: SliderSectionProps) {
                             <div className={styles.params}>
                                 {estate.city && (<div className={styles.param}><span><City /></span>{estate.city.name[i18n.language]}</div>)}
                                 {estate.district && (<div className={styles.param}><span><District /></span>{estate.district.name[i18n.language]}</div>)}
-                                {estate.landArea && (<div className={styles.param}><span><LandArea /></span>{estate.landArea} m²</div>)}
+                                {estate.landArea && (<div className={styles.param}><span><LandArea /></span>{formatArea(estate.landArea)} {hectaresBool(estate.landArea) ? "ha" : "m²"}</div>)}
                                 {estate.floor && (
                                     <div className={styles.param}><span><Floor /></span>{estate.floor} {
                                         estate.type.en === "Houses"

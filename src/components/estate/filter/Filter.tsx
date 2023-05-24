@@ -82,7 +82,8 @@ const FilterSection = ({ onFilterSubmit }: FilterSectionProps) => {
             landAreaTill: '',
             series: '',
             gateHeightFrom: '',
-            gateHeightTill: ''
+            gateHeightTill: '',
+            assignment: ''
         })
     }
 
@@ -101,7 +102,8 @@ const FilterSection = ({ onFilterSubmit }: FilterSectionProps) => {
             landAreaTill: '',
             series: '',
             gateHeightFrom: '',
-            gateHeightTill: ''
+            gateHeightTill: '',
+            assignment: ''
         };
         setFilter(filterPrev);
         onFilterSubmit(filterPrev);
@@ -252,7 +254,7 @@ const FilterSection = ({ onFilterSubmit }: FilterSectionProps) => {
                                 }
                                 {type === '2' &&
                                 <>
-                                    <div className={style.input + " " + style.small}>
+                                    <div className={style.input + " "} style={{ flex: "1" }}>
                                         <label htmlFor="series">{t("estatePage:filter.series")}</label>
                                         <Select
                                             options={Object.keys(series).map((key: string) => ({ option: series[key][i18n.language], value: key }))}
@@ -271,6 +273,19 @@ const FilterSection = ({ onFilterSubmit }: FilterSectionProps) => {
                                     </div>
                                     <div className={style.input + " " + style.small}>
                                         <input type="number" value={filter.gateHeightTill} onChange={e => setFilter({...filter, gateHeightTill: e.target.value})} placeholder={t("estatePage:filter.till") || ""}/>
+                                    </div>
+                                </>
+                                }
+                                {type === '3' &&
+                                <>
+                                    <div className={style.input + " "} style={{ flex: "1" }}>
+                                        <label htmlFor="series">{t("estatePage:filter.assignment")}</label>
+                                        <Select
+                                            options={Object.keys(assignment).map((key: string) => ({ option: assignment[key][i18n.language], value: key }))}
+                                            placeHolder={"-"}
+                                            onSelect={(assignmentKey: string) => setFilter({...filter, assignment: assignment[assignmentKey]?.en || ''})}
+                                            valueActual={Object.keys(assignment).find((key: string) => assignment[key].en === filter.assignment) || ""}
+                                        />
                                     </div>
                                 </>
                                 }
@@ -365,6 +380,63 @@ const types: ITypes = {
     }
 }
 
+interface IAssignment {
+    [key: string]: {
+        [key: string]: string,
+        lv: string,
+        ru: string,
+        en: string,
+    }
+}
+
+export const assignment: IAssignment = {
+    '1': {
+        lv: "Lauksaimniecības zeme",
+        ru: "Сельскохозяйственая земля",
+        en: "Agricultural land",
+    },
+    '2': {
+        lv: "Komerciāla apbūve",
+        ru: "Коммерческая застройка",
+        en: "Commercial building",
+    },
+    '3': {
+        lv: "Vasarnīcas zemes gabals, dārzs",
+        ru: "Дачный участок, огород",
+        en: "Cottage plot, garden",
+    },
+    '4': {
+        lv: "Fermeru saimniecības",
+        ru: "Под фермерское хозяйство",
+        en: "For farming",
+    },
+    '5': {
+        lv: "Autostāvvietu, garāžu būvēšanai",
+        ru: "Под автостоянки, гаражи",
+        en: "For parking lots, garages",
+    },
+    '6': {
+        lv: "Daudzstāvu būve",
+        ru: "Многоэтажное строительство",
+        en: "High-rise construction",
+    },
+    '7': {
+        lv: "Zeme privātmājas būvēšanai",
+        ru: "Земля под частный дом",
+        en: "Land for private house",
+    },
+    '8': {
+        lv: "Zemes gabals ciemata",
+        ru: "Участок под поселок",
+        en: "Land for the village",
+    },
+    '9': {
+        lv: "Cits",
+        ru: "Другое",
+        en: "Another",
+    },
+}
+
 export interface Filter {
     search: string,
     rent: boolean | null,
@@ -384,7 +456,8 @@ export interface Filter {
     series: string,
     gateHeightFrom: string,
     gateHeightTill: string,
-    sort: string
+    sort: string,
+    assignment: string
 }
 
 const emptyFilter: Filter = {
@@ -406,5 +479,6 @@ const emptyFilter: Filter = {
     series: '',
     gateHeightFrom: '',
     gateHeightTill: '',
-    sort: 'createdAt:desc'
+    sort: 'createdAt:desc',
+    assignment: ''
 }

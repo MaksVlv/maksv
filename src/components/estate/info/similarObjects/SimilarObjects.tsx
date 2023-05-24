@@ -41,8 +41,44 @@ export default function SimilarObjects({ estate }: SimilarObjectsProps) {
                                 {estate.city && (<div className={style.param}><span><City /></span>{estate.city.name[i18n.language]}</div>)}
                                 {estate.district && (<div className={style.param}><span><District /></span>{estate.district.name[i18n.language]}</div>)}
                                 {estate.landArea && (<div className={style.param}><span><LandArea /></span>{estate.landArea} m²</div>)}
-                                {estate.floor && (<div className={style.param}><span><Floor /></span>{estate.floor} {estate.type.en === "Houses" ? t("params:floors") : t("params:floor")}</div>)}
-                                {estate.rooms && (<div className={style.param}><span><Rooms /></span>{estate.rooms} {t("params:rooms")}</div>)}
+                                {estate.floor && (
+                                    <div className={style.param}><span><Floor /></span>{estate.floor} {
+                                        estate.type.en === "Houses"
+                                            ? i18n.language === "ru" ?
+                                            estate.floor == 1 ?
+                                                "этаж"
+                                                :
+                                                estate.floor == 2 || estate.floor == 3 || estate.floor == 4 ?
+                                                    "этажа"
+                                                    :
+                                                    t("params:floors")
+                                            : i18n.language === "lv" ?
+                                                estate.floor == 1 ?
+                                                    "stāvs"
+                                                    :
+                                                    t("params:floors")
+                                                : t("params:floors")
+                                            : t("params:floor")
+                                    }</div>
+                                )}
+                                {estate.rooms && (
+                                    <div className={style.param}><span><Rooms /></span>{estate.rooms} {
+                                        i18n.language === "ru" ?
+                                            estate.rooms == "1" ?
+                                                "комната"
+                                                :
+                                                estate.rooms == "4" || estate.rooms == "3" || estate.rooms == "2" ?
+                                                    "комнаты"
+                                                    :
+                                                    t("params:rooms")
+                                            : i18n.language === "lv" ?
+                                            estate.rooms == "1" ?
+                                                "istaba"
+                                                :
+                                                t("params:rooms")
+                                            : t("params:rooms")
+                                    }</div>
+                                )}
                                 {estate.livingArea && (<div className={style.param}><span><LivingArea /></span>{estate.livingArea} m²</div>)}
                                 {estate.series && (<div className={style.param}><span><Series /></span>{estate.series[i18n.language]}</div>)}
                                 {estate.gateHeight && (<div className={style.param}><span><GateHeight /></span>{estate.gateHeight} m</div>)}

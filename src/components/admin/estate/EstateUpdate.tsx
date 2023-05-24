@@ -101,34 +101,23 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
         setLoading(true);
         toast.warn("Sending image/s");
 
-        const chunkArray = (arr: any[], size: number) => {
-            const result = [];
-            for (let i = 0; i < arr.length; i += size) {
-                result.push(arr.slice(i, i + size));
-            }
-            return result;
-        };
-
         let start = files.length - length - 1
 
-        const imagesSpliced = chunkArray(files.slice(start + 1, files.length), 5);
+        const imagesSpliced = files.slice(start + 1, files.length);
 
-        for (let k = 0; k < imagesSpliced.length; k++) {
-
-            for (let i = 0; i < imagesSpliced[k].length; i++) {
-                const formDataImages = new FormData();
-                formDataImages.append('estate', JSON.stringify({...estate, images: [], mainImage: ''}));
-                formDataImages.append(`image`, imagesSpliced[k][i].file);
-                await axios.post("estate/update?update=image", formDataImages, {
-                    headers: {
-                        "Content-Type": 'multipart/form-data',
-                        Authorization: `Bearer ${localStorage.getItem("token")}`
-                    }
-                }).catch(_err => toast.success("Not all images are uploaded, please check estate later"))
-            }
+        for (let i = 0; i < imagesSpliced.length; i++) {
+            const formDataImages = new FormData();
+            formDataImages.append('estate', JSON.stringify({...estate, images: [], mainImage: ''}));
+            formDataImages.append(`image`, imagesSpliced[i].file);
+            await axios.post("estate/update?update=image", formDataImages, {
+                headers: {
+                    "Content-Type": 'multipart/form-data',
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+            }).catch(_err => toast.success("Not all images are uploaded, please check estate later"))
         }
 
-        axios.get(`estate/info?id=${estateOld._id}`).then(res => {
+        await axios.get(`estate/info?id=${estateOld._id}&disabled=true`).then(res => {
             // @ts-ignore
             setEstate({...estate, images: res.data.images})
         }).finally(() => setLoading(false))
@@ -337,7 +326,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
                         </form>
                         <hr className={"mt-6 mb-6"}/>
                         <form onSubmit={(e: React.SyntheticEvent) => handleNameSubmit(e, "location")}>
-                            <div className="mt-4 block text-gray-700 font-bold mb-2">City/municipality:</div>
+                            <div className="mt-4 block text-gray-700 font-bold mb-2">Pilsēta/novads:</div>
                             <div className="relative inline-block w-full">
                                 <select
                                     required={true}
@@ -347,7 +336,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
                                     value={estate.city._id}
                                     onChange={(e) => {getDistricts(e.target.value)}}
                                 >
-                                    <option value="" disabled>Select estate city/municipality</option>
+                                    <option value="" disabled>Izvēlieties objekta pilsēta/novads</option>
                                     {
                                         cities.map((city, i) => (
                                             <option value={city._id} key={i + city._id}>{city.name.lv}</option>
@@ -362,7 +351,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
                                 </div>
                             </div>
 
-                            <div className="mt-4 block text-gray-700 font-bold mb-2">District/township:</div>
+                            <div className="mt-4 block text-gray-700 font-bold mb-2">Pagasts/mikrorajons:</div>
                             <div className="relative inline-block w-full mb-4">
                                 <select
                                     required={true}
@@ -372,7 +361,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
                                     value={estate.district._id}
                                     onChange={(e) => setEstate({...estate, district: { ...estate.district, _id: e.target.value}})}
                                 >
-                                    <option value="" disabled>Select estate district/township</option>
+                                    <option value="" disabled>Izvēlieties objekta pagasts/mikrorajons</option>
                                     {
                                         districts.map((district, i) => (
                                             <option value={district._id} key={i}>{district.name.lv}</option>

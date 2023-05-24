@@ -230,7 +230,7 @@ export default function EstateAdd({ onCloseClick, onSave }: EstateAddProps) {
                                 </label>
                             </div>
 
-                            <div className="mt-4 block text-gray-700 font-bold mb-2">City/municipality:</div>
+                            <div className="mt-4 block text-gray-700 font-bold mb-2">Pilsēta/novads:</div>
                             <div className="relative inline-block w-full">
                                 <select
                                     required={true}
@@ -240,7 +240,7 @@ export default function EstateAdd({ onCloseClick, onSave }: EstateAddProps) {
                                     value={estate.city}
                                     onChange={(e) => {setEstate({...estate, city: e.target.value, district: ""}); getDistricts(e.target.value)}}
                                 >
-                                    <option value="" disabled>Select estate city/municipality</option>
+                                    <option value="" disabled>Izvēlieties objekta pilsēta/novads</option>
                                     {
                                         cities.map((city, i) => (
                                             <option value={city._id} key={i}>{city.name.lv}</option>
@@ -255,7 +255,7 @@ export default function EstateAdd({ onCloseClick, onSave }: EstateAddProps) {
                                 </div>
                             </div>
 
-                            <div className="mt-4 block text-gray-700 font-bold mb-2">District/township:</div>
+                            <div className="mt-4 block text-gray-700 font-bold mb-2">Pagasts/mikrorajons:</div>
                             <div className="relative inline-block w-full mb-4">
                                 <select
                                     required={true}
@@ -266,7 +266,7 @@ export default function EstateAdd({ onCloseClick, onSave }: EstateAddProps) {
                                     onChange={(e) => setEstate({...estate, district: e.target.value})}
                                     disabled={!estate.city}
                                 >
-                                    <option value="" disabled>Select estate district/township</option>
+                                    <option value="" disabled>Izvēlieties objekta pagasts/mikrorajons</option>
                                     {
                                         districts.map((district, i) => (
                                             <option value={district._id} key={i}>{district.name.lv}</option>

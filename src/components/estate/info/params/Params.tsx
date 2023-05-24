@@ -14,25 +14,9 @@ export default function Params ({ estate, dark }: ParamsProps) {
 
     const { t, i18n } = useTranslation()
 
-
+    console.log(i18n.language === "ru")
     return (
         <div className={style.params}>
-            {estate.city && (
-                <div className={style.param}>
-                    <div className={style.label + ` ${dark ? style.dark : ""}`}>{t("estatePage:filter.city")}</div>
-                    <div className={style.value + ` ${dark ? style.dark : ""}`}>
-                        <span><City /></span>{estate.city.name[i18n.language]}
-                    </div>
-                </div>
-            )}
-            {estate.district && (
-                <div className={style.param}>
-                    <div className={style.label + ` ${dark ? style.dark : ""}`}>{t("estatePage:filter.district")}</div>
-                    <div className={style.value + ` ${dark ? style.dark : ""}`}>
-                        <span><District /></span>{estate.district.name[i18n.language]}
-                    </div>
-                </div>
-            )}
             {estate.landArea && (
                 <div className={style.param}>
                     <div className={style.label + ` ${dark ? style.dark : ""}`}>{estate.type.en !== "Parking" && estate.type.en !== "Restaurants, cafes, offices" ? t("estatePage:filter.landArea") : t("estatePage:filter.landArea2")}</div>
@@ -43,9 +27,32 @@ export default function Params ({ estate, dark }: ParamsProps) {
             )}
             {estate.floor && (
                 <div className={style.param}>
-                    <div className={style.label + ` ${dark ? style.dark : ""}`}>{estate.type.en === "Houses" ? t("params:floors") : t("params:floor")}</div>
+                    <div className={style.label + ` ${dark ? style.dark : ""}`}>
+                        {estate.type.en === "Houses" ?
+                            t("params:floors")
+                            :
+                            t("params:floor")
+                        }
+                    </div>
                     <div className={style.value + ` ${dark ? style.dark : ""}`}>
-                        <span><Floor /></span>{estate.floor} {estate.type.en === "Houses" ? t("params:floors") : t("params:floor")}
+                        <span><Floor /></span>{estate.floor} {
+                        estate.type.en === "Houses"
+                            ? i18n.language === "ru" ?
+                            estate.floor == 1 ?
+                                "этаж"
+                                :
+                                estate.floor == 2 || estate.floor == 3 || estate.floor == 4 ?
+                                    "этажа"
+                                    :
+                                    t("params:floors")
+                            : i18n.language === "lv" ?
+                                estate.floor == 1 ?
+                                    "stāvs"
+                                    :
+                                    t("params:floors")
+                                : t("params:floors")
+                            : t("params:floor")
+                    }
                     </div>
                 </div>
             )}
@@ -53,7 +60,22 @@ export default function Params ({ estate, dark }: ParamsProps) {
                 <div className={style.param}>
                     <div className={style.label + ` ${dark ? style.dark : ""}`}>{t("estatePage:filter.rooms")}</div>
                     <div className={style.value + ` ${dark ? style.dark : ""}`}>
-                        <span><Rooms /></span>{estate.rooms} {t("params:rooms")}
+                        <span><Rooms /></span>{estate.rooms} {
+                        i18n.language === "ru" ?
+                            estate.rooms == "1" ?
+                                "комната"
+                                :
+                                estate.rooms == "4" || estate.rooms == "3" || estate.rooms == "2" ?
+                                    "комнаты"
+                                    :
+                                    t("params:rooms")
+                            : i18n.language === "lv" ?
+                            estate.rooms == "1" ?
+                                "istaba"
+                                :
+                                t("params:rooms")
+                            : t("params:rooms")
+                    }
                     </div>
                 </div>
             )}

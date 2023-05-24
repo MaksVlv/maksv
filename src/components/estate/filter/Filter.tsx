@@ -159,7 +159,7 @@ const FilterSection = ({ onFilterSubmit }: FilterSectionProps) => {
                 <div className={style.hr}/>
                 <div className={style.row + " " + style.open} onClick={() => onPlus()}>
                     {t("estatePage:filter.advanced")}
-                    <svg className={style.selectSVG + " " + (isOpen ? style.rotate : "")} width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg className={style.selectSVG + " " + (isOpen ? style.rotate : "")} width="16" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M1.50781 0.25L0.75 1.05859L7 7.75L13.25 1.05859L12.4961 0.25L7 6.12891L1.50781 0.25Z" fill="#3C3C3C"/>
                     </svg>
                 </div>

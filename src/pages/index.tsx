@@ -34,8 +34,8 @@ export default function Home({ estate }: HomeProps) {
 }
 
 export async function getServerSideProps({ locale }: GetServerSidePropsContext) {
-    const { data } = await axios.get(process.env.NEXT_PUBLIC_SERVER_URL + 'estate?size=4')
-    const estate = data.data
+    const { data } = await axios.get(process.env.NEXT_PUBLIC_SERVER_URL + 'estate?size=5&sort=price:desc')
+    const estate = shuffleArray(data.data)
 
     return {
         props: {
@@ -43,4 +43,12 @@ export async function getServerSideProps({ locale }: GetServerSidePropsContext) 
             estate,
         },
     };
+}
+
+const shuffleArray = (array: any[]) => {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
 }

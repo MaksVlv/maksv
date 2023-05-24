@@ -26,22 +26,6 @@ export default function MobParams ({ estate }: MobParamsProps) {
 
     return (
         <div className={style.mobParams}>
-            {estate.city && (
-                <div className={style.param}>
-                    <div className={style.label}>{t("estatePage:filter.city")}:</div>
-                    <div className={style.value}>
-                        <span><City /></span>{estate.city.name[i18n.language]}
-                    </div>
-                </div>
-            )}
-            {estate.district && (
-                <div className={style.param}>
-                    <div className={style.label}>{t("estatePage:filter.district")}:</div>
-                    <div className={style.value}>
-                        <span><District /></span>{estate.district.name[i18n.language]}
-                    </div>
-                </div>
-            )}
             {estate.landArea && (
                 <div className={style.param}>
                     <div className={style.label}>{estate.type.en !== "Parking" && estate.type.en !== "Restaurants, cafes, offices" ? t("estatePage:filter.landArea") : t("estatePage:filter.landArea2")}:</div>

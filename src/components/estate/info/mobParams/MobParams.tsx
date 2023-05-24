@@ -90,6 +90,14 @@ export default function MobParams ({ estate }: MobParamsProps) {
                     </div>
                 </div>
             )}
+            {estate.assignment && (
+                <div className={style.param}>
+                    <div className={style.label}>{t("estatePage:filter.assignment")}:</div>
+                    <div className={style.value}>
+                        <span><Series /></span>{estate.assignment[i18n.language]}
+                    </div>
+                </div>
+            )}
             <div className={style.param}>
                 <div className={style.label}>{t("estatePage:filter.price")}:</div>
                 <div className={style.value + " " + style.bold}>

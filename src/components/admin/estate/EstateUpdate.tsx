@@ -7,6 +7,7 @@ import GoogleMapReact from "google-map-react";
 import Upload from "../../service/Upload";
 import { series } from "./FLatInputs";
 import FormData from "form-data";
+import { assignment } from "./LandInputs";
 
 
 interface EstateUpdateProps {
@@ -139,6 +140,9 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
 
     const changeSeries = (e: ChangeEvent<HTMLSelectElement>) => {
         setEstate({...estate, series: series[e.target.value]})
+    }
+    const changeAssignment = (e: ChangeEvent<HTMLSelectElement>) => {
+        setEstate({...estate, assignment: assignment[e.target.value]})
     }
 
     const changeDraft = (status: boolean) => {
@@ -592,6 +596,33 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
                                     value={estate.cadastralNumber}
                                     onChange={(e) => setEstate({...estate, cadastralNumber: e.target.value })}
                                 />
+                                {estate.type.lv === "Zeme" &&
+                                <div className={"mb-4"}>
+                                    <div className="block text-gray-700 font-bold mb-2">Assignment: </div>
+                                    <div className="relative inline-block w-full mb-4">
+                                        <select
+                                            required={true}
+                                            name="estateType"
+                                            id="estateType"
+                                            className="block disabled:cursor-not-allowed appearance-none w-full bg-white border focus:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                                            onChange={(e) => changeAssignment(e)}
+                                            defaultValue={Object.keys(assignment).findIndex(key => assignment[key].en === estate.assignment?.en) + 1}
+                                        >
+                                            <option value="" disabled>Select land assignment</option>
+                                            {Object.keys(assignment).map((key: string, i:number) =>
+                                                <option value={key} key={i}>{assignment[key].lv}</option>
+                                            )
+                                            }
+                                        </select>
+                                        <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                                            <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                                <path
+                                                    d="M14.14 7.88l-4.95 4.95a1.5 1.5 0 01-2.12 0l-4.95-4.95a1.5 1.5 0 012.12-2.12L10 9.77l3.05-3.05a1.5 1.5 0 012.12 2.12z"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                }
                             </div>
                             <div className="flex justify-end relative">
                                 <button

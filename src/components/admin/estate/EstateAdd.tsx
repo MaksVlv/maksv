@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useEffect, useState} from "react";
+import React, {ChangeEvent, useEffect, useState, useRef} from "react";
 import styles from '../styles/admin.module.scss';
 import Upload from '../../service/Upload';
 import HouseInputs from './HouseInputs';
@@ -23,6 +23,7 @@ export default function EstateAdd({ onCloseClick, onSave }: EstateAddProps) {
     const [districts, setDistricts] = useState<District[]>([{ _id: '', name: { lv: '', ru: '', en: '' } }]);
 
     const [loading, setLoading] = useState<boolean>(false);
+    const formRef = useRef<HTMLFormElement>(null);
 
 
     const handleSubmit = (event: React.SyntheticEvent | null, disabled = false) => {
@@ -37,6 +38,11 @@ export default function EstateAdd({ onCloseClick, onSave }: EstateAddProps) {
             return;
         } else if (!estate.mainImage.file) {
             toast.error("Please select main image")
+            return;
+        }
+
+        if (formRef.current && !formRef.current.checkValidity()) {
+            toast.error("Enter all required fields!");
             return;
         }
 
@@ -127,7 +133,7 @@ export default function EstateAdd({ onCloseClick, onSave }: EstateAddProps) {
                     }
                     <div className="text-lg font-medium mb-4">Add new estate</div>
                     <div className="mb-6">
-                        <form onSubmit={handleSubmit}>
+                        <form onSubmit={handleSubmit} ref={formRef}>
 
                             <div className="block text-gray-700 font-bold mb-2">Name:</div>
                             <div className="mb-4 flex justify-between gap-3">
@@ -351,7 +357,7 @@ export default function EstateAdd({ onCloseClick, onSave }: EstateAddProps) {
                             }}/>}
                             {(estate.type.lv === "Rūpnīca" || estate.type.lv === "Zeme" || estate.type.lv === "Komerciālais īpašums")
                                 && <LandInputs type={estate.type.en} onParamChange={(land) => {
-                                    setEstate({...estate, landArea: land.landArea, cadastralNumber: land.cadastralNumber})
+                                    setEstate({...estate, landArea: land.landArea, cadastralNumber: land.cadastralNumber, assignment: land.assignment})
                             }}/>}
                             {(estate.type.lv === "Bēniņi, pagrabi" ||
                                 estate.type.lv === "Darbnīcas, noliktavas, ražošanas telpas" ||
@@ -438,14 +444,13 @@ export default function EstateAdd({ onCloseClick, onSave }: EstateAddProps) {
                             }
 
                             <div className="flex justify-end relative">
-                                <button
-                                    className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded disabled:cursor-not-allowed"
-                                    disabled={loading}
+                                <div
+                                    className="bg-green-500 hover:bg-green-600 hover:cursor-pointer text-white py-2 px-4 rounded disabled:cursor-not-allowed"
                                     style={{ marginRight: "auto" }}
                                     onClick={() => handleSubmit(null, true)}
                                 >
                                     Save as draft
-                                </button>
+                                </div>
                                 <button
                                     type="submit"
                                     className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded disabled:cursor-not-allowed"
@@ -520,6 +525,11 @@ export interface Estate {
     cadastralNumber?: string,
     size?: string,
     gateHeight?: number,
+    assignment?: {
+        lv: string,
+        ru: string,
+        en: string,
+    }
 }
 
 export const emptyEstate: Estate = {

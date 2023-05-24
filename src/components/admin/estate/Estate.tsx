@@ -186,5 +186,10 @@ export interface IEstate {
     cadastralNumber?: string,
     size?: string,
     gateHeight?: number,
-    disabled?: boolean
+    disabled?: boolean,
+    assignment?: {
+        lv: string,
+        ru: string,
+        en: string,
+    }
 }

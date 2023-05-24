@@ -125,6 +125,7 @@ export default function SliderSection({ data }: SliderSectionProps) {
                                 )}
                                 {estate.livingArea && (<div className={styles.param}><span><LivingArea /></span>{estate.livingArea} m²</div>)}
                                 {estate.series && (<div className={styles.param}><span><Series /></span>{estate.series[i18n.language]}</div>)}
+                                {estate.assignment && (<div className={styles.param}><span><Series /></span>{estate.assignment[i18n.language]}</div>)}
                                 {estate.gateHeight && (<div className={styles.param}><span><GateHeight /></span>{estate.gateHeight} m</div>)}
                                 {estate.size && (<div className={styles.param}><span><Size /></span>{estate.size}</div>)}
                             </div>

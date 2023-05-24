@@ -119,6 +119,14 @@ export default function Params ({ estate, dark }: ParamsProps) {
                     </div>
                 </div>
             )}
+            {estate.assignment && (
+                <div className={style.param}>
+                    <div className={style.label + ` ${dark ? style.dark : ""}`}>{t("estatePage:filter.assignment")}</div>
+                    <div className={style.value + ` ${dark ? style.dark : ""}`}>
+                        <span><Series /></span>{estate.assignment[i18n.language]}
+                    </div>
+                </div>
+            )}
         </div>
     )
 }

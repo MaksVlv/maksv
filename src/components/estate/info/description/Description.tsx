@@ -22,7 +22,7 @@ export default function Description({ estate, googleApi }: DescriptionProps) {
 
     return (
         <div className={styles.descriptionSection + " wrapper"}>
-            <h2>{`${estate.name[i18n.language]}, ${estate.city.name[i18n.language]}, ${estate.district.name[i18n.language]}`}</h2>
+            <h2>{`${estate.name[i18n.language]}, ${estate.district.name[i18n.language]}, ${estate.city.name[i18n.language]}`}</h2>
             <h3 className={styles.pricePc}>
                 {
                     Number(estate.price.toFixed(2)).toLocaleString('lv', { style: 'currency', currency: 'EUR' })

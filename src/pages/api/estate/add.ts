@@ -177,7 +177,8 @@ interface IFlat extends ICommon {
 
 interface ILand extends ICommon {
     landArea: number,
-    cadastralNumber: string
+    cadastralNumber: string,
+    assignment: ILangText
 }
 
 interface ILandOnly extends ICommon {
@@ -319,6 +320,7 @@ const deleteForHouse = (house: any) => {
     delete house.cadastralNumber;
     delete house.size;
     delete house.gateHeight;
+    delete house.assignment;
 }
 
 const deleteForFlat = (flat: any) => {
@@ -326,6 +328,7 @@ const deleteForFlat = (flat: any) => {
     delete flat.cadastralNumber;
     delete flat.size;
     delete flat.gateHeight;
+    delete flat.assignment;
 }
 
 const deleteForLand = (land: any) => {
@@ -335,6 +338,8 @@ const deleteForLand = (land: any) => {
     delete land.series;
     delete land.size;
     delete land.gateHeight;
+    if (land.type !== "Land")
+        delete land.assignment;
 }
 
 const deleteForLandOnly = (land: any) => {
@@ -345,6 +350,7 @@ const deleteForLandOnly = (land: any) => {
     delete land.size;
     delete land.gateHeight;
     delete land.cadastralNumber;
+    delete land.assignment;
 }
 
 const deleteForGarage = (garage: any) => {
@@ -354,6 +360,7 @@ const deleteForGarage = (garage: any) => {
     delete garage.series;
     delete garage.cadastralNumber;
     delete garage.landArea;
+    delete garage.assignment;
 }
 
 const deleteForCafe = (cafe: any) => {
@@ -363,4 +370,5 @@ const deleteForCafe = (cafe: any) => {
     delete cafe.cadastralNumber;
     delete cafe.size;
     delete cafe.gateHeight;
+    delete cafe.assignment;
 }

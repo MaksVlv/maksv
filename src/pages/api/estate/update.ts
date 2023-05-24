@@ -293,6 +293,15 @@ const changeLand = async (estate: any, req: NextApiRequest, res: NextApiResponse
     if (!validateLand(estate))
         return res.status(400).json({ message: 'Land data problems' });
 
+    if (estate.assignment) {
+        const newEstate = await Estate.findOneAndUpdate({ _id: estate._id }, {
+            cadastralNumber: estate.cadastralNumber,
+            landArea: estate.landArea,
+            assignment: estate.assignment
+        })
+        return res.status(200).json({ newEstate });
+    }
+
     const newEstate = await Estate.findOneAndUpdate({ _id: estate._id }, {
         cadastralNumber: estate.cadastralNumber,
         landArea: estate.landArea

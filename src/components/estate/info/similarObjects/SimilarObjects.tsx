@@ -81,6 +81,7 @@ export default function SimilarObjects({ estate }: SimilarObjectsProps) {
                                 )}
                                 {estate.livingArea && (<div className={style.param}><span><LivingArea /></span>{estate.livingArea} m²</div>)}
                                 {estate.series && (<div className={style.param}><span><Series /></span>{estate.series[i18n.language]}</div>)}
+                                {estate.assignment && (<div className={style.param}><span><Series /></span>{estate.assignment[i18n.language]}</div>)}
                                 {estate.gateHeight && (<div className={style.param}><span><GateHeight /></span>{estate.gateHeight} m</div>)}
                                 {estate.size && (<div className={style.param}><span><Size /></span>{estate.size}</div>)}
                                 {(estate.type.en === "Flats" || estate.type.en === "Land") && (

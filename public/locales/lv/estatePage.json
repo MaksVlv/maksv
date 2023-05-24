@@ -46,7 +46,8 @@
     "dateDown": "Datums dilstošā",
     "priceUp": "Cēna augstošā",
     "priceDown": "Cēna dilstošā",
-    "cadastral": "Kadastra numurs"
+    "cadastral": "Kadastra numurs",
+    "assignment": "Pielietojums"
   },
   "pagination": {
     "back": "Atpakaļ",

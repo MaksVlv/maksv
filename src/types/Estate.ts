@@ -65,4 +65,10 @@ export type IEstate = {
     cadastralNumber?: string,
     size?: string,
     gateHeight?: number,
+    assignment?: {
+        [key: string]: string,
+        lv: string,
+        ru: string,
+        en: string,
+    }
 }

@@ -1,13 +1,14 @@
-import React, {ChangeEvent, useEffect, useState} from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import styles from '../styles/admin.module.scss';
 import { toast } from "react-toastify";
 import { IEstate } from './Estate';
-import axios from "axios";
+import axios  from "axios";
 import GoogleMapReact from "google-map-react";
 import Upload from "../../service/Upload";
 import { series } from "./FLatInputs";
 import FormData from "form-data";
 import { assignment } from "./LandInputs";
+import { useRouter } from "next/router";
 
 
 interface EstateUpdateProps {
@@ -17,6 +18,8 @@ interface EstateUpdateProps {
 }
 
 export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: EstateUpdateProps) {
+
+    const router = useRouter();
 
     const [loading, setLoading] = useState(true);
     const [estate, setEstate] = useState<IEstate>(estateOld);
@@ -49,7 +52,13 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
                 onUpdate();
                 onCloseClick();
             }, err => {
-                toast.error(err.response.data.message || "Error occurred")
+                if (err.response?.status === 401) {
+                    toast.error("Please renew session!")
+                    localStorage.removeItem('token');
+                    router.push('/admin/login', '/admin/login', { locale: 'lv' });
+                    return;
+                }
+                toast.error(err.response?.data.message || "Error occurred")
             }).finally(() => setLoading(false));
         }
     }
@@ -63,7 +72,13 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
             toast.success(`Estate ${update} updated - ` + estate.name.lv)
             onUpdate();
         }, err => {
-            toast.error(err.response.data.message || "Error occurred")
+            if (err.response?.status === 401) {
+                toast.error("Please renew session!")
+                localStorage.removeItem('token');
+                router.push('/admin/login', '/admin/login', { locale: 'lv' });
+                return;
+            }
+            toast.error(err.response?.data.message || "Error occurred")
         }).finally(() => setLoading(false));
     }
 
@@ -92,7 +107,13 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
             onUpdate();
             setEstate({...estate, mainImage: res.data.url })
         }, err => {
-            toast.error(err.response.data.message || "Error occurred")
+            if (err.response?.status === 401) {
+                toast.error("Please renew session!")
+                localStorage.removeItem('token');
+                router.push('/admin/login', '/admin/login', { locale: 'lv' });
+                return;
+            }
+            toast.error(err.response?.data.message || "Error occurred")
         }).finally(() => setLoading(false));
     }
 
@@ -115,7 +136,15 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
                     "Content-Type": 'multipart/form-data',
                     Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
-            }).catch(_err => toast.success("Not all images are uploaded, please check estate later"))
+            }).catch(err => {
+                if (err.response?.status === 401) {
+                    toast.error("Please renew session!")
+                    localStorage.removeItem('token');
+                    router.push('/admin/login', '/admin/login', { locale: 'lv' });
+                    return;
+                }
+                toast.success("Not all images are uploaded, please check estate later")
+            })
         }
 
         await axios.get(`estate/info?id=${estateOld._id}&disabled=true`).then(res => {
@@ -134,7 +163,13 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
             // @ts-ignore
             setEstate({...estate, images: res.data.images })
         }, err => {
-            toast.error(err.response.data.message || "Error occurred")
+            if (err.response?.status === 401) {
+                toast.error("Please renew session!")
+                localStorage.removeItem('token');
+                router.push('/admin/login', '/admin/login', { locale: 'lv' });
+                return;
+            }
+            toast.error(err.response?.data.message || "Error occurred")
         }).finally(() => setLoading(false));
     }
 
@@ -156,7 +191,13 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
             setEstate({...estate, disabled: !estate.disabled })
             onUpdate();
         }, err => {
-            toast.error(err.response.data.message || "Error occurred")
+            if (err.response?.status === 401) {
+                toast.error("Please renew session!")
+                localStorage.removeItem('token');
+                router.push('/admin/login', '/admin/login', { locale: 'lv' });
+                return;
+            }
+            toast.error(err.response?.data.message || "Error occurred")
         }).finally(() => setLoading(false));
     }
 
@@ -480,6 +521,17 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
                                     placeholder="Enter house land area"
                                     value={estate.landArea}
                                     onChange={(e) => setEstate({...estate, landArea: e.target.value })}
+                                />
+                                <div className="block text-gray-700 font-bold mb-2">Cadastral number:</div>
+                                <input
+                                    type={"number"}
+                                    min={0}
+                                    name="landCadastralNumber"
+                                    id="landCadastralNumber"
+                                    className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    placeholder="Enter land cadastral number"
+                                    value={estate.cadastralNumber}
+                                    onChange={(e) => setEstate({...estate, cadastralNumber: e.target.value })}
                                 />
                             </div>
                             <div className="flex justify-end relative">

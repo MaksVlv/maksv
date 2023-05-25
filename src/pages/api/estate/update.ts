@@ -26,17 +26,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         // @ts-ignore
         const token = req.headers.authorization.split(" ")[1];
         if (!token)
-            return res.status(201).json({ message: "No Auth" });
+            return res.status(401).json({ message: "No Auth" });
+
+        try {
+            // @ts-ignore
+            const user = await jwt.verify(token, process.env.JWT_SECRET);
+
+            if (!user.isAdmin)
+                return res.status(405).json({ message: "user is not admin" });
+        } catch (e) {
+            return res.status(401).json({ message: "No Auth" });
+        }
 
         const update = req.query.update
         if (!update)
-            return res.status(201).json({ message: "Update query is mandatory" });
-
-        // @ts-ignore
-        const user = await jwt.verify(token, process.env.JWT_SECRET);
-
-        if (!user.isAdmin)
-            return res.status(405).json({ message: "user is not admin" });
+            return res.status(400).json({ message: "Update query is mandatory" });
 
 
         const form = new formidable.IncomingForm({ maxFileSize: 4.5 * 1024 * 1024 });
@@ -271,7 +275,8 @@ const changeHouse = async (estate: any, req: NextApiRequest, res: NextApiRespons
         landArea: estate.landArea,
         livingArea: estate.livingArea,
         rooms: estate.rooms,
-        floor: estate.floor
+        floor: estate.floor,
+        cadastralNumber: estate.cadastralNumber
     })
     return res.status(200).json({ newEstate });
 }

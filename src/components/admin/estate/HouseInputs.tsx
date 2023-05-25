@@ -6,6 +6,7 @@ interface House {
     floor: string,
     livingArea: string,
     landArea: string,
+    cadastralNumber?: string
 }
 
 interface IHouseInputs {
@@ -72,6 +73,17 @@ const HouseInputs = ({ onParamChange }: IHouseInputs) => {
                 placeholder="Enter house land area"
                 value={house.landArea}
                 onChange={(e) => setHouse({...house, landArea: e.target.value })}
+            />
+            <div className="block text-gray-700 font-bold mb-2">Cadastral number:</div>
+            <input
+                type={"number"}
+                min={0}
+                name="landCadastralNumber"
+                id="landCadastralNumber"
+                className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                placeholder="Enter land cadastral number"
+                value={house.cadastralNumber}
+                onChange={(e) => setHouse({...house, cadastralNumber: e.target.value })}
             />
         </div>
     );

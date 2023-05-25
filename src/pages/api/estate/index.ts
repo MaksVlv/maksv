@@ -165,9 +165,18 @@ type SortOrder = 'asc' | 'desc';
 const estateDelete = async (req: NextApiRequest, res: NextApiResponse) => {
     // @ts-ignore
     const token = req.headers.authorization.split(" ")[1];
-
     if (!token)
-        return res.status(201).json({ message: "No Auth" });
+        return res.status(401).json({ message: "No Auth" });
+
+    try {
+        // @ts-ignore
+        const user = await jwt.verify(token, process.env.JWT_SECRET);
+
+        if (!user.isAdmin)
+            return res.status(405).json({ message: "user is not admin" });
+    } catch (e) {
+        return res.status(401).json({ message: "No Auth" });
+    }
 
     try {
         await dbConnect();

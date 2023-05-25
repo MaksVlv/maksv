@@ -1,7 +1,8 @@
-import React, {ChangeEvent, useEffect, useState} from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import styles from '../styles/admin.module.scss';
 import { toast } from "react-toastify";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 interface District {
     name: {
@@ -28,6 +29,8 @@ interface CityUpdateProps {
 }
 
 export default function CityUpdate({ cityId, onCloseClick, onUpdate }: CityUpdateProps) {
+
+    const router = useRouter();
 
     const [loading, setLoading] = useState(true);
     const [city, setCity] = useState<City>({
@@ -80,7 +83,13 @@ export default function CityUpdate({ cityId, onCloseClick, onUpdate }: CityUpdat
                 newDistricts.splice(index, 1);
                 setCity({ ...city, districts: newDistricts });
             }, err => {
-                toast.error(err.response.data.message || "Error occurred")
+                if (err.response?.status === 401) {
+                    toast.error("Please renew session!")
+                    localStorage.removeItem('token');
+                    router.push('/admin/login', '/admin/login', { locale: 'lv' });
+                    return;
+                }
+                toast.error(err.response?.data.message || "Error occurred")
             })
         }
     }
@@ -97,7 +106,13 @@ export default function CityUpdate({ cityId, onCloseClick, onUpdate }: CityUpdat
             onUpdate();
             onCloseClick();
         }, err => {
-            toast.error(err.response.data.message || "Error occurred")
+            if (err.response?.status === 401) {
+                toast.error("Please renew session!")
+                localStorage.removeItem('token');
+                router.push('/admin/login', '/admin/login', { locale: 'lv' });
+                return;
+            }
+            toast.error(err.response?.data.message || "Error occurred")
         })
     }
 
@@ -108,7 +123,13 @@ export default function CityUpdate({ cityId, onCloseClick, onUpdate }: CityUpdat
                 onUpdate();
                 onCloseClick();
             }, err => {
-                toast.error(err.response.data.message || "Error occurred")
+                if (err.response?.status === 401) {
+                    toast.error("Please renew session!")
+                    localStorage.removeItem('token');
+                    router.push('/admin/login', '/admin/login', { locale: 'lv' });
+                    return;
+                }
+                toast.error(err.response?.data.message || "Error occurred")
             })
         }
     }

@@ -1,6 +1,7 @@
-import React, {ChangeEvent, useEffect, useState} from "react";
+import React, { ChangeEvent, useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 interface City {
     lv: string,
@@ -20,6 +21,7 @@ interface CityAddProps {
 
 export default function CityAdd({ onCloseClick, onSave }: CityAddProps) {
 
+    const router = useRouter();
 
     const [city, setCity] = useState<City>({lv: '', en: '', ru: ''})
 
@@ -53,7 +55,13 @@ export default function CityAdd({ onCloseClick, onSave }: CityAddProps) {
             onSave();
             onCloseClick();
         }).catch(err => {
-            toast.error(err.response.data.message || "Error occurred" );
+            if (err.response?.status === 401) {
+                toast.error("Please renew session!")
+                localStorage.removeItem('token');
+                router.push('/admin/login', '/admin/login', { locale: 'lv' });
+                return;
+            }
+            toast.error(err.response?.data.message || "Error occurred" );
         })
     };
 

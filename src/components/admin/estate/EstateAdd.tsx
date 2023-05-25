@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useEffect, useState, useRef} from "react";
+import React, { ChangeEvent, useEffect, useState, useRef } from "react";
 import styles from '../styles/admin.module.scss';
 import Upload from '../../service/Upload';
 import HouseInputs from './HouseInputs';
@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import GoogleMapReact from 'google-map-react';
 import axios from "axios";
 import FormData from "form-data";
+import { useRouter } from "next/router";
 
 
 interface EstateAddProps {
@@ -17,6 +18,7 @@ interface EstateAddProps {
 
 export default function EstateAdd({ onCloseClick, onSave }: EstateAddProps) {
 
+    const router = useRouter();
 
     const [estate, setEstate] = useState<Estate>(emptyEstate);
     const [cities, setCities] = useState<City[]>([{ _id: '', name: { lv: '', ru: '', en: '' } }]);
@@ -78,6 +80,12 @@ export default function EstateAdd({ onCloseClick, onSave }: EstateAddProps) {
             onSave();
             onCloseClick();
         }, err => {
+            if (err.response?.status === 401) {
+                toast.error("Please renew session!")
+                localStorage.removeItem('token');
+                router.push('/admin/login', '/admin/login', { locale: 'lv' });
+                return;
+            }
             toast.error(err.response?.data.message || "Error occurred" );
             console.log(err)
         }).finally(() => {

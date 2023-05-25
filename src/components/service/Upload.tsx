@@ -49,14 +49,30 @@ const Upload = ({ onFileChange, one = false, filesOld = [], deleteImg = true, on
         }
     };
 
+    const compressFiles = async (images: Image[]): Promise<Image[]> => {
+        const res: Image[] = [];
+
+        for (let i = 0; i < images.length; i++) {
+            res.push(await compressImage(images[i].file));
+        }
+
+        return res;
+    }
+
     const onChange = async (file: Image[]) => {
+
+        if (one && file.length > 2) {
+            toast.error("Please upload only one image")
+            return;
+        }
 
         toast.warn("Compressing images")
 
         if (loading) {
             loading(true);
         }
-        const compressedFiles = await Promise.all(file.slice(files.length - file.length).map((f: Image) => compressImage(f.file)));
+        // const compressedFiles = await Promise.all(file.slice(files.length - file.length).map((f: Image) => compressImage(f.file)));
+        const compressedFiles = await compressFiles(file.slice(files.length - file.length));
         if (loading)
             loading(false);
 
@@ -80,10 +96,6 @@ const Upload = ({ onFileChange, one = false, filesOld = [], deleteImg = true, on
             newFiles.splice(0, 1);
             setFiles(newFiles);
             onFileChange(newFiles);
-            return;
-        }
-        if (one && file.length > 2) {
-            toast.error("Please upload only one image")
             return;
         }
         if (typeof onDeleteImg === 'function')

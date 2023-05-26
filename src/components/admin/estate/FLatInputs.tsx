@@ -93,6 +93,7 @@ const FlatInputs = ({ onParamChange }: IFlatInputs) => {
                     <option value="13">Private house</option>
                     <option value="14">Czech project</option>
                     <option value="15">New</option>
+                    <option value="16">Brezhnev project</option>
                 </select>
                 <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
                     <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20">
@@ -202,5 +203,10 @@ export const series: ISeries = {
         lv: "Jaunais projekts",
         ru: "Новостройка",
         en: "New project",
+    },
+    '16': {
+        lv: "Brežņeva laika māja",
+        ru: "Брежневка",
+        en: "Brezhnev project",
     }
 }

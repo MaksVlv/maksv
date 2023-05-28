@@ -9,6 +9,7 @@ import "react-image-gallery/styles/css/image-gallery.css";
 import 'react-loading-skeleton/dist/skeleton.css'
 import { ToastContainer } from 'react-toastify';
 import { appWithTranslation } from 'next-i18next';
+import { GoogleAnalytics } from "nextjs-google-analytics";
 import Cookies from 'js-cookie';
 import axios from "axios";
 
@@ -27,6 +28,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 
     return (
         <>
+            <GoogleAnalytics gaMeasurementId={"G-SEE6PLQD7W"}/>
             <Component {...pageProps} />
             <ToastContainer />
         </>

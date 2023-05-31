@@ -343,7 +343,7 @@ const deleteForLand = (land: any) => {
     delete land.series;
     delete land.size;
     delete land.gateHeight;
-    if (land.type !== "Land")
+    if (land.type.en !== "Land")
         delete land.assignment;
 }
 

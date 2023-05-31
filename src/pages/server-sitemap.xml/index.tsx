@@ -12,19 +12,19 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     const ids = data as Id[]
 
     const fieldsLv = ids.map((id: Id) => ({
-        loc: `https://maksv.lv/estate/${id._id}`,
+        loc: `https://www.maksv.lv/estate/${id._id}`,
         lastmod: new Date().toISOString(),
         changefreq: 'daily',
         priority: 0.7
     }))
     const fieldsEn = ids.map((id: Id) => ({
-        loc: `https://maksv.lv/en/estate/${id._id}`,
+        loc: `https://www.maksv.lv/en/estate/${id._id}`,
         lastmod: new Date().toISOString(),
         changefreq: 'daily',
         priority: 0.7
     }))
     const fieldsRu = ids.map((id: Id) => ({
-        loc: `https://maksv.lv/ru/estate/${id._id}`,
+        loc: `https://www.maksv.lv/ru/estate/${id._id}`,
         lastmod: new Date().toISOString(),
         changefreq: 'daily',
         priority: 0.7

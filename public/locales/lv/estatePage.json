@@ -35,6 +35,7 @@
     "floor": "Stāvs",
     "rooms": "Istabas",
     "livingArea": "Dzīvojamā platība",
+    "roomArea": "Telpas platība",
     "landArea": "Zemes platība",
     "landArea2": "Platība",
     "series": "Sērija",

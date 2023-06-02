@@ -51,9 +51,12 @@ export default function MobParams ({ estate }: MobParamsProps) {
                     </div>
                 </div>
             )}
-            {estate.livingArea && (
+            {(estate.livingArea || (Number(estate.livingArea) > 0)) && (
                 <div className={style.param}>
-                    <div className={style.label}>{t("estatePage:filter.livingArea")}:</div>
+                    <div className={style.label}>
+                        {estate.type.en === "Commercial object" ? t("estatePage:filter.roomArea") : t("estatePage:filter.livingArea")}
+                        :
+                    </div>
                     <div className={style.value}>
                         <span><LivingArea /></span>{estate.livingArea} m²
                     </div>

@@ -8,7 +8,8 @@ interface Land {
         lv: string,
         ru: string,
         en: string
-    }
+    },
+    livingArea?: string
 }
 
 interface ILandInputs {
@@ -44,6 +45,22 @@ const LandInputs = ({ onParamChange, type }: ILandInputs) => {
                 value={land.landArea}
                 onChange={(e) => setLand({...land, landArea: e.target.value })}
             />
+            {type === "Commercial object" &&
+                <div className={"mb-4"}>
+                    <div className="block text-gray-700 font-bold mb-2">Room area:</div>
+                    <input
+                        type={"number"}
+                        min={0}
+                        step={0.01}
+                        name="livingArea"
+                        id="livingArea"
+                        className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        placeholder="Enter room area"
+                        value={land.livingArea}
+                        onChange={(e) => setLand({...land, livingArea: e.target.value })}
+                    />
+                </div>
+            }
             <div className="block text-gray-700 font-bold mb-2">Cadastral number:</div>
             <input
                 required={true}
@@ -93,6 +110,7 @@ export default LandInputs;
 const emptyLand = {
     landArea: '',
     cadastralNumber: '',
+    livingArea: '0'
 }
 
 interface IAssignment {

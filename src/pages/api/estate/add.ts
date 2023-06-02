@@ -339,12 +339,13 @@ const deleteForFlat = (flat: any) => {
 const deleteForLand = (land: any) => {
     delete land.rooms;
     delete land.floor;
-    delete land.livingArea;
     delete land.series;
     delete land.size;
     delete land.gateHeight;
     if (land.type.en !== "Land")
         delete land.assignment;
+    if (land.type.en !== "Commercial object")
+        delete land.livingArea;
 }
 
 const deleteForLandOnly = (land: any) => {

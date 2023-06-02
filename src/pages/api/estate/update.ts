@@ -307,6 +307,17 @@ const changeLand = async (estate: any, req: NextApiRequest, res: NextApiResponse
         return res.status(200).json({ newEstate });
     }
 
+    if (estate.type.en === "Commercial object") {
+        if (!estate.livingArea)
+            estate.livingArea = 0
+        const newEstate = await Estate.findOneAndUpdate({ _id: estate._id }, {
+            cadastralNumber: estate.cadastralNumber,
+            landArea: estate.landArea,
+            livingArea: estate.livingArea
+        })
+        return res.status(200).json({ newEstate });
+    }
+
     const newEstate = await Estate.findOneAndUpdate({ _id: estate._id }, {
         cadastralNumber: estate.cadastralNumber,
         landArea: estate.landArea

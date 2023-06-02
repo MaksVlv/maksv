@@ -26,7 +26,7 @@ const FilterSection = ({ onFilterSubmit }: FilterSectionProps) => {
 
     const [filter, setFilter] = useState<Filter>(emptyFilter);
 
-    const [isOpen, setIsOpen] = useState<boolean>(false)
+    const [isOpen, setIsOpen] = useState<boolean>(true)
     const [mobOpen, setMobOpen] = useState<boolean>(false)
     const [cities, setCities] = useState<City[]>([])
     const [districts, setDistricts] = useState<City[]>([])
@@ -230,10 +230,12 @@ const FilterSection = ({ onFilterSubmit }: FilterSectionProps) => {
                                     </div>
                                 </>
                                 }
-                                {(type === '1' || type === '2')  &&
+                                {(type === '1' || type === '2' || type === '5')  &&
                                 <>
                                     <div className={style.input + " " + style.small}>
-                                        <label htmlFor="livingArea">{t("estatePage:filter.livingArea")}</label>
+                                        <label htmlFor="livingArea">
+                                            {type === "5" ? t("estatePage:filter.roomArea") : t("estatePage:filter.livingArea")}
+                                        </label>
                                         <input type="number" id={"livingArea"} value={filter.livingAreaFrom} onChange={e => setFilter({...filter, livingAreaFrom: e.target.value})} placeholder={t("estatePage:filter.from") || ""}/>
                                     </div>
                                     <div className={style.input + " " + style.small}>

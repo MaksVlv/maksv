@@ -27,7 +27,7 @@ export default function MobParams ({ estate }: MobParamsProps) {
 
     return (
         <div className={style.mobParams}>
-            {estate.landArea && (
+            {(estate.landArea || (Number(estate.landArea) > 0)) && (
                 <div className={style.param}>
                     <div className={style.label}>{estate.type.en !== "Parking" && estate.type.en !== "Restaurants, cafes, offices" ? t("estatePage:filter.landArea") : t("estatePage:filter.landArea2")}:</div>
                     <div className={style.value}>

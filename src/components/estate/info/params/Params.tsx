@@ -18,7 +18,7 @@ export default function Params ({ estate, dark }: ParamsProps) {
     console.log(i18n.language === "ru")
     return (
         <div className={style.params}>
-            {estate.landArea && (
+            {(estate.landArea || (Number(estate.landArea) > 0)) && (
                 <div className={style.param}>
                     <div className={style.label + ` ${dark ? style.dark : ""}`}>{estate.type.en !== "Parking" && estate.type.en !== "Restaurants, cafes, offices" ? t("estatePage:filter.landArea") : t("estatePage:filter.landArea2")}</div>
                     <div className={style.value + ` ${dark ? style.dark : ""}`}>

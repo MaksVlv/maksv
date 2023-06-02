@@ -712,7 +712,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
                                 <div className="block text-gray-700 font-bold mb-4 text-center" style={{ textTransform: "uppercase" }}>{ estate.type.en }</div>
                                 <div className="block text-gray-700 font-bold mb-2">{estate.type.lv === "Autostāvvietas" ? "Area:" : "Land Area:"}</div>
                                 <input
-                                    required={true}
+                                    required={estate.type.en !== "Parking"}
                                     type={"number"}
                                     min={0}
                                     step={0.01}

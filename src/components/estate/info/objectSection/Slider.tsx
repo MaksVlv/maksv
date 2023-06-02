@@ -32,18 +32,47 @@ export default function SliderSection({ images }: SliderSectionProps) {
 
 const CustomLeftNav = ({ onClick }: any) => (
     <button className={styles.left} onClick={onClick}>
-        <svg className={"arrow"} width="38" height="24" viewBox="0 0 38 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 12L10 17.7735L10 6.2265L0 12ZM26 11L9 11L9 13L26 13L26 11Z" fill="white"/>
-            <path d="M16 12C16 5.88433 20.7407 1 26.5 1C32.2593 1 37 5.88433 37 12C37 18.1157 32.2593 23 26.5 23C20.7407 23 16 18.1157 16 12Z" stroke="white" strokeWidth="2"/>
+        <svg width="46" height="32" viewBox="0 0 46 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g filter="url(#filter0_d_4659_8720)">
+                <path fillRule="evenodd" clipRule="evenodd" d="M14 9.22656L4 15.0001L14 20.7736V16.0001H30V14.0001H14V9.22656Z" fill="white"/>
+                <path fillRule="evenodd" clipRule="evenodd" d="M30.5 25C25.3327 25 21 20.6039 21 15C21 9.39608 25.3327 5 30.5 5C35.6673 5 40 9.39608 40 15C40 20.6039 35.6673 25 30.5 25ZM30.5 27C24.1487 27 19 21.6274 19 15C19 8.37258 24.1487 3 30.5 3C36.8513 3 42 8.37258 42 15C42 21.6274 36.8513 27 30.5 27Z" fill="white"/>
+            </g>
+            <defs>
+                <filter id="filter0_d_4659_8720" x="0" y="0" width="46" height="32" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood floodOpacity="0" result="BackgroundImageFix"/>
+                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                    <feOffset dy="1"/>
+                    <feGaussianBlur stdDeviation="2"/>
+                    <feComposite in2="hardAlpha" operator="out"/>
+                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.45 0"/>
+                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_4659_8720"/>
+                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_4659_8720" result="shape"/>
+                </filter>
+            </defs>
         </svg>
+
     </button>
 );
 
 const CustomRightNav = ({ onClick }: any) => (
     <button className={styles.right} onClick={onClick}>
-        <svg className={"arrow"} width="38" height="24" viewBox="0 0 38 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M38 12L28 6.2265V17.7735L38 12ZM12 13L29 13V11L12 11V13Z" fill="white"/>
-            <path d="M22 12C22 18.1157 17.2593 23 11.5 23C5.74069 23 1 18.1157 1 12C1 5.88433 5.74069 1 11.5 1C17.2593 1 22 5.88433 22 12Z" stroke="white" strokeWidth="2"/>
+        <svg width="46" height="32" viewBox="0 0 46 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g filter="url(#filter0_d_4659_8720)">
+                <path fillRule="evenodd" clipRule="evenodd" d="M32 9.22656L42 15.0001L32 20.7736V16.0001H16V14.0001H32V9.22656Z" fill="white"/>
+                <path fillRule="evenodd" clipRule="evenodd" d="M15.5 25C20.6673 25 25 20.6039 25 15C25 9.39608 20.6673 5 15.5 5C10.3327 5 6 9.39608 6 15C6 20.6039 10.3327 25 15.5 25ZM15.5 27C21.8513 27 27 21.6274 27 15C27 8.37258 21.8513 3 15.5 3C9.14873 3 4 8.37258 4 15C4 21.6274 9.14873 27 15.5 27Z" fill="white"/>
+            </g>
+            <defs>
+                <filter id="filter0_d_4659_8720" x="0" y="0" width="46" height="32" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood floodOpacity="0" result="BackgroundImageFix"/>
+                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                    <feOffset dy="1"/>
+                    <feGaussianBlur stdDeviation="2"/>
+                    <feComposite in2="hardAlpha" operator="out"/>
+                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.45 0"/>
+                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_4659_8720"/>
+                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_4659_8720" result="shape"/>
+                </filter>
+            </defs>
         </svg>
     </button>
 );

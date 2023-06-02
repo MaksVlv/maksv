@@ -17,15 +17,6 @@
     top: 50%;
     z-index: 2;
 
-    svg {
-      path:first-of-type {
-        fill: $bg-dark;
-      }
-      path:nth-child(2) {
-        stroke: $bg-dark;
-      }
-    }
-
     &:hover {
       opacity: 1;
     }
@@ -38,15 +29,6 @@
     left: 20px;
     top: 50%;
     z-index: 2;
-
-    svg {
-      path:first-of-type {
-        fill: $bg-dark;
-      }
-      path:nth-child(2) {
-        stroke: $bg-dark;
-      }
-    }
 
     &:hover {
       opacity: 1;

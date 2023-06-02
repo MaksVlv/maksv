@@ -58,3 +58,10 @@ a:hover {
     height: 50px !important; /* Set the desired height */
     object-fit: cover;
 }
+
+.image-gallery-content.bottom.fullscreen .arrow path:first-of-type {
+    fill: white;
+}
+.image-gallery-content.bottom.fullscreen .arrow path:nth-child(2) {
+    stroke: white;
+}

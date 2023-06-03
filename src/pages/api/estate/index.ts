@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+const mongoose = require('mongoose');
 import jwt from 'jsonwebtoken';
 import dbConnect from '@/utils/dbConnect';
 import Page from '@/utils/page.util';
@@ -38,119 +39,240 @@ const estateGet = async (req: NextApiRequest, res: NextApiResponse) => {
 
         const page = new Page(req)
 
-        const query: any = {
-            $or: [
-                { "name.lv": { $regex: page.Search, $options: 'i' } },
-                { "name.ru": { $regex: page.Search, $options: 'i' } },
-                { "name.en": { $regex: page.Search, $options: 'i' } },
-                { "type.lv": { $regex: page.Search, $options: 'i' } },
-                { "type.ru": { $regex: page.Search, $options: 'i' } },
-                { "type.en": { $regex: page.Search, $options: 'i' } },
-            ],
-            disabled: {
-                $in: [false, null]
+
+        const aggregation: any = [
+            {
+                $lookup: {
+                    from: "cities",
+                    localField: "city",
+                    foreignField: "_id",
+                    as: "city",
+                }
+            },
+            {
+                $lookup: {
+                    from: "districts",
+                    localField: "district",
+                    foreignField: "_id",
+                    as: "district"
+                }
+            },
+            {
+                $unwind: "$city"
+            },
+            {
+                $unwind: "$district"
+            },
+            {
+                $match: {
+                    $or: [
+                        { "name.lv": { $regex: page.Search, $options: 'i' } },
+                        { "name.ru": { $regex: page.Search, $options: 'i' } },
+                        { "name.en": { $regex: page.Search, $options: 'i' } },
+                        { "type.lv": { $regex: page.Search, $options: 'i' } },
+                        { "type.ru": { $regex: page.Search, $options: 'i' } },
+                        { "type.en": { $regex: page.Search, $options: 'i' } },
+                        { "city.name.lv": { $regex: page.Search, $options: 'i' } },
+                        { "city.name.en": { $regex: page.Search, $options: 'i' } },
+                        { "city.name.ru": { $regex: page.Search, $options: 'i' } },
+                        { "district.name.lv": { $regex: page.Search, $options: 'i' } },
+                        { "district.name.en": { $regex: page.Search, $options: 'i' } },
+                        { "district.name.ru": { $regex: page.Search, $options: 'i' } },
+                    ],
+                    disabled: { $in: [false, null] }
+                }
             }
-        };
+        ];
 
-        if (req.query.rent && req.query.rent === "true")
-            query["rent"] = true;
-        if (req.query.rent && req.query.rent === "false")
-            query["rent"] = false;
+        if (req.query.rent && req.query.rent === "true") {
+            aggregation.push({
+                rent: true
+            })
+        }
+        if (req.query.rent && req.query.rent === "false") {
+            aggregation.push({
+                rent: false
+            })
+        }
 
-        if (req.query.type)
-            query["type.en"] = req.query.type;
+        if (req.query.type) {
+            aggregation.push({
+                $match: {"type.en": req.query.type}
+            })
+        }
 
-        if (req.query.city)
-            query["city"] = req.query.city;
+        if (req.query.city) {
+            aggregation.push({
+                $match: {"city._id": new mongoose.Types.ObjectId(req.query.city)}
+            })
+        }
 
-        if (req.query.district)
-            query["district"] = req.query.district;
+        if (req.query.district) {
+            aggregation.push({
+                $match: {"district._id": new mongoose.Types.ObjectId(req.query.district)}
+            })
+        }
 
         if (req.query.priceFrom || req.query.priceTill) {
             const priceFrom = req.query.priceFrom || 0;
             const priceTill = req.query.priceTill || Number.MAX_SAFE_INTEGER;
-            query["price"] = {$gte: priceFrom, $lte: priceTill};
+            aggregation.push({
+                $match: {
+                    price: {
+                        $gte: parseInt(priceFrom as string),
+                        $lte: parseInt(priceTill as string)
+                    }
+                }
+            })
         }
 
         if (req.query.floorFrom || req.query.floorTill) {
             const floorFrom = Number(req.query.floorFrom) || 0;
             const floorTill = Number(req.query.floorTill) || Number.MAX_SAFE_INTEGER;
-            query["$expr"] = {
-                $and: [
-                    {
-                        $gte: [
-                            { $toInt: { $arrayElemAt: [{ $split: ['$floor', '/'] }, 0] } },
-                            floorFrom
-                        ]
-                    },
-                    {
-                        $lte: [
-                            { $toInt: { $arrayElemAt: [{ $split: ['$floor', '/'] }, 0] } },
-                            floorTill
+            aggregation.push({
+                $match: {
+                    $expr: {
+                        $and: [
+                            {
+                                $regexMatch: {
+                                    input: { $toString: { $arrayElemAt: [{ $split: ['$floor', '/'] }, 0] } },
+                                    regex: `^\\d+$`,
+                                    options: 'i'
+                                }
+                            },
+                            {
+                                $gte: [{ $toInt: { $arrayElemAt: [{ $split: ['$floor', '/'] }, 0] } }, floorFrom]
+                            },
+                            {
+                                $lte: [{ $toInt: { $arrayElemAt: [{ $split: ['$floor', '/'] }, 0] } }, floorTill]
+                            }
                         ]
                     }
-                ]
-            };
+                }
+            })
         }
 
         if (req.query.roomsFrom || req.query.roomsTill) {
             const roomsFrom = req.query.roomsFrom || 0;
             const roomsTill = req.query.roomsTill || Number.MAX_SAFE_INTEGER;
-            query["rooms"] = {$gte: roomsFrom, $lte: roomsTill};
+            aggregation.push({
+                $match: {
+                    rooms: {
+                        $gte: parseInt(roomsFrom as string),
+                        $lte: parseInt(roomsTill as string)
+                    }
+                }
+            })
         }
 
         if (req.query.livingAreaFrom || req.query.livingAreaTill) {
             const livingAreaFrom = req.query.livingAreaFrom || 0;
             const livingAreaTill = req.query.livingAreaTill || Number.MAX_SAFE_INTEGER;
-            query["livingArea"] = {$gte: livingAreaFrom, $lte: livingAreaTill};
+            aggregation.push({
+                $match: {
+                    livingArea: {
+                        $gte: parseInt(livingAreaFrom as string),
+                        $lte: parseInt(livingAreaTill as string)
+                    }
+                }
+            })
         }
 
         if (req.query.landAreaFrom || req.query.landAreaTill) {
             const landAreaFrom = req.query.landAreaFrom || 0;
             const landAreaTill = req.query.landAreaTill || Number.MAX_SAFE_INTEGER;
-            query["landArea"] = {$gte: landAreaFrom, $lte: landAreaTill};
+            aggregation.push({
+                $match: {
+                    landArea: {
+                        $gte: parseInt(landAreaFrom as string),
+                        $lte: parseInt(landAreaTill as string)
+                    }
+                }
+            })
         }
 
         if (req.query.gateHeightFrom || req.query.gateHeightTill) {
             const gateHeightFrom = req.query.gateHeightFrom || 0;
             const gateHeightTill = req.query.gateHeightTill || Number.MAX_SAFE_INTEGER;
-            query["gateHeight"] = {$gte: gateHeightFrom, $lte: gateHeightTill};
+            aggregation.push({
+                $match: {
+                    gateHeight: {
+                        $gte: parseInt(gateHeightFrom as string),
+                        $lte: parseInt(gateHeightTill as string)
+                    }
+                }
+            })
         }
 
         if (req.query.disabled) {
-            query["disabled"] = {$in: [false, null, true]};
+            aggregation.push({
+                $match: {
+                    disabled: {$in: [false, null, true]}
+                }
+            })
         }
 
         if (page.Search === "draft" && req.query.disabled) {
-            delete query["$or"];
-            query["disabled"] = true;
+            aggregation.push({
+                $match: {
+                    disabled: true
+                }
+            })
         }
 
-        if (req.query.series)
-            query["series.en"] = req.query.series;
+        if (req.query.series) {
+            aggregation.push({
+                $match: { "series.en": req.query.series }
+            })
+        }
+        if (req.query.assignment) {
+            aggregation.push({
+                $match: { "assignment.en": req.query.assignment }
+            })
+        }
 
-        if (req.query.assignment)
-            query["assignment.en"] = req.query.assignment;
-
-        if (req.query.no)
-            query["_id"] = { $ne: req.query.no };
+        if (req.query.no) {
+            aggregation.push({
+                $match: { "_id": {$ne: new mongoose.Types.ObjectId(req.query.no)} }
+            })
+        }
 
         let sortKey: string = 'createdAt';
-        let sortVal: SortOrder = 'desc';
+        let sortVal: SortOrder = -1;
         if (req.query.sort) {
             let sort = req.query.sort as string
             sortKey = sort.split(':')[0]
             sortVal = sort.split(':')[1] as SortOrder
+            if (sortVal === "desc") {
+                sortVal = -1;
+            } else {
+                sortVal = 1;
+            }
         }
 
-        const estates = await Estate.find(query).limit(page.Size).skip(page.Size * page.Page).populate({path: 'district', model: District}).populate({path: 'city', model: City}).sort({
-            [sortKey]: sortVal
-        });
+        aggregation.push({
+            $sort: {
+                [sortKey]: sortVal
+            }
+        })
+        aggregation.push({
+            $skip: page.Size * page.Page
+        })
+        aggregation.push({
+            $limit: page.Size
+        })
 
-        const estatesCount = await Estate.find(query).countDocuments();
+        const estates = await Estate.aggregate(aggregation);
 
+        const estatesCount = await Estate.aggregate([...aggregation.slice(0, -3), {
+            $count: "totalCount"
+        }]);
+
+        if (estatesCount[0])
+            page.setCount(estatesCount[0].totalCount)
+        else
+            page.setCount(0)
         page.setData(estates)
-        page.setCount(estatesCount)
 
         return res.status(200).json(page.pageResponse());
 
@@ -160,7 +282,7 @@ const estateGet = async (req: NextApiRequest, res: NextApiResponse) => {
     }
 }
 
-type SortOrder = 'asc' | 'desc';
+type SortOrder = 'asc' | 'desc' | 1 | -1;
 
 const estateDelete = async (req: NextApiRequest, res: NextApiResponse) => {
     // @ts-ignore

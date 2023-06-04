@@ -86,12 +86,12 @@ const estateGet = async (req: NextApiRequest, res: NextApiResponse) => {
 
         if (req.query.rent && req.query.rent === "true") {
             aggregation.push({
-                rent: true
+                $match: { rent: true }
             })
         }
         if (req.query.rent && req.query.rent === "false") {
             aggregation.push({
-                rent: false
+                $match: { rent: false }
             })
         }
 

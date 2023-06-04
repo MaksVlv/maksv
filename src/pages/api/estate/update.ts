@@ -1,6 +1,7 @@
 import cloudinary from 'cloudinary';
 import formidable from 'formidable';
-import {NextApiRequest, NextApiResponse} from 'next';
+import { NextApiRequest, NextApiResponse } from 'next';
+const transliteration = require('transliteration');
 import Estate from '@/models/Estate';
 import District from '@/models/District';
 import jwt from "jsonwebtoken";
@@ -216,7 +217,9 @@ const changeName = async (estate: any, req: NextApiRequest, res: NextApiResponse
     if (!await validateEstateName(estate.name))
         return res.status(400).json({ message: "Estate with this name already created" })
 
-    const newEstate = await Estate.findOneAndUpdate({ _id: estate._id }, { name: estate.name })
+    const translitName = transliteration.transliterate(estate.name.lv, { unknown: '' })
+
+    const newEstate = await Estate.findOneAndUpdate({ _id: estate._id }, { name: estate.name, name_translit: translitName })
     return res.status(200).json({ newEstate });
 }
 

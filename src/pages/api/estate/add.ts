@@ -1,6 +1,7 @@
 import cloudinary from 'cloudinary';
 import formidable from 'formidable';
 import { NextApiRequest, NextApiResponse } from 'next';
+const transliteration = require('transliteration');
 import dbConnect from '@/utils/dbConnect';
 import Estate from '@/models/Estate';
 import District from '@/models/District';
@@ -107,6 +108,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     return res.status(400).json({ message: "Invalid estate type" })
                 }
 
+                estate.name_translit = transliteration.transliterate(estate.name.lv, { unknown: '' });
 
                 const typedEstate: IHouse | IFlat | ILand | ILandOnly | IGarage | ICafe = estate;
 
@@ -150,6 +152,7 @@ interface ILangText {
 
 interface ICommon {
     name: ILangText,
+    name_translit: string,
     description: ILangText,
     price: number,
     rent: boolean,

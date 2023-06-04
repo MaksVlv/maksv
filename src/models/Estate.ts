@@ -6,6 +6,7 @@ interface Estate extends Document {
         ru: string,
         en: string,
     },
+    name_translit: string,
     description: {
         lv: string,
         ru: string,
@@ -67,6 +68,10 @@ const estateSchema: Schema = new Schema<Estate>({
             type: String,
             required: true,
         },
+    },
+    name_translit: {
+        type: String,
+        required: true
     },
     description: {
         lv: {

@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 const mongoose = require('mongoose');
+const transliteration = require('transliteration');
 import jwt from 'jsonwebtoken';
 import dbConnect from '@/utils/dbConnect';
 import Page from '@/utils/page.util';
@@ -7,7 +8,6 @@ import Estate from '@/models/Estate';
 import District from '@/models/District';
 import City from '@/models/City';
 import cloudinary from "cloudinary";
-import {$gte} from "sift";
 
 cloudinary.v2.config({
     cloud_name: "dv139dkum",
@@ -38,7 +38,14 @@ const estateGet = async (req: NextApiRequest, res: NextApiResponse) => {
         await dbConnect();
 
         const page = new Page(req)
+        const transliteratedSearchQuery = transliteration.transliterate(page.Search, { unknown: '?' });
 
+        // const estates2 = await Estate.find({});
+        //
+        // for (const estate of estates2) {
+        //     const translitValue = transliteration.transliterate(estate.name.lv, { unknown: '' });
+        //     await Estate.updateOne({ _id: estate._id }, { $set: { "name_translit": translitValue } });
+        // }
 
         const aggregation: any = [
             {
@@ -78,6 +85,7 @@ const estateGet = async (req: NextApiRequest, res: NextApiResponse) => {
                         { "district.name.lv": { $regex: page.Search, $options: 'i' } },
                         { "district.name.en": { $regex: page.Search, $options: 'i' } },
                         { "district.name.ru": { $regex: page.Search, $options: 'i' } },
+                        { "name_translit": { $regex: transliteratedSearchQuery, $options: 'i' } },
                     ],
                     disabled: { $in: [false, null] }
                 }

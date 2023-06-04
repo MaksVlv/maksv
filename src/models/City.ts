@@ -5,7 +5,8 @@ interface City extends Document {
         lv: string,
         ru: string,
         en: string
-    }
+    },
+    name_translit: string
 }
 
 const citySchema: Schema = new Schema<City>({
@@ -27,6 +28,10 @@ const citySchema: Schema = new Schema<City>({
         required: true,
         unique: true
     },
+    name_translit: {
+        type: String,
+        required: true
+    }
 },{ timestamps: true });
 
 export default mongoose.models.City || model<City>('City', citySchema);

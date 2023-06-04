@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+const transliteration = require('transliteration');
 import jwt from 'jsonwebtoken';
 import dbConnect from '@/utils/dbConnect';
 import Page from '@/utils/page.util';
@@ -71,7 +72,8 @@ const cityPost = async (req: NextApiRequest, res: NextApiResponse) => {
 
 
         const newCity = new City({
-            name: city
+            name: city,
+            name_translit: transliteration.transliterate(city.lv, { unknown: '?' })
         });
 
         await newCity.save();
@@ -93,7 +95,8 @@ const cityPost = async (req: NextApiRequest, res: NextApiResponse) => {
             if (!candidate) {
                 const newDistrict = new District({
                     name: district,
-                    city: newCity._id
+                    city: newCity._id,
+                    name_translit: transliteration.transliterate(district.lv, { unknown: '?' })
                 })
                 await newDistrict.save()
 

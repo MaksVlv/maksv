@@ -40,13 +40,6 @@ const estateGet = async (req: NextApiRequest, res: NextApiResponse) => {
         const page = new Page(req)
         const transliteratedSearchQuery = transliteration.transliterate(page.Search, { unknown: '?' });
 
-        // const estates2 = await Estate.find({});
-        //
-        // for (const estate of estates2) {
-        //     const translitValue = transliteration.transliterate(estate.name.lv, { unknown: '' });
-        //     await Estate.updateOne({ _id: estate._id }, { $set: { "name_translit": translitValue } });
-        // }
-
         const aggregation: any = [
             {
                 $lookup: {
@@ -86,6 +79,11 @@ const estateGet = async (req: NextApiRequest, res: NextApiResponse) => {
                         { "district.name.en": { $regex: page.Search, $options: 'i' } },
                         { "district.name.ru": { $regex: page.Search, $options: 'i' } },
                         { "name_translit": { $regex: transliteratedSearchQuery, $options: 'i' } },
+                        { "city.name_translit": { $regex: transliteratedSearchQuery, $options: 'i' } },
+                        { "district.name_translit": { $regex: transliteratedSearchQuery, $options: 'i' } },
+                        { "name_translit": { $regex: transliterateWord(page.Search), $options: 'i' } },
+                        { "city.name_translit": { $regex: transliterateWord(page.Search), $options: 'i' } },
+                        { "district.name_translit": { $regex: transliterateWord(page.Search), $options: 'i' } },
                     ],
                     disabled: { $in: [false, null] }
                 }
@@ -349,4 +347,45 @@ const estateDelete = async (req: NextApiRequest, res: NextApiResponse) => {
         console.log(e)
         return res.status(500).json({ message: 'Internal Server Error' });
     }
+}
+
+function transliterateWord(word: string) {
+    const translitMap = {
+        'а': 'a',
+        'б': 'b',
+        'в': 'v',
+        'г': 'g',
+        'д': 'd',
+        'е': 'e',
+        'ё': 'jo',
+        'ж': 'z',
+        'з': 'z',
+        'и': 'i',
+        'й': 'j',
+        'к': 'k',
+        'л': 'l',
+        'м': 'm',
+        'н': 'n',
+        'о': 'o',
+        'п': 'p',
+        'р': 'r',
+        'с': 's',
+        'т': 't',
+        'у': 'u',
+        'ф': 'f',
+        'х': 'h',
+        'ц': 'c',
+        'ч': 'č',
+        'ш': 's',
+        'щ': 'sch',
+        'ъ': '',
+        'ы': 'i',
+        'ь': '',
+        'э': 'e',
+        'ю': 'ju',
+        'я': 'ya'
+    };
+
+    //@ts-ignore
+    return word.toLowerCase().split('').map(char => translitMap[char] || char).join('');
 }

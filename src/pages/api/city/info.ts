@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+const transliteration = require('transliteration');
 import mongoose from "mongoose";
 import jwt from 'jsonwebtoken';
 import dbConnect from '@/utils/dbConnect';
@@ -115,7 +116,8 @@ const cityInfoUpdate = async (req: NextApiRequest, res: NextApiResponse) => {
         if (candidate > 1)
             return res.status(400).json({ message: "This city already added" });
 
-        const updatedCity = await City.findOneAndUpdate({ _id: city._id }, { name: city.city }, { new: true })
+        const translitName = transliteration.transliterate(city.city.lv, { unknown: '?' })
+        const updatedCity = await City.findOneAndUpdate({ _id: city._id }, { name: city.city, name_translit: translitName }, { new: true })
 
         for (let district of city.districts) {
             const candidate = await District.find({
@@ -136,11 +138,15 @@ const cityInfoUpdate = async (req: NextApiRequest, res: NextApiResponse) => {
             if (!candidate_2 && candidate === 0) {
                 const newDistrict = new District({
                     name: district.name,
-                    city: city._id
+                    city: city._id,
+                    name_translit: transliteration.transliterate(district.name.lv, { unknown: '?' })
                 })
                 await newDistrict.save()
             } else if (candidate <= 1) {
-                await District.findOneAndUpdate({ _id: district._id }, { name: district.name })
+                await District.findOneAndUpdate({ _id: district._id }, {
+                    name: district.name,
+                    name_translit: transliteration.transliterate(district.name.lv, { unknown: '?' })
+                })
             }
         }
 

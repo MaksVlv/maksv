@@ -6,7 +6,8 @@ interface District extends Document {
         ru: string,
         en: string
     },
-    city: mongoose.Schema.Types.ObjectId
+    city: mongoose.Schema.Types.ObjectId,
+    name_translit: string
 }
 
 const districtSchema: Schema = new Schema<District>({
@@ -29,6 +30,10 @@ const districtSchema: Schema = new Schema<District>({
             required: true,
         },
     },
+    name_translit: {
+        type: String,
+        required: true
+    }
 },{ timestamps: true });
 
 export default mongoose.models.District || model<District>('District', districtSchema);

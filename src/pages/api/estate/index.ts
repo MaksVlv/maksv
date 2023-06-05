@@ -63,7 +63,16 @@ const estateGet = async (req: NextApiRequest, res: NextApiResponse) => {
             {
                 $unwind: "$district"
             },
-            {
+        ];
+
+        if (page.Search === "draft" && req.query.disabled) {
+            aggregation.push({
+                $match: {
+                    disabled: true
+                }
+            })
+        } else {
+            aggregation.push({
                 $match: {
                     $or: [
                         { "name.lv": { $regex: page.Search, $options: 'i' } },
@@ -86,8 +95,8 @@ const estateGet = async (req: NextApiRequest, res: NextApiResponse) => {
                         { "district.name_translit": { $regex: transliterateWord(page.Search), $options: 'i' } },
                     ]
                 }
-            }
-        ];
+            });
+        }
 
         if (req.query.rent && req.query.rent === "true") {
             aggregation.push({
@@ -229,10 +238,6 @@ const estateGet = async (req: NextApiRequest, res: NextApiResponse) => {
                     disabled: {$in: [false, null]}
                 }
             })
-        }
-
-        if (page.Search === "draft" && req.query.disabled) {
-
         }
 
         if (req.query.series) {

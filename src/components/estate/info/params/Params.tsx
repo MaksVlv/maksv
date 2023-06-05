@@ -29,7 +29,7 @@ export default function Params ({ estate, dark }: ParamsProps) {
             {estate.floor && (
                 <div className={style.param}>
                     <div className={style.label + ` ${dark ? style.dark : ""}`}>
-                        {estate.type.en === "Houses" ?
+                        {estate.type.en === "House" ?
                             t("params:floors")
                             :
                             t("params:floor")
@@ -37,7 +37,7 @@ export default function Params ({ estate, dark }: ParamsProps) {
                     </div>
                     <div className={style.value + ` ${dark ? style.dark : ""}`}>
                         <span><Floor /></span>{estate.floor} {
-                        estate.type.en === "Houses"
+                        estate.type.en === "House"
                             ? i18n.language === "ru" ?
                             estate.floor == 1 ?
                                 "этаж"

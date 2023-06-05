@@ -37,7 +37,7 @@ export default function MobParams ({ estate }: MobParamsProps) {
             )}
             {estate.floor && (
                 <div className={style.param}>
-                    <div className={style.label}>{estate.type.en === "Houses" ? t("params:floors") : t("params:floor")}:</div>
+                    <div className={style.label}>{estate.type.en === "House" ? t("params:floors") : t("params:floor")}:</div>
                     <div className={style.value}>
                         <span><Floor /></span>{estate.floor}
                     </div>
@@ -112,7 +112,7 @@ export default function MobParams ({ estate }: MobParamsProps) {
                         estate.rent ? " " + t("params:month") : ''
                     }
                     {
-                        estate.type.en === "Flats" || estate.type.en === "Land" ?
+                        estate.type.en === "Flat" || estate.type.en === "Land" ?
                             //@ts-ignore
                             <span>({Number((estate.price / (estate.livingArea || estate.landArea)).toFixed(2)).toLocaleString('lv', { style: 'currency', currency: 'EUR' })}/m²)</span>
                             :

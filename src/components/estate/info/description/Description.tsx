@@ -31,7 +31,7 @@ export default function Description({ estate, googleApi }: DescriptionProps) {
                     estate.rent ? " " + t("params:month") : ''
                 }
                 {
-                    estate.type.en === "Flats" || estate.type.en === "Land" ?
+                    estate.type.en === "Flat" || estate.type.en === "Land" ?
                         //@ts-ignore
                         <span>({Number((estate.price / (estate.livingArea || estate.landArea)).toFixed(2)).toLocaleString('lv', { style: 'currency', currency: 'EUR' })}/m²)</span>
                         :

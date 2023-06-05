@@ -72,7 +72,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 estate.landArea = Number(estate.landArea)
                 estate.livingArea = Number(estate.livingArea)
                 estate.rooms = Number(estate.rooms)
-                if (type !== "Flats")
+                if (type !== "Flat")
                     estate.floor = Number(estate.floor)
                 estate.gateHeight = Number(estate.gateHeight)
 
@@ -80,11 +80,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 estate.description.ru = estate.description.ru.replace(/\n/g, "<br/>");
                 estate.description.lv = estate.description.lv.replace(/\n/g, "<br/>");
 
-                if (type === "Houses") {
+                if (type === "House") {
                     if (!validateHouse(estate))
                         return res.status(400).json({ message: "Invalid house data" })
                     deleteForHouse(estate);
-                } else if (type === "Flats") {
+                } else if (type === "Flat") {
                     if (!validateFlat(estate))
                         return res.status(400).json({ message: "Invalid flat data" })
                     deleteForFlat(estate);
@@ -96,7 +96,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     if (!validateLandOnly(estate))
                         return res.status(400).json({ message: "Invalid land only data" })
                     deleteForLandOnly(estate);
-                } else if (type === "Garages") {
+                } else if (type === "Garage") {
                     if (!validateGarage(estate))
                         return res.status(400).json({ message: "Invalid land only data" })
                     deleteForGarage(estate);

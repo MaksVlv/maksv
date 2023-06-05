@@ -88,7 +88,7 @@ export default function SliderSection({ data }: SliderSectionProps) {
                                 {(estate.landArea || (Number(estate.landArea) > 0)) && (<div className={styles.param}><span><LandArea /></span>{formatArea(estate.landArea)} {hectaresBool(estate.landArea) ? "ha" : "m²"}</div>)}
                                 {estate.floor && (
                                     <div className={styles.param}><span><Floor /></span>{estate.floor} {
-                                        estate.type.en === "Houses"
+                                        estate.type.en === "House"
                                             ? i18n.language === "ru" ?
                                             estate.floor == 1 ?
                                                 "этаж"

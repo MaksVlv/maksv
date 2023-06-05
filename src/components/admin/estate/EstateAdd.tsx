@@ -357,10 +357,10 @@ export default function EstateAdd({ onCloseClick, onSave }: EstateAddProps) {
                                 </div>
                             </div>
 
-                            {estate.type.lv === "Mājas" && <HouseInputs onParamChange={(house) => {
+                            {estate.type.lv === "Māja" && <HouseInputs onParamChange={(house) => {
                                 setEstate({...estate, rooms: house.rooms, floor: house.floor, livingArea: house.livingArea, landArea: house.landArea})
                             }}/>}
-                            {estate.type.lv === "Dzīvokļi" && <FLatInputs onParamChange={(flat) => {
+                            {estate.type.lv === "Dzīvoklis" && <FLatInputs onParamChange={(flat) => {
                                 setEstate({...estate, rooms: flat.rooms, floor: flat.floor, livingArea: flat.livingArea, series: flat.series})
                             }}/>}
                             {(estate.type.lv === "Rūpnīca" || estate.type.lv === "Zeme" || estate.type.lv === "Komerciālais īpašums")
@@ -369,11 +369,11 @@ export default function EstateAdd({ onCloseClick, onSave }: EstateAddProps) {
                             }}/>}
                             {(estate.type.lv === "Bēniņi, pagrabi" ||
                                 estate.type.lv === "Darbnīcas, noliktavas, ražošanas telpas" ||
-                                estate.type.lv === "Autostāvvietas")
+                                estate.type.lv === "Autostāvvieta")
                                 &&
                                 <div className={"flex flex-col"}>
                                     <div className="block text-gray-700 font-bold mb-4 text-center" style={{ textTransform: "uppercase" }}>{ estate.type.en }</div>
-                                    <div className="block text-gray-700 font-bold mb-2">{estate.type.lv === "Autostāvvietas" ? "Area:" : "Land Area:"}</div>
+                                    <div className="block text-gray-700 font-bold mb-2">{estate.type.lv === "Autostāvvieta" ? "Area:" : "Land Area:"}</div>
                                     <input
                                         required={estate.type.en !== "Parking"}
                                         type={"number"}
@@ -388,7 +388,7 @@ export default function EstateAdd({ onCloseClick, onSave }: EstateAddProps) {
                                     />
                                 </div>
                             }
-                            {(estate.type.lv === "Garāžas")
+                            {(estate.type.lv === "Garāža")
                                 &&
                                 <div className={"flex flex-col"}>
                                     <div className="block text-gray-700 font-bold mb-4 text-center" style={{ textTransform: "uppercase" }}>{ estate.type.en }</div>
@@ -600,14 +600,14 @@ interface ITypes {
 
 const types: ITypes = {
     '1': {
-        lv: "Mājas",
-        ru: "Дома",
-        en: "Houses"
+        lv: "Māja",
+        ru: "Дом",
+        en: "House"
     },
     '2': {
-        lv: "Dzīvokļi",
-        ru: "Квартиры",
-        en: "Flats"
+        lv: "Dzīvoklis",
+        ru: "Квартира",
+        en: "Flat"
     },
     '3': {
         lv: "Zeme",
@@ -635,13 +635,13 @@ const types: ITypes = {
         en: "Workshops, warehouses, production facilities"
     },
     '8': {
-        lv: "Garāžas",
-        ru: "Гаражи",
-        en: "Garages"
+        lv: "Garāža",
+        ru: "Гараж",
+        en: "Garage"
     },
     '9': {
-        lv: "Autostāvvietas",
-        ru: "Стоянки",
+        lv: "Autostāvvieta",
+        ru: "Стоянка",
         en: "Parking"
     },
     '10': {

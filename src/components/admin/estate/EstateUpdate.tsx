@@ -468,7 +468,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
 
                         <hr className={"mt-6 mb-6"}/>
 
-                        {estate.type.lv === "Mājas" &&
+                        {estate.type.lv === "Māja" &&
                         <form onSubmit={(e: React.SyntheticEvent) => handleNameSubmit(e, "house")}>
                             <div className={"flex flex-col"}>
                                 <div className="block text-gray-700 font-bold mb-4 text-center">HOUSE</div>
@@ -545,7 +545,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
                             </div>
                         </form>
                         }
-                        {estate.type.lv === "Dzīvokļi" &&
+                        {estate.type.lv === "Dzīvoklis" &&
                         <form onSubmit={(e: React.SyntheticEvent) => handleNameSubmit(e, "flat")}>
                             <div className={"flex flex-col"}>
                                 <div className="block text-gray-700 font-bold mb-4 text-center">FLAT</div>
@@ -705,12 +705,12 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
                         }
                         {(estate.type.lv === "Bēniņi, pagrabi" ||
                             estate.type.lv === "Darbnīcas, noliktavas, ražošanas telpas" ||
-                            estate.type.lv === "Autostāvvietas")
+                            estate.type.lv === "Autostāvvieta")
                         &&
                         <form onSubmit={(e: React.SyntheticEvent) => handleNameSubmit(e, "landOnly")}>
                             <div className={"flex flex-col"}>
                                 <div className="block text-gray-700 font-bold mb-4 text-center" style={{ textTransform: "uppercase" }}>{ estate.type.en }</div>
-                                <div className="block text-gray-700 font-bold mb-2">{estate.type.lv === "Autostāvvietas" ? "Area:" : "Land Area:"}</div>
+                                <div className="block text-gray-700 font-bold mb-2">{estate.type.lv === "Autostāvvieta" ? "Area:" : "Land Area:"}</div>
                                 <input
                                     required={estate.type.en !== "Parking"}
                                     type={"number"}
@@ -735,7 +735,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
                             </div>
                         </form>
                         }
-                        {(estate.type.lv === "Garāžas")
+                        {(estate.type.lv === "Garāža")
                         &&
                         <form onSubmit={(e: React.SyntheticEvent) => handleNameSubmit(e, "garage")}>
                             <div className={"flex flex-col"}>

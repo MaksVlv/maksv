@@ -331,14 +331,14 @@ interface ITypes {
 
 const types: ITypes = {
     '1': {
-        lv: "Mājas",
-        ru: "Дома",
-        en: "Houses"
+        lv: "Māja",
+        ru: "Дом",
+        en: "House"
     },
     '2': {
-        lv: "Dzīvokļi",
-        ru: "Квартиры",
-        en: "Flats"
+        lv: "Dzīvoklis",
+        ru: "Квартира",
+        en: "Flat"
     },
     '3': {
         lv: "Zeme",
@@ -366,13 +366,13 @@ const types: ITypes = {
         en: "Workshops, warehouses, production facilities"
     },
     '8': {
-        lv: "Garāžas",
-        ru: "Гаражи",
-        en: "Garages"
+        lv: "Garāža",
+        ru: "Гараж",
+        en: "Garage"
     },
     '9': {
-        lv: "Autostāvvietas",
-        ru: "Стоянки",
+        lv: "Autostāvvieta",
+        ru: "Стоянка",
         en: "Parking"
     },
     '10': {

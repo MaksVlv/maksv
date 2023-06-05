@@ -60,7 +60,7 @@ const Estates = forwardRef<HTMLDivElement, EstatesProps>(
                             {(estate.landArea || (Number(estate.landArea) > 0)) && (<div className={style.param}><span><LandArea /></span>{formatArea(estate.landArea)} {hectaresBool(estate.landArea) ? "ha" : "m²"}</div>)}
                             {estate.floor && (
                                 <div className={style.param}><span><Floor /></span>{estate.floor} {
-                                    estate.type.en === "Houses"
+                                    estate.type.en === "House"
                                         ? i18n.language === "ru" ?
                                         estate.floor == 1 ?
                                             "этаж"
@@ -101,7 +101,7 @@ const Estates = forwardRef<HTMLDivElement, EstatesProps>(
                             {estate.assignment && (<div className={style.param}><span><Series /></span>{estate.assignment[i18n.language]}</div>)}
                             {estate.gateHeight && (<div className={style.param}><span><GateHeight /></span>{estate.gateHeight} m</div>)}
                             {estate.size && (<div className={style.param}><span><Size /></span>{estate.size}</div>)}
-                            {(estate.type.en === "Flats" || estate.type.en === "Land") && (
+                            {(estate.type.en === "Flat" || estate.type.en === "Land") && (
                                 <div className={style.param}>
                                     <span>
                                         <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" height="25px" width="25px" version="1.1" id="Layer_1" viewBox="0 0 291.929 291.929" xmlSpace="preserve">

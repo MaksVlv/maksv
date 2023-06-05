@@ -58,7 +58,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
                 if (!id)
                     return res.status(400).json({message: 'No estate _id'});
-                const candidate = await Estate.findById(id)
+                const candidate = await Estate.findOne({ _id: id });
 
                 if (!candidate)
                     return res.status(400).json({message: 'No estate with this id'});
@@ -140,7 +140,7 @@ const addMainImage = async (estateObj: any, files: formidable.Files, req: NextAp
     if (!files.mainImage)
         return res.status(400).json({ message: 'Main image is mandatory' });
 
-    const estate = await Estate.findById(estateObj._id);
+    const estate = await Estate.findOne({ _id: estateObj._id });
 
     // MAIN image delete
     // @ts-ignore
@@ -186,7 +186,7 @@ const deleteImage = async (estateObj: any, url: string, req: NextApiRequest, res
     if (!url)
         return res.status(400).json({ message: 'Image url is mandatory' });
 
-    const estate = await Estate.findById(estateObj._id);
+    const estate = await Estate.findOne({ _id: estateObj._id });
 
     const index = estate.images.indexOf(url)
     if (index === -1) {
@@ -217,9 +217,24 @@ const changeName = async (estate: any, req: NextApiRequest, res: NextApiResponse
     if (!await validateEstateName(estate.name))
         return res.status(400).json({ message: "Estate with this name already created" })
 
-    const translitName = transliteration.transliterate(estate.name.lv, { unknown: '' })
+    const translitName = transliteration.transliterate(estate.name.lv, { unknown: '' });
+    const translitNameId = transliteration.transliterate(estate.name.lv, { unknown: '' }).replace(/[^\w\s-]/gi, '').replace(/ /g, '-');
 
-    const newEstate = await Estate.findOneAndUpdate({ _id: estate._id }, { name: estate.name, name_translit: translitName })
+    const oldEstate = await Estate.findOne({ _id: estate._id }).lean();
+
+    if (oldEstate._id === translitNameId) {
+        const newEstate = await Estate.findOneAndUpdate({ _id: estate._id }, { name: estate.name, name_translit: translitName })
+        return res.status(200).json({ newEstate });
+    }
+
+    const newEstate = new Estate({
+        ...oldEstate,
+        _id: translitNameId,
+        name: estate.name,
+        name_translit: translitName,
+    });
+    await newEstate.save();
+    await Estate.deleteOne({ _id: estate._id });
     return res.status(200).json({ newEstate });
 }
 

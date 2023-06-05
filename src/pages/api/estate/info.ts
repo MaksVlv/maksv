@@ -35,10 +35,10 @@ const estateInfoGet = async (req: NextApiRequest, res: NextApiResponse) => {
             return res.status(400).json({ message: "Enter city id" })
 
 
-        const DistrictModel = await District.findById(id);
-        const CityModel = await City.findById(id);
+        const DistrictModel = await District.findById("646674959ab842f988fe1855");
+        const CityModel = await City.findById("646674959ab842f988fe1851");
 
-        const estate = await Estate.findById(id).populate('district').populate('city');
+        const estate = await Estate.findOne({ _id: id }).populate('district').populate('city');
 
         if (!estate)
             return res.status(400).json({ message: "There is no estate with this id" })

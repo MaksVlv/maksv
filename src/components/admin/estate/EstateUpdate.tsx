@@ -71,6 +71,8 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
         axios.post(`estate/update?update=${update}`, formData, { headers: { "Content-Type": 'multipart/form-data', Authorization: `Bearer ${localStorage.getItem("token")}` } }).then(_res => {
             toast.success(`Estate ${update} updated - ` + estate.name.lv)
             onUpdate();
+            if (update === "name")
+                setEstate({ ...estate, _id: _res.data.newEstate._id });
         }, err => {
             if (err.response?.status === 401) {
                 toast.error("Please renew session!")

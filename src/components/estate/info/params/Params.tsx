@@ -15,7 +15,7 @@ export default function Params ({ estate, dark }: ParamsProps) {
 
     const { t, i18n } = useTranslation()
 
-    console.log(i18n.language === "ru")
+
     return (
         <div className={style.params}>
             {(estate.landArea || (Number(estate.landArea) > 0)) && (

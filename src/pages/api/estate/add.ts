@@ -108,7 +108,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     return res.status(400).json({ message: "Invalid estate type" })
                 }
 
-                estate.name_translit = transliteration.transliterate(estate.name.lv, { unknown: '' });
+                const nameTranslit = transliteration.transliterate(estate.name.lv, { unknown: '' });
+                estate.name_translit = nameTranslit;
+                estate._id = nameTranslit.replace(/[^\w\s-]/gi, '').replace(/ /g, '-');
 
                 const typedEstate: IHouse | IFlat | ILand | ILandOnly | IGarage | ICafe = estate;
 
@@ -312,11 +314,14 @@ async function validateDistrict(city: string, district: string): Promise<boolean
 
 async function validateEstateName(name: any): Promise<boolean> {
 
+    const nameID = transliteration.transliterate(name.lv, { unknown: '' }).replace(/[^\w\s-]/gi, '').replace(/ /g, '-');
+
     const candidate = await Estate.findOne({
         $or: [
             { 'name.lv': name.lv },
             { 'name.ru': name.ru },
-            { 'name.en': name.en }
+            { 'name.en': name.en },
+            { 'name_translit': nameID }
         ]
     });
 

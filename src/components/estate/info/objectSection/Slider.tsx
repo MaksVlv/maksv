@@ -38,7 +38,7 @@ const CustomLeftNav = ({ onClick }: any) => (
                 <path fillRule="evenodd" clipRule="evenodd" d="M30.5 25C25.3327 25 21 20.6039 21 15C21 9.39608 25.3327 5 30.5 5C35.6673 5 40 9.39608 40 15C40 20.6039 35.6673 25 30.5 25ZM30.5 27C24.1487 27 19 21.6274 19 15C19 8.37258 24.1487 3 30.5 3C36.8513 3 42 8.37258 42 15C42 21.6274 36.8513 27 30.5 27Z" fill="white"/>
             </g>
             <defs>
-                <filter id="filter0_d_4659_8720" x="0" y="0" width="46" height="32" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                <filter id="filter0_d_4659_8720" x="0" y="0" width="46" height="32" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
                     <feFlood floodOpacity="0" result="BackgroundImageFix"/>
                     <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
                     <feOffset dy="1"/>
@@ -62,7 +62,7 @@ const CustomRightNav = ({ onClick }: any) => (
                 <path fillRule="evenodd" clipRule="evenodd" d="M15.5 25C20.6673 25 25 20.6039 25 15C25 9.39608 20.6673 5 15.5 5C10.3327 5 6 9.39608 6 15C6 20.6039 10.3327 25 15.5 25ZM15.5 27C21.8513 27 27 21.6274 27 15C27 8.37258 21.8513 3 15.5 3C9.14873 3 4 8.37258 4 15C4 21.6274 9.14873 27 15.5 27Z" fill="white"/>
             </g>
             <defs>
-                <filter id="filter0_d_4659_8720" x="0" y="0" width="46" height="32" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                <filter id="filter0_d_4659_8720" x="0" y="0" width="46" height="32" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
                     <feFlood floodOpacity="0" result="BackgroundImageFix"/>
                     <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
                     <feOffset dy="1"/>

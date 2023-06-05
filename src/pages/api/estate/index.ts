@@ -253,7 +253,7 @@ const estateGet = async (req: NextApiRequest, res: NextApiResponse) => {
 
         if (req.query.no) {
             aggregation.push({
-                $match: { "_id": {$ne: new mongoose.Types.ObjectId(req.query.no)} }
+                $match: { "_id": {$ne: req.query.no} }
             })
         }
 
@@ -336,7 +336,7 @@ const estateDelete = async (req: NextApiRequest, res: NextApiResponse) => {
             return res.status(400).json({ message: "Invalid data" });
         }
 
-        const estate = await Estate.findById(id);
+        const estate = await Estate.findOne({ _id: id });
 
         // MAIN image delete
         // @ts-ignore

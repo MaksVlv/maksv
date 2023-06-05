@@ -1,6 +1,7 @@
 import mongoose, { Schema, Document, model } from 'mongoose';
 
 interface Estate extends Document {
+    _id: string,
     name: {
         lv: string,
         ru: string,
@@ -55,6 +56,10 @@ interface Estate extends Document {
 }
 
 const estateSchema: Schema = new Schema<Estate>({
+    _id: {
+        type: String,
+        required: true
+    },
     name: {
         lv: {
             type: String,

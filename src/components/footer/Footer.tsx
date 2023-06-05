@@ -16,7 +16,7 @@ const Header = () => {
             <div className={"wrapper " + style.footer}>
                 <Image src={Logo} alt={"logo"} className={style.logo}/>
                 <div className={style.links}>
-                    <Link href={"/estate"} className={style.link}>{t("header:estate")}</Link>
+                    <a href={"/estate"} className={style.link}>{t("header:estate")}</a>
                     <Link href={"/evaluation"} className={style.link}>{t("header:evaluation")}</Link>
                     <Link href={"/construction"} className={style.link}>{t("header:construction")}</Link>
                     <Link href={"/contacts"} className={style.link}>{t("header:contacts")}</Link>

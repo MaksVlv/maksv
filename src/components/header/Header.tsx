@@ -59,7 +59,7 @@ const Header = ({ backgroundDefault }: HeaderProps) => {
                     <Image src={Logo} alt={"logo"}/>
                 </Link>
                 <nav className={style.nav}>
-                    <Link href={"/estate"} className={style.link + " " + (router.pathname === "/estate" ? style.active : "")}>{t("header:estate")}</Link>
+                    <a href={"/estate"} className={style.link + " " + (router.pathname === "/estate" ? style.active : "")}>{t("header:estate")}</a>
                     <Link href={"/evaluation"} className={style.link + " " + (router.pathname === "/evaluation" ? style.active : "")}>{t("header:evaluation")}</Link>
                     <Link href={"/construction"} className={style.link + " " + (router.pathname === "/construction" ? style.active : "")}>{t("header:construction")}</Link>
                     <Link href={"tel:+37167818686"} className={style.link}>+371 67818686</Link>
@@ -95,7 +95,7 @@ const Header = ({ backgroundDefault }: HeaderProps) => {
                                     <Image src={Lv} alt={"LV"}/>
                                 </Link>
                             </div>
-                            <Link href={"/estate"} className={style.link + " " + (router.pathname === "/estate" ? style.active : "")}>{t("header:estate")}</Link>
+                            <a href={"/estate"} className={style.link + " " + (router.pathname === "/estate" ? style.active : "")}>{t("header:estate")}</a>
                             <Link href={"/evaluation"} className={style.link + " " + (router.pathname === "/evaluation" ? style.active : "")}>{t("header:evaluation")}</Link>
                             <Link href={"/construction"} className={style.link + " " + (router.pathname === "/construction" ? style.active : "")}>{t("header:construction")}</Link>
                             {/*<Link href={"tel:+37167818686"} className={style.link}>+371 67818686</Link>*/}

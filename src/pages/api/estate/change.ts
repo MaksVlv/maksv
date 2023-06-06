@@ -15,15 +15,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     try {
 
-        await dbConnect();
-
-        const oldEstate = await Estate.findOne({ "name.lv": "Bišu iela 6" }).lean();
-
-        const newEstate = new Estate({
-            ...oldEstate,
-            _id: oldEstate.name_translit.replace(/[^\w\s-]/gi, '').replace(/ /g, '-')
-        });
-        await newEstate.save();
+        // await dbConnect();
+        //
+        // const oldEstate = await Estate.findOne({ "name.lv": "Bišu iela 6" }).lean();
+        //
+        // const newEstate = new Estate({
+        //     ...oldEstate,
+        //     _id: oldEstate.name_translit.replace(/[^\w\s-]/gi, '').replace(/ /g, '-')
+        // });
+        // await newEstate.save();
 
         // await Estate.updateMany({ "type.en": "Garages" }, { type: {
         //     lv: "Garāža",

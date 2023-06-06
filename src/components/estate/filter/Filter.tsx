@@ -46,7 +46,7 @@ const FilterSection = ({ onFilterSubmit }: FilterSectionProps) => {
     }
 
     useEffect(() => {
-        axios.get("city?size=1000").then(res => {
+        axios.get("city?size=10000&sort=name.lv:asc").then(res => {
             setCities(res.data.data)
         })
     }, [])
@@ -59,7 +59,7 @@ const FilterSection = ({ onFilterSubmit }: FilterSectionProps) => {
         }
         setCity(id)
         setFilter({...filter, city: id})
-        axios.get(`city/district?city=${id}`).then(res => {
+        axios.get(`city/district?city=${id}&sort=name.lv:asc`).then(res => {
             setDistricts(res.data)
         })
     }

@@ -5,10 +5,11 @@ import { useTranslation } from "next-i18next";
 interface PaginationProps {
     totalPages: number,
     activePage: number,
-    onPageChange: (page: number) => void
+    onPageChange: (page: number) => void,
+    count?: number
 }
 
-export default  function Pagination ({ totalPages, activePage, onPageChange }: PaginationProps) {
+export default  function Pagination ({ totalPages, activePage, onPageChange, count }: PaginationProps) {
 
     const { t } = useTranslation();
 
@@ -77,7 +78,7 @@ export default  function Pagination ({ totalPages, activePage, onPageChange }: P
                         </button>
                     }
                     <div className="ml-2 text-gray-500">
-                        {t("estatePage:pagination.page")}{activePage}{t("estatePage:pagination.of")}{totalPages}
+                        {t("estatePage:pagination.page")}{activePage}{t("estatePage:pagination.of")}{totalPages} ({count} {t("estatePage:pagination.total")})
                     </div>
                 </div>
 

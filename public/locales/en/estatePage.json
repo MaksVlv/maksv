@@ -54,7 +54,8 @@
     "back": "Back",
     "next": "Next",
     "page": "Page ",
-    "of": " of "
+    "of": " of ",
+    "total": "in total"
   },
   "info": {
     "contactUs": {

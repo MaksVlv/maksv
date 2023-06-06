@@ -21,7 +21,8 @@ export default function Estate() {
     const [pagination, setPagination] = useState({
         pages: 0,
         page: 0,
-        size: 12
+        size: 12,
+        count: 0
     });
     const [filter, setFilter] = useState<Filter>(emptyFilter);
     const estatesSectionRef = useRef<HTMLDivElement>(null);
@@ -32,7 +33,7 @@ export default function Estate() {
         axios.get(`estate?size=${pagination.size}&page=${pagination.page}&search=${filter.search}&rent=${filter.rent}&type=${filter.type}&city=${filter.city}&district=${filter.district}&priceFrom=${filter.priceFrom}&priceTill=${filter.priceTill}&floorFrom=${filter.floorFrom}&floorTill=${filter.floorTill}&roomsFrom=${filter.roomsFrom}&roomsTill=${filter.roomsTill}&livingAreaFrom=${filter.livingAreaFrom}&livingAreaTill=${filter.livingAreaTill}&landAreaFrom=${filter.landAreaFrom}&landAreaTill=${filter.landAreaTill}&gateHeightFrom=${filter.gateHeightFrom}&gateHeightTill=${filter.gateHeightTill}&series=${filter.series}&sort=${filter.sort}&assignment=${filter.assignment}`)
             .then(res => {
             setEstates(res.data.data);
-            setPagination({...pagination, pages: res.data.pages});
+            setPagination({...pagination, pages: res.data.pages, count: res.data.count});
         }, _err => {
             toast.error("Error occurred with loading estates")
         }).finally(() => setLoading(false))
@@ -61,7 +62,7 @@ export default function Estate() {
             <HeaderSection />
             <FilterSection onFilterSubmit={(filter: Filter) => {setFilter(filter); setPagination({...pagination, page: 0})}}/>
             <Estates estate={estates} loading={loading} ref={estatesSectionRef}/>
-            <Pagination totalPages={pagination.pages} activePage={pagination.page + 1} onPageChange={(page: number) => pageChange(page)}/>
+            <Pagination count={pagination.count} totalPages={pagination.pages} activePage={pagination.page + 1} onPageChange={(page: number) => pageChange(page)}/>
         </MainContainer>
     )
 }

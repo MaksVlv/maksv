@@ -45,7 +45,8 @@ export default class Page {
         return {
             page: this.page,
             pages: Math.ceil(this.count/this.size),
-            data: this.data
+            data: this.data,
+            count: this.count
         }
     }
 }

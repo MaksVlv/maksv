@@ -54,7 +54,8 @@
     "back": "Atpakaļ",
     "next": "Nākamā",
     "page": "Lapa ",
-    "of": ". no "
+    "of": ". no ",
+    "total": "kopā"
   },
   "info": {
     "contactUs": {

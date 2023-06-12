@@ -21,7 +21,7 @@ const HeaderSection = ({ estate }: HeaderSectionProps) => {
             {/*    <path d="M0 303C220.898 289.669 471.616 313.518 663 185C792.44 106.458 861.546 12.2108 1083 0V303H0Z" fill="white"/>*/}
             {/*</svg>*/}
             <div className={style.info + " wrapper"}>
-                <h1>{`${estate.name[i18n.language]}, ${estate.district.name[i18n.language]}, ${estate.city.name[i18n.language]}`}</h1>
+                <h1>{`${estate.name[i18n.language]}, ${estate.district.name.lv !== " " ? estate.district.name[i18n.language] + "," : ""} ${estate.city.name[i18n.language]}`}</h1>
                 <div className={style.params}>
                     <Params estate={estate} />
                 </div>

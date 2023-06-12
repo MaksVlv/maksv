@@ -104,6 +104,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     if (!validateCafe(estate))
                         return res.status(400).json({ message: "Invalid land only data" })
                     deleteForCafe(estate);
+                } else if (type === "Forest") {
+                    if (!validateForest(estate))
+                        return res.status(400).json({ message: "Invalid forest data" })
+                    deleteForForest(estate);
                 } else {
                     return res.status(400).json({ message: "Invalid estate type" })
                 }
@@ -112,7 +116,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 estate.name_translit = nameTranslit;
                 estate._id = nameTranslit.replace(/[^\w\s-]/gi, '').replace(/ /g, '-');
 
-                const typedEstate: IHouse | IFlat | ILand | ILandOnly | IGarage | ICafe = estate;
+                const typedEstate: IHouse | IFlat | ILand | ILandOnly | IGarage | ICafe | IForest = estate;
 
                 await dbConnect();
 
@@ -203,6 +207,11 @@ interface IGarage extends ICommon {
 interface ICafe extends ICommon {
     landArea: number,
     floor: number,
+}
+
+interface IForest extends ICommon {
+    landArea: number,
+    cadastralNumber: string,
 }
 
 
@@ -305,6 +314,16 @@ function validateCafe(cafe: any): boolean {
     return true;
 }
 
+function validateForest(forest: any): boolean {
+    const { landArea, cadastralNumber } = forest;
+
+    if (typeof landArea !== 'number' || landArea < 0) {
+        return false;
+    }
+
+    return true;
+}
+
 async function validateDistrict(city: string, district: string): Promise<boolean> {
 
     const candidateDistrict = await District.findById(district);
@@ -385,4 +404,14 @@ const deleteForCafe = (cafe: any) => {
     delete cafe.size;
     delete cafe.gateHeight;
     delete cafe.assignment;
+}
+
+const deleteForForest = (forest: any) => {
+    delete forest.floor;
+    delete forest.rooms;
+    delete forest.livingArea;
+    delete forest.series;
+    delete forest.size;
+    delete forest.gateHeight;
+    delete forest.assignment;
 }

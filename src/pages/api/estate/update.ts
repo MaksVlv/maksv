@@ -104,6 +104,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     case "cafe":
                         return await changeCafe(estate, req, res);
                         break;
+                    case "forest":
+                        return await changeForest(estate, req, res);
+                        break;
                     case "mainImage":
                         return await addMainImage(estate, files, req, res);
                         break;
@@ -365,6 +368,17 @@ const changeCafe = async (estate: any, req: NextApiRequest, res: NextApiResponse
     return res.status(200).json({ newEstate });
 }
 
+const changeForest = async (estate: any, req: NextApiRequest, res: NextApiResponse) => {
+    if (!validateForest(estate))
+        return res.status(400).json({ message: 'Forest data problems' });
+
+    const newEstate = await Estate.findOneAndUpdate({ _id: estate._id }, {
+        landArea: estate.landArea,
+        cadastralNumber: estate.cadastralNumber
+    })
+    return res.status(200).json({ newEstate });
+}
+
 const changeLandOnly = async (estate: any, req: NextApiRequest, res: NextApiResponse) => {
     if (!validateLandOnly(estate))
         return res.status(400).json({ message: 'Land only data problems' });
@@ -434,6 +448,16 @@ function validateCafe(cafe: any): boolean {
     const { landArea, floor } = cafe;
 
     if (typeof landArea !== 'number' || landArea < 0 || typeof floor !== 'number' || floor < 0) {
+        return false;
+    }
+
+    return true;
+}
+
+function validateForest(forest: any): boolean {
+    const { landArea, cadastralNumber } = forest;
+
+    if (typeof landArea !== 'number' || landArea < 0) {
         return false;
     }
 

@@ -451,6 +451,37 @@ export default function EstateAdd({ onCloseClick, onSave }: EstateAddProps) {
                             </div>
                             }
 
+                            {(estate.type.lv === "Mežs")
+                            &&
+                            <div className={"flex flex-col"}>
+                                <div className="block text-gray-700 font-bold mb-4 text-center" style={{ textTransform: "uppercase" }}>{ estate.type.en }</div>
+                                <div className="block text-gray-700 font-bold mb-2">Land area:</div>
+                                <input
+                                    required={true}
+                                    type={"number"}
+                                    min={0}
+                                    step={0.01}
+                                    name="landArea"
+                                    id="landArea"
+                                    className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    placeholder="Enter land area"
+                                    value={estate.landArea}
+                                    onChange={(e) => setEstate({...estate, landArea: e.target.value })}
+                                />
+                                <div className="block text-gray-700 font-bold mb-2">Cadastral number:</div>
+                                <input
+                                    type={"number"}
+                                    min={0}
+                                    name="landCadastralNumber"
+                                    id="landCadastralNumber"
+                                    className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    placeholder="Enter forest cadastral number"
+                                    value={estate.cadastralNumber}
+                                    onChange={(e) => setEstate({...estate, cadastralNumber: e.target.value })}
+                                />
+                            </div>
+                            }
+
                             <div className="flex justify-end relative">
                                 <div
                                     className="bg-green-500 hover:bg-green-600 hover:cursor-pointer text-white py-2 px-4 rounded disabled:cursor-not-allowed"
@@ -648,6 +679,11 @@ const types: ITypes = {
         lv: "Restorāni, kafejnīcas, biroji",
         ru: "Рестораны, кафе, офисы",
         en: "Restaurants, cafes, offices"
+    },
+    '11': {
+        lv: "Mežs",
+        ru: "Лес",
+        en: "Forest"
     }
 }
 

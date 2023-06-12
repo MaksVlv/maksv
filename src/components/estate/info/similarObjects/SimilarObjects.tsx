@@ -40,7 +40,7 @@ export default function SimilarObjects({ estate }: SimilarObjectsProps) {
                             <p>{estate.name[i18n.language]}</p>
                             <div className={style.params}>
                                 {estate.city && (<div className={style.param}><span><City /></span>{estate.city.name[i18n.language]}</div>)}
-                                {estate.district && (<div className={style.param}><span><District /></span>{estate.district.name[i18n.language]}</div>)}
+                                {estate.district.name.lv !== " " && (<div className={style.param}><span><District /></span>{estate.district.name[i18n.language]}</div>)}
                                 {(estate.landArea || (Number(estate.landArea) > 0)) && (<div className={style.param}><span><LandArea /></span>{formatArea(estate.landArea)} {hectaresBool(estate.landArea) ? "ha" : "m²"}</div>)}
                                 {estate.floor && (
                                     <div className={style.param}><span><Floor /></span>{estate.floor} {

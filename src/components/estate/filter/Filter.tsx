@@ -59,7 +59,7 @@ const FilterSection = ({ onFilterSubmit }: FilterSectionProps) => {
         }
         setCity(id)
         setFilter({...filter, city: id})
-        axios.get(`city/district?city=${id}&sort=name.lv:asc`).then(res => {
+        axios.get(`city/district?city=${id}&sort=name.lv:asc&withoutSpace=true`).then(res => {
             setDistricts(res.data)
         })
     }
@@ -379,6 +379,11 @@ const types: ITypes = {
         lv: "Restorāni, kafejnīcas, biroji",
         ru: "Рестораны, кафе, офисы",
         en: "Restaurants, cafes, offices"
+    },
+    '11': {
+        lv: "Mežs",
+        ru: "Лес",
+        en: "Forest"
     }
 }
 

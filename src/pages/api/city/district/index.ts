@@ -87,6 +87,7 @@ const districtGet = async (req: NextApiRequest, res: NextApiResponse) => {
         await dbConnect();
 
         const city = req.query.city
+        const withoutSpace = req.query.withoutSpace
 
         let sortKey: string = 'createdAt';
         let sortVal: SortOrder = 'desc';
@@ -97,6 +98,14 @@ const districtGet = async (req: NextApiRequest, res: NextApiResponse) => {
         }
 
         if (city || city !== "undefined") {
+
+            if (withoutSpace) {
+                const districts = await District.find({ city: city, "name.lv": { $ne: " " } }).sort({
+                    [sortKey]: sortVal
+                });
+
+                return res.status(200).json(districts)
+            }
 
             const districts = await District.find({ city: city }).sort({
                 [sortKey]: sortVal

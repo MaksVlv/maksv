@@ -5,6 +5,7 @@ const transliteration = require('transliteration');
 import Estate from '@/models/Estate';
 import District from '@/models/District';
 import jwt from "jsonwebtoken";
+import { unlink } from "fs";
 
 cloudinary.v2.config({
     cloud_name: "dv139dkum",
@@ -157,6 +158,13 @@ const addMainImage = async (estateObj: any, files: formidable.Files, req: NextAp
     estate.mainImage = result.secure_url;
     await estate.save();
 
+    //@ts-ignore
+    await unlink(files.mainImage.filepath, (err) => {
+        if (err) {
+            console.error('File delete error', err);
+        }
+    });
+
     return res.status(200).json({ url: result.secure_url });
 }
 
@@ -173,6 +181,13 @@ const addImage = async (estateObj: any, files: formidable.Files, req: NextApiReq
             throw "no image secure_url"
 
         imageUrls.push(result.secure_url);
+
+        //@ts-ignore
+        await unlink(files[fileNames[i]].filepath, (err) => {
+            if (err) {
+                console.error('File delete error', err);
+            }
+        });
     }
 
     const estate = await Estate.findOneAndUpdate(

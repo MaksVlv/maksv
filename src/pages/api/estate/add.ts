@@ -6,6 +6,7 @@ import dbConnect from '@/utils/dbConnect';
 import Estate from '@/models/Estate';
 import District from '@/models/District';
 import jwt from "jsonwebtoken";
+import fs, { unlink } from "fs";
 
 cloudinary.v2.config({
     cloud_name: "dv139dkum",
@@ -125,6 +126,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 // @ts-ignore
                 let result = await cloudinary.uploader.upload(files.mainImage.filepath);
                 mainImageUrl = result.secure_url;
+
+                //@ts-ignore
+                await unlink(files.mainImage.filepath, (err) => {
+                    if (err) {
+                        console.error('File delete error', err);
+                    }
+                });
+
                 delete files.mainImage
 
                 typedEstate.mainImage = mainImageUrl;

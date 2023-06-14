@@ -21,7 +21,7 @@ const Header = () => {
                     <Link href={"/construction"} className={style.link}>{t("header:construction")}</Link>
                     <Link href={"/contacts"} className={style.link}>{t("header:contacts")}</Link>
                 </div>
-                <div className={style.info}>G. Zemgala gatve 68, Rīga,1039 LV, Latvija</div>
+                <Link href={"https://goo.gl/maps/NDsMu6p2Ne5XRHCU8"} target={"_blank"} className={style.info}>G. Zemgala gatve 68, Rīga,1039 LV, Latvija</Link>
                 <Link href={"tel:+37167818686"} className={style.info}>+371 67818686</Link>
                 <Link href={"mailto:info@maksv.lv"} className={style.info}>info@maksv.lv</Link>
                 <div className={style.info + " " + style.rights}>© {new Date().getFullYear()} Maks V. All rights are reserved </div>

@@ -141,10 +141,10 @@ const FilterSection = ({ onFilterSubmit }: FilterSectionProps) => {
                     <div className={style.input}>
                         <label htmlFor="oprtation">{t("estatePage:filter.rent.label")}</label>
                         <Select
-                            options={[{option: t("estatePage:filter.rent.buy"), value: "0"}, {option: t("estatePage:filter.rent.rent"), value: "1"}]}
+                            options={[{option: t("estatePage:filter.rent.buy"), value: "buy"}, {option: t("estatePage:filter.rent.rent"), value: "rent"}]}
                             placeHolder={"-"}
-                            onSelect={(value: string) => {if (value === "1") { setFilter({...filter, rent: true}) } else if (value === "0") { setFilter({...filter, rent: false}) } else { setFilter({...filter, rent: null}) }}}
-                            valueActual={filter.rent === true ? "1" : filter.rent === false ? "0" : ""}
+                            onSelect={(value: string) => {if (value === "rent") { setFilter({...filter, rent: true}) } else if (value === "buy") { setFilter({...filter, rent: false}) } else { setFilter({...filter, rent: null}) }}}
+                            valueActual={filter.rent === true ? "rent" : filter.rent === false ? "buy" : ""}
                         />
                     </div>
                     <div className={style.input}>
@@ -310,7 +310,7 @@ const FilterSection = ({ onFilterSubmit }: FilterSectionProps) => {
                         {option: t("estatePage:filter.dateUp"), value: "createdAt:asc"}]}
                     placeHolder={""}
                     onSelect={(value: string) => {setFilter({...filter, sort: value}); onFilterSubmit({...filter, sort: value})}}
-                    valueActual={"createdAt:desc"}
+                    valueActual={filter.sort}
                 />
             </div>
         </div>

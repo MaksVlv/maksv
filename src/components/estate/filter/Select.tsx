@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import style from './select.module.scss'
+import { useTranslation } from "next-i18next";
 
 interface Option {
     option: string,
@@ -19,6 +20,26 @@ const Select = ({ options, placeHolder, onSelect, disabled, valueActual }: Selec
     const [ value, setValue ] = useState<Option>(options.find(option => option.value === valueActual) || {value: '', option: placeHolder})
     const [ isOpen, setIsOpen ] = useState<boolean>(false)
     const selectRef = useRef<HTMLDivElement>(null);
+
+    const { i18n } = useTranslation()
+
+    useEffect(() => {
+        if (valueActual === "price:desc" || valueActual === "price:asc" || valueActual === "createdAt:desc" || valueActual === "createdAt:asc") {
+            setValue({
+                option: sort[valueActual][i18n.language],
+                value: valueActual
+            })
+            return;
+        }
+        if (valueActual === "buy" || valueActual === "rent") {
+            setValue({
+                option: rent[valueActual][i18n.language],
+                value: valueActual
+            })
+            return;
+        }
+        setValue(options.find(option => option.value === valueActual) || {value: '', option: placeHolder})
+    }, [i18n.language])
 
 
     const selectOption = (opt: Option) => {
@@ -70,3 +91,48 @@ const Select = ({ options, placeHolder, onSelect, disabled, valueActual }: Selec
 }
 
 export default Select;
+
+interface ISup {
+    [key: string]: {
+        [key: string]: string,
+        lv: string,
+        en: string,
+        ru: string
+    }
+}
+
+const sort: ISup = {
+    "createdAt:asc": {
+        lv: "Datums augstošā",
+        en: "Date asc",
+        ru: "Дата по возрастанию"
+    },
+    "createdAt:desc": {
+        lv: "Datums dilstošā",
+        en: "Date desc",
+        ru: "Дата по убыванию"
+    },
+    "price:asc": {
+        lv: "Cēna augstošā",
+        en: "Price asc",
+        ru: "Цена по возрастанию"
+    },
+    "price:desc": {
+        lv: "Cēna dilstošā",
+        en: "Price desc",
+        ru: "Цена по убыванию"
+    },
+}
+
+const rent: ISup = {
+    "buy": {
+        lv: "Pirkt uzreiz",
+        en: "Buy",
+        ru: "Купить"
+    },
+    "rent": {
+        lv: "Izīrē",
+        en: "Rent",
+        ru: "Арендовать"
+    }
+}

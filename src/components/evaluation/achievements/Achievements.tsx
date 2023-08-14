@@ -15,8 +15,11 @@ const Statistic = ({ value }: { value: number }) => {
     );
 };
 
+interface AchievementsProps {
+    construction: boolean
+}
 
-export default function Achievements() {
+export default function Achievements({ construction }: AchievementsProps) {
 
     const { t } = useTranslation();
 
@@ -35,19 +38,19 @@ export default function Achievements() {
                     <h2>{t("evaluationPage:ach.title")}</h2>
                     <div className={styles.stats}>
                         <div className={styles.stat}>
-                            <h4>{isAnimated && <Statistic value={2140} />}</h4>
+                            <h4>{isAnimated && <Statistic value={construction ? 30 : 2140} />}</h4>
                             <p>{t("evaluationPage:ach.client")}</p>
                         </div>
                         <div className={styles.stat}>
-                            <h4>{isAnimated && <Statistic value={2580} />}</h4>
+                            <h4>{isAnimated && <Statistic value={construction ? 26 : 2580} />}</h4>
                             <p>{t("evaluationPage:ach.projects")}</p>
                         </div>
                         <div className={styles.stat}>
-                            <h4>{isAnimated && <Statistic value={4500} />} {t("evaluationPage:ach.hours")}</h4>
+                            <h4>{isAnimated && <Statistic value={construction ? 4010 : 4500} />} {t("evaluationPage:ach.hours")}</h4>
                             <p>{t("evaluationPage:ach.time")}</p>
                         </div>
                         <div className={styles.stat}>
-                            <h4>{isAnimated && <Statistic value={100} />}+</h4>
+                            <h4>{isAnimated && <Statistic value={construction ? 20 : 100} />}+</h4>
                             <p>{t("evaluationPage:ach.sug")}</p>
                         </div>
                     </div>

@@ -24,8 +24,8 @@ export default function Evaluation() {
             <div className={"minusHeader"}>
                 <HeaderSection />
                 <SliderConstruction />
-                <Services />
-                <Achievements />
+                {/*<Services />*/}
+                <Achievements construction={true} />
                 <Prices />
                 <Partners />
 

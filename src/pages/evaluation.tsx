@@ -39,7 +39,7 @@ export default function Evaluation() {
                 <Services />
                 <Prices />
                 <Info />
-                <Achievements />
+                <Achievements construction={false} />
             </div>
         </MainContainer>
     )

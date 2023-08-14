@@ -62,7 +62,7 @@ export default function Prices() {
                     </div>
                     <div className={styles.row}>
                         <div className={styles.name}>{t("evaluationPage:prices.future")}</div>
-                        <div className={styles.price}>+100€</div>
+                        <div className={styles.price}>+120€</div>
                         <div className={styles.range}></div>
                     </div>
                     <div className={styles.row}>

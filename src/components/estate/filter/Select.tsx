@@ -41,6 +41,9 @@ const Select = ({ options, placeHolder, onSelect, disabled, valueActual }: Selec
         setValue(options.find(option => option.value === valueActual) || {value: '', option: placeHolder})
     }, [i18n.language])
 
+    useEffect(() => {
+        setValue(options.find(option => option.value === valueActual) || {value: '', option: placeHolder});
+    }, [valueActual, options])
 
     const selectOption = (opt: Option) => {
         setValue(opt);

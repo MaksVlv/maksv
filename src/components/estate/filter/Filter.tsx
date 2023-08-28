@@ -4,6 +4,7 @@ import style from './filter.module.scss'
 import Select from './Select'
 import axios from "axios";
 import { series } from "../../admin/estate/FLatInputs";
+import { useRouter } from "next/router";
 
 
 interface City {
@@ -17,19 +18,28 @@ interface City {
 }
 
 interface FilterSectionProps {
-    onFilterSubmit: (filter: Filter) => void
+    onFilterSubmit: (filter: Filter) => void,
+    filterStart: Filter,
+    pagination: {
+        pages: number,
+        page: number,
+        size: number,
+        count: number
+    }
 }
 
-const FilterSection = ({ onFilterSubmit }: FilterSectionProps) => {
+const FilterSection = ({ onFilterSubmit, filterStart, pagination }: FilterSectionProps) => {
 
     const { t, i18n } = useTranslation()
+    const router = useRouter();
 
-    const [filter, setFilter] = useState<Filter>(emptyFilter);
+    const [filter, setFilter] = useState<Filter>(filterStart);
 
     const [isOpen, setIsOpen] = useState<boolean>(true)
     const [mobOpen, setMobOpen] = useState<boolean>(false)
     const [cities, setCities] = useState<City[]>([])
     const [districts, setDistricts] = useState<City[]>([])
+    const [typesServer, setTypesServer] = useState<{_id: {[key: string]: string}, count: number}[]>([])
 
     const [city, setCity] = useState<string>('')
     const [type, setType] = useState<string>('')
@@ -38,6 +48,16 @@ const FilterSection = ({ onFilterSubmit }: FilterSectionProps) => {
         e.preventDefault();
 
         onFilterSubmit(filter);
+        //@ts-ignore
+        const queryParams = new URLSearchParams({
+            ...filter,
+            ...pagination
+        });
+
+        router.push({pathname: router.pathname, query: queryParams.toString()}, {
+            pathname: router.pathname,
+            query: queryParams.toString()
+        }, {scroll: false});
         setMobOpen(false)
     }
 
@@ -49,29 +69,50 @@ const FilterSection = ({ onFilterSubmit }: FilterSectionProps) => {
         axios.get("city?size=10000&sort=name.lv:asc").then(res => {
             setCities(res.data.data)
         })
+        axios.get("estate/filter").then(res => {
+            setTypesServer(res.data);
+        })
     }, [])
 
-    const cityChange = (id: string) => {
+    useEffect(() => {
+        setFilter(filterStart)
+        if (filterStart.type) {
+            setIsOpen(true);
+            Object.keys(types).map((key: string) => {
+                if (types[key].en === filterStart.type) {
+                    setType(key);
+                }
+            })
+        }
+        if (filterStart.city) {
+            cityChange(filterStart.city, false)
+        }
+    }, [filterStart])
+
+    const cityChange = (id: string, change = true) => {
         if (!id) {
             setCity('');
-            setFilter({...filter, city: ''})
+            if (change)
+                setFilter({...filter, city: '', district: ''})
             return;
         }
         setCity(id)
-        setFilter({...filter, city: id})
+        if (change)
+            setFilter({...filter, city: id, district: ''})
         axios.get(`city/district?city=${id}&sort=name.lv:asc&withoutSpace=true`).then(res => {
             setDistricts(res.data)
         })
     }
 
     const changeType = (typeKey: string) => {
-        setType(typeKey);
-        let type = '';
-        if (types[typeKey] && types[typeKey].en)
-            type = types[typeKey].en;
+        Object.keys(types).map((key: string) => {
+            if (types[key].en === typeKey) {
+                setType(key);
+            }
+        })
         setFilter({
             ...filter,
-            type: type,
+            type: typeKey,
             roomsFrom: '',
             roomsTill: '',
             floorFrom: '',
@@ -88,25 +129,7 @@ const FilterSection = ({ onFilterSubmit }: FilterSectionProps) => {
     }
 
     const reset = () => {
-        const filterPrev = {
-            ...filter,
-            city: '',
-            district: '',
-            roomsFrom: '',
-            roomsTill: '',
-            floorFrom: '',
-            floorTill: '',
-            livingAreaFrom: '',
-            livingAreaTill: '',
-            landAreaFrom: '',
-            landAreaTill: '',
-            series: '',
-            gateHeightFrom: '',
-            gateHeightTill: '',
-            assignment: ''
-        };
-        setFilter(filterPrev);
-        onFilterSubmit(filterPrev);
+        router.push(router.pathname, {}, {scroll: false})
         setIsOpen(false);
         setMobOpen(false);
     }
@@ -150,10 +173,11 @@ const FilterSection = ({ onFilterSubmit }: FilterSectionProps) => {
                     <div className={style.input}>
                         <label htmlFor="type">{t("estatePage:filter.type")}</label>
                         <Select
-                            options={Object.keys(types).map((key: string) => ({option: types[key][i18n.language], value: key}))}
+                            options={typesServer.map((key: {_id: {[key: string]: string}, count: number}) => ({option: key._id[i18n.language], value: key._id['en']}))}
+                            // options={Object.keys(types).map((key: string) => ({option: types[key][i18n.language], value: key}))}
                             placeHolder={"-"}
                             onSelect={(value: string) => changeType(value)}
-                            valueActual={Object.keys(types).find((key: string) => types[key].en === filter.type) || ""}
+                            valueActual={filter.type || ""}
                         />
                     </div>
                     <button type={"submit"} className={style.pcSubmit}>{t("estatePage:filter.search")}</button>

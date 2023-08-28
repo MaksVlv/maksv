@@ -20,10 +20,9 @@ const App = ({ Component, pageProps }: AppProps) => {
 
     useEffect(() => {
         const lang = Cookies.get('language');
-        const { pathname, query } = router;
 
         if (!router.pathname.includes('admin'))
-            router.push({pathname, query}, {pathname}, { locale: lang });
+            router.push(router.asPath, router.asPath, { locale: lang });
     }, []);
 
     return (

@@ -44,11 +44,15 @@
     },
     "third": {
       "h3": "Ar ko mēs strādājam",
-      "p": "Iestādes, kas pieņem mūsu uzņēmuma <br/> novērtējumus: Seb , BigBank, Uzņēmuma <br/> reģistrs."
+      "p": "Iestādes, kas pieņem mūsu uzņēmuma <br/> novērtējumus: Seb , BigBank, Uzņēmuma <br/> reģistrs, zvērināti notāri (mantojuma kārtošanai)."
     },
     "fourth": {
       "h3": "Mēs novērtējam",
       "p": "Nekustamā īpašuma veidi, kurus mēs varam <br/> novērtēt."
+    },
+    "popUp": {
+      "text": "Nekustama īpašuma novērtējums pārdošanas gadījumā (visiespējamā pārdošanas cenas noteikšana), maiņas gadījumā, kredītešanas vajadzībām, kopīpašnieku sadales vajadzībām, apdrošinās un muitas vajadzībām, grāmatvedību vajadzībām, mantisko ieguldījumu (Uzņēmuma reģistram) vajadzībām, mantojumu lietu kārtošanai.",
+      "cancel": "Aizvērt"
     }
   },
   "prices": {

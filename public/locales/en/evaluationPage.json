@@ -44,11 +44,15 @@
     },
     "third": {
       "h3": "Who we cooperate with",
-      "p": "Institutions that accept our company’s <br/> evaluations: Seb , BigBank, Uzņēmuma <br/> reģistrs."
+      "p": "Institutions that accept our company’s <br/> evaluations: Seb , BigBank, Uzņēmuma <br/> reģistrs, sworn notaries (for inheritance registration)."
     },
     "fourth": {
       "h3": "We evaluate",
       "p": "Types of real estate that we can <br/> assess."
+    },
+    "popUp": {
+      "text": "Real estate valuation in case of sale (Determination of the highest possible sale price), for exchange, when getting a loan, in case of a dispute between co-owners, for insurance and customs guarantees, for the need of accounting or for the needs of property investments (register of enterprises), for registration of inheritance rights (assessment for a sworn notary).",
+      "cancel": "Close"
     }
   },
   "prices": {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "next-i18next";
 import styles from './services.module.scss';
 import Link from "next/link";
@@ -8,10 +8,21 @@ import Link from "next/link";
 export default function Services() {
 
     const { t } = useTranslation();
+    const [popUpOpened, setPopUpOpened] = useState<boolean>(false);
 
 
     return (
         <div className={styles.services + " wrapper"}>
+            {popUpOpened &&
+                <div className={styles.modal}>
+                    <div className={styles.popUp + " wrapper"}>
+                        <div>
+                            {t("evaluationPage:services.popUp.text")}
+                        </div>
+                        <button onClick={() => setPopUpOpened(false)}>{t("evaluationPage:services.popUp.cancel")}</button>
+                    </div>
+                </div>
+            }
             <h2>{t("evaluationPage:services.title")}</h2>
             <p>{t("evaluationPage:services.p")}</p>
             <div className={styles.blocks}>
@@ -22,13 +33,13 @@ export default function Services() {
                     <h3>{t("evaluationPage:services.first.h3")}</h3>
                     <p dangerouslySetInnerHTML={{ __html: t("evaluationPage:services.first.p") || "" }}/>
                 </Link>
-                <div className={styles.block}>
+                <button onClick={() => setPopUpOpened(true)} className={styles.block + " " + styles.button}>
                     <svg width="36" height="27" viewBox="0 0 36 27" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12.3262 25.9233L0.978516 14.5757C0.294922 13.8921 0.294922 12.73 0.978516 12.0464L3.43945 9.58545C4.12305 8.90186 5.2168 8.90186 5.90039 9.58545L13.625 17.2417L30.0312 0.835449C30.7148 0.151855 31.8086 0.151855 32.4922 0.835449L34.9531 3.29639C35.6367 3.97998 35.6367 5.14209 34.9531 5.82568L14.8555 25.9233C14.1719 26.6069 13.0098 26.6069 12.3262 25.9233Z" fill="#FFCA50"/>
                     </svg>
                     <h3>{t("evaluationPage:services.second.h3")}</h3>
                     <p dangerouslySetInnerHTML={{ __html: t("evaluationPage:services.second.p") || "" }}/>
-                </div>
+                </button>
                 <div className={styles.block}>
                     <svg width="45" height="28" viewBox="0 0 45 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M30.5156 0C31.1484 0 31.7109 0.28125 32.1328 0.703125L35.9297 4.5V18.1406C35.7891 17.9297 35.5781 17.7891 35.4375 17.5781L25.1719 9.28125L27 7.59375C27.4922 7.17188 27.4922 6.46875 27.0703 6.04688C26.6484 5.55469 25.9453 5.55469 25.4531 5.97656L19.8984 11.1094C19.8281 11.1094 19.8281 11.1094 19.8281 11.1094C18.6328 12.1641 16.8047 11.8828 15.8906 10.8984C14.9062 9.84375 14.9062 8.08594 16.0312 6.96094L22.9922 0.632812C23.4141 0.210938 23.9062 0 24.4688 0H30.5156ZM38.25 4.57031H45V22.5703H40.5C39.2344 22.5703 38.25 21.5156 38.25 20.3203V4.57031ZM41.625 20.3203C42.1875 20.3203 42.75 19.7578 42.75 19.1953C42.75 18.5625 42.1875 18.0703 41.625 18.0703C40.9922 18.0703 40.5 18.5625 40.5 19.1953C40.5 19.7578 40.9922 20.3203 41.625 20.3203ZM0 22.5V4.57031H6.75V20.25C6.75 21.5156 5.69531 22.5 4.5 22.5H0ZM3.375 18.0703C2.74219 18.0703 2.25 18.5625 2.25 19.1953C2.25 19.7578 2.74219 20.3203 3.375 20.3203C3.9375 20.3203 4.5 19.7578 4.5 19.1953C4.5 18.5625 3.9375 18.0703 3.375 18.0703ZM33.9609 19.3359C34.9453 20.1094 35.0859 21.5156 34.3125 22.5L33.6797 23.3438C32.8359 24.3281 31.4297 24.4688 30.5156 23.6953L30.0938 23.3438L27.9141 26.0859C27 27.2109 25.3125 27.3516 24.1875 26.4375L22.9922 25.3828H22.9219C21.375 27.2812 18.5625 27.6328 16.5938 26.0156L10.2656 20.25H9V4.5L12.7969 0.703125C13.2188 0.28125 13.7812 0 14.4141 0H20.3203L14.5547 5.27344C12.5156 7.17188 12.375 10.4062 14.2031 12.4453C16.1016 14.4844 19.2656 14.6953 21.375 12.7266L23.4844 10.8281L33.9609 19.3359Z" fill="#FFCA50"/>

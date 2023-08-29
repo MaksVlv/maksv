@@ -358,7 +358,7 @@ export default function EstateAdd({ onCloseClick, onSave }: EstateAddProps) {
                             </div>
 
                             {estate.type.lv === "Māja" && <HouseInputs onParamChange={(house) => {
-                                setEstate({...estate, rooms: house.rooms, floor: house.floor, livingArea: house.livingArea, landArea: house.landArea})
+                                setEstate({...estate, rooms: house.rooms, floor: house.floor, livingArea: house.livingArea, landArea: house.landArea, cadastralNumber: house.cadastralNumber})
                             }}/>}
                             {estate.type.lv === "Dzīvoklis" && <FLatInputs onParamChange={(flat) => {
                                 setEstate({...estate, rooms: flat.rooms, floor: flat.floor, livingArea: flat.livingArea, series: flat.series})

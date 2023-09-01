@@ -629,7 +629,7 @@ interface ITypes {
     }
 }
 
-const types: ITypes = {
+export const types: ITypes = {
     '1': {
         lv: "Māja",
         ru: "Дом",

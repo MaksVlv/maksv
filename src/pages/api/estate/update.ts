@@ -64,6 +64,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 if (!candidate)
                     return res.status(400).json({message: 'No estate with this id'});
 
+                if (estate.type.lv !== candidate.type.lv && ['house','flat','land','landOnly','garage','cafe', 'forest'].includes(update as string)) {
+                    await Estate.findOneAndUpdate({ _id: id }, {
+                        type: estate.type
+                    })
+                }
+
                 estate.landArea = Number(estate.landArea);
                 estate.livingArea = Number(estate.livingArea);
                 estate.rooms = Number(estate.rooms);
@@ -327,7 +333,13 @@ const changeHouse = async (estate: any, req: NextApiRequest, res: NextApiRespons
         livingArea: estate.livingArea,
         rooms: estate.rooms,
         floor: estate.floor,
-        cadastralNumber: estate.cadastralNumber
+        cadastralNumber: estate.cadastralNumber,
+        $unset: {
+            series: 1,
+            size: 1,
+            gateHeight: 1,
+            assignment: 1
+        }
     })
     return res.status(200).json({ newEstate });
 }
@@ -340,7 +352,14 @@ const changeFlat = async (estate: any, req: NextApiRequest, res: NextApiResponse
         series: estate.series,
         livingArea: estate.livingArea,
         rooms: estate.rooms,
-        floor: estate.floor
+        floor: estate.floor,
+        $unset: {
+            landArea: 1,
+            cadastralNumber: 1,
+            size: 1,
+            gateHeight: 1,
+            assignment: 1
+        }
     })
     return res.status(200).json({ newEstate });
 }
@@ -353,7 +372,15 @@ const changeLand = async (estate: any, req: NextApiRequest, res: NextApiResponse
         const newEstate = await Estate.findOneAndUpdate({ _id: estate._id }, {
             cadastralNumber: estate.cadastralNumber,
             landArea: estate.landArea,
-            assignment: estate.assignment
+            assignment: estate.assignment,
+            $unset: {
+                rooms: 1,
+                floor: 1,
+                series: 1,
+                size: 1,
+                gateHeight: 1,
+                livingArea: 1,
+            }
         })
         return res.status(200).json({ newEstate });
     }
@@ -364,7 +391,15 @@ const changeLand = async (estate: any, req: NextApiRequest, res: NextApiResponse
         const newEstate = await Estate.findOneAndUpdate({ _id: estate._id }, {
             cadastralNumber: estate.cadastralNumber,
             landArea: estate.landArea,
-            livingArea: estate.livingArea
+            livingArea: estate.livingArea,
+            $unset: {
+                rooms: 1,
+                floor: 1,
+                series: 1,
+                size: 1,
+                gateHeight: 1,
+                assignment: 1,
+            }
         })
         return res.status(200).json({ newEstate });
     }
@@ -382,7 +417,16 @@ const changeGarage = async (estate: any, req: NextApiRequest, res: NextApiRespon
 
     const newEstate = await Estate.findOneAndUpdate({ _id: estate._id }, {
         gateHeight: estate.gateHeight,
-        size: estate.size
+        size: estate.size,
+        $unset: {
+            rooms: 1,
+            floor: 1,
+            livingArea: 1,
+            series: 1,
+            cadastralNumber: 1,
+            landArea: 1,
+            assignment: 1,
+        }
     })
     return res.status(200).json({ newEstate });
 }
@@ -393,7 +437,16 @@ const changeCafe = async (estate: any, req: NextApiRequest, res: NextApiResponse
 
     const newEstate = await Estate.findOneAndUpdate({ _id: estate._id }, {
         landArea: estate.landArea,
-        floor: estate.floor
+        floor: estate.floor,
+        $unset: {
+            rooms: 1,
+            livingArea: 1,
+            series: 1,
+            cadastralNumber: 1,
+            size: 1,
+            gateHeight: 1,
+            assignment: 1,
+        }
     })
     return res.status(200).json({ newEstate });
 }
@@ -404,7 +457,16 @@ const changeForest = async (estate: any, req: NextApiRequest, res: NextApiRespon
 
     const newEstate = await Estate.findOneAndUpdate({ _id: estate._id }, {
         landArea: estate.landArea,
-        cadastralNumber: estate.cadastralNumber
+        cadastralNumber: estate.cadastralNumber,
+        $unset: {
+            floor: 1,
+            rooms: 1,
+            livingArea: 1,
+            series: 1,
+            size: 1,
+            gateHeight: 1,
+            assignment: 1,
+        }
     })
     return res.status(200).json({ newEstate });
 }
@@ -414,7 +476,17 @@ const changeLandOnly = async (estate: any, req: NextApiRequest, res: NextApiResp
         return res.status(400).json({ message: 'Land only data problems' });
 
     const newEstate = await Estate.findOneAndUpdate({ _id: estate._id }, {
-        landArea: estate.landArea
+        landArea: estate.landArea,
+        $unset: {
+            rooms: 1,
+            floor: 1,
+            livingArea: 1,
+            series: 1,
+            size: 1,
+            gateHeight: 1,
+            cadastralNumber: 1,
+            assignment: 1,
+        }
     })
     return res.status(200).json({ newEstate });
 }

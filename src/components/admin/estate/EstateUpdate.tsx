@@ -9,6 +9,7 @@ import { series } from "./FLatInputs";
 import FormData from "form-data";
 import { assignment } from "./LandInputs";
 import { useRouter } from "next/router";
+import { types } from "./EstateAdd";
 
 
 interface EstateUpdateProps {
@@ -22,6 +23,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
     const router = useRouter();
 
     const [loading, setLoading] = useState(true);
+    const [changedType, setChangedType] = useState<boolean>(false);
     const [estate, setEstate] = useState<IEstate>(estateOld);
     const [districts, setDistricts] = useState<IDistrict[]>([]);
     const [cities, setCities] = useState<ICity[]>([{ _id: '', name: { lv: '', ru: '', en: '' } }]);
@@ -227,6 +229,18 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
         }).finally(() => setLoading(false));
     }
 
+    const changeType = (e: ChangeEvent<HTMLSelectElement>) => {
+        const typeIndex = e.target.value;
+        setEstate({
+            ...estate,
+            // @ts-ignore
+            type: { lv: types[typeIndex].lv, ru: types[typeIndex].ru, en: types[typeIndex].en },
+            rooms: '', floor: '', livingArea: '', landArea: '', cadastralNumber: '',
+            series: {lv: '', ru: '', en: ''}
+        })
+        setChangedType(true);
+    }
+
     if (loading)
         return (
             <>
@@ -236,7 +250,6 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
                 </div>
             </>
         )
-
 
     return (
         <>
@@ -493,6 +506,30 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
                         <Upload onFileChange={(files: Image[], length: number | undefined) => imagesChange(files, length)} filesOld={estate.images} onDeleteImg={(files: Image[], url: string) => imagesDelete(files, url)} loading={(state: boolean) => setLoading(state)} />
 
                         <hr className={"mt-6 mb-6"}/>
+
+                        <div className="relative inline-block w-full mb-4">
+                            <select
+                                required={true}
+                                name="estateType"
+                                id="estateType"
+                                className="block disabled:cursor-not-allowed appearance-none w-full bg-white border focus:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                                onChange={(e) => changeType(e)}
+                                defaultValue={Object.keys(types).find((key) => types[key].lv === estate.type.lv)}
+                            >
+                                <option value="" disabled>Select estate type</option>
+                                {
+                                    Object.keys(types).map((key, i) => (
+                                        <option value={key} key={i}>{types[key].en}</option>
+                                    ))
+                                }
+                            </select>
+                            <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                                <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                    <path
+                                        d="M14.14 7.88l-4.95 4.95a1.5 1.5 0 01-2.12 0l-4.95-4.95a1.5 1.5 0 012.12-2.12L10 9.77l3.05-3.05a1.5 1.5 0 012.12 2.12z"/>
+                                </svg>
+                            </div>
+                        </div>
 
                         {estate.type.lv === "Māja" &&
                         <form onSubmit={(e: React.SyntheticEvent) => handleNameSubmit(e, "house")}>

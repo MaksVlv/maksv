@@ -120,8 +120,32 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
     }
 
     const imagesChange = async (files: Image[], length: number | undefined) => {
-        if (typeof length === 'undefined')
-            return;
+        if (typeof length === 'undefined') {
+            const changedFilesPreview = files.map((image: Image) => image.preview);
+            if (changedFilesPreview.join() !== estate.images.join()) {
+                const formDataImages = new FormData();
+                formDataImages.append('estate', JSON.stringify({...estate, images: changedFilesPreview}));
+                await axios.post("estate/update?update=imageChangeOrder", formDataImages, {
+                    headers: {
+                        "Content-Type": 'multipart/form-data',
+                        Authorization: `Bearer ${localStorage.getItem("token")}`
+                    }
+                }).then((res) => {
+                    setEstate({...estate, images: res.data.images})
+                }).catch(err => {
+                    if (err.response?.status === 401) {
+                        toast.error("Please renew session!")
+                        localStorage.removeItem('token');
+                        router.push('/admin/login', '/admin/login', { locale: 'lv' });
+                        return;
+                    }
+                    toast.error("Problem wih image order change")
+                })
+                return;
+            } else {
+                return;
+            }
+        }
         setLoading(true);
         toast.warn("Sending image/s");
 

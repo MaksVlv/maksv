@@ -114,6 +114,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     case "image":
                         return await addImage(estate, files, req, res);
                         break;
+                    case "imageChangeOrder":
+                        return await imageChangeOrder(estate, req, res);
+                        break;
                     case "imageDelete":
                         const url = fields.url as string
                         return await deleteImage(estate, url, req, res);
@@ -193,6 +196,18 @@ const addImage = async (estateObj: any, files: formidable.Files, req: NextApiReq
     const estate = await Estate.findOneAndUpdate(
         { _id: estateObj._id },
         { $push: { images: { $each: imageUrls } } },
+        { new: true }
+    );
+
+    return res.status(200).json({ images: estate.images });
+}
+
+
+const imageChangeOrder = async (estateObj: any, req: NextApiRequest, res: NextApiResponse) => {
+
+    const estate = await Estate.findOneAndUpdate(
+        { _id: estateObj._id },
+        { images: estateObj.images },
         { new: true }
     );
 

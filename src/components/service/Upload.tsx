@@ -3,7 +3,24 @@ import FileUpload from 'react-drag-n-drop-image';
 import styles from "../admin/styles/admin.module.scss";
 import {toast} from "react-toastify";
 import imageCompression from 'browser-image-compression';
-
+import {
+    closestCenter,
+    DndContext,
+    DragOverlay,
+    KeyboardSensor,
+    PointerSensor,
+    useSensor,
+    useSensors,
+} from '@dnd-kit/core';
+import {
+    arrayMove,
+    SortableContext,
+    sortableKeyboardCoordinates,
+    verticalListSortingStrategy,
+    rectSortingStrategy
+} from '@dnd-kit/sortable';
+import { SortableItem } from "./SortableItem";
+import { Item } from "./Item";
 
 interface Image {
     file: File,
@@ -21,6 +38,14 @@ interface UploadProps {
 
 const Upload = ({ onFileChange, one = false, filesOld = [], deleteImg = true, onDeleteImg, loading }: UploadProps) => {
     const [files, setFiles] = useState<Image[]>([]);
+
+    const [activeId, setActiveId] = useState(null);
+    const sensors = useSensors(
+        useSensor(PointerSensor),
+        useSensor(KeyboardSensor, {
+            coordinateGetter: sortableKeyboardCoordinates,
+        })
+    );
 
     const compressImage = async (file: File) => {
         try {
@@ -129,6 +154,28 @@ const Upload = ({ onFileChange, one = false, filesOld = [], deleteImg = true, on
             setFiles(filesOld.map(str => ({file: {}, preview: str})))
     }, [])
 
+    const handleDragStart = (event: any) => {
+        const { active } = event;
+
+        setActiveId(active.id);
+    }
+
+    const handleDragEnd = (event: any) => {
+        const { active, over } = event;
+
+        if (active.id !== over.id) {
+            const oldIndex = files.findIndex((image: Image) => active.id === image.preview);
+            const newIndex = files.findIndex((image: Image) => over.id === image.preview);
+            const newArr = arrayMove(files, oldIndex, newIndex);
+            setFiles((items) => {
+                return arrayMove(items, oldIndex, newIndex);
+            });
+            onFileChange(newArr);
+        }
+
+        setActiveId(null);
+    }
+
     return (
         <div className={one ? "flex gap-8 items-center" : ""}>
             <div className={"w-full border-dashed border-2 border-gray-400 bg-gray-100 rounded-md mt-2"} style={{ width: (one ? "40%" : "100%") }}>
@@ -143,23 +190,45 @@ const Upload = ({ onFileChange, one = false, filesOld = [], deleteImg = true, on
                 />
             </div>
             <div className={"w-full flex gap-3 mt-5"} style={{ flexWrap: "wrap", width: (one ? "50%" : "100%") }}>
-                {
-                    files.map((file, i) => (
-                        <div className={"relative"} style={{ width: (one ? "100%" : "30%"), height: "200px" }} key={i}>
-                            <img style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                                 src={file.preview}
-                                 alt="image"
-                            />
-                            {deleteImg &&
-                                <div style={{ position: "absolute", bottom: "5px", right: "5px", width: "50px", height: "50px", borderRadius: "50%", backgroundColor: "grey", display: "flex", justifyContent: "center", alignItems: "center" }} >
-                                    <svg onClick={() => onDelete(i)} style={{ position: "relative", right: "-0.5px", fill: "black" }} className={styles.delete} xmlns="http://www.w3.org/2000/svg" fill={"none"} width="25" height="25" viewBox="0 0 25 25">
-                                        <path d="M3 6v18h18v-18h-18zm5 14c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712z"/>
-                                    </svg>
-                                </div>
-                            }
-                        </div>
-                    ))
-                }
+                <DndContext
+                    sensors={sensors}
+                    collisionDetection={closestCenter}
+                    onDragStart={handleDragStart}
+                    onDragEnd={handleDragEnd}
+                >
+                    <SortableContext
+                        //@ts-ignore
+                        items={files}
+                        strategy={rectSortingStrategy}
+                    >
+                        {files.map((file: Image, index: number) => <SortableItem
+                            key={file.preview}
+                            id={file.preview}
+                            index={index}
+                            onDelete={(i: number) => onDelete(i)}
+                        />)}
+                    </SortableContext>
+                    <DragOverlay>
+                        {activeId ? <Item id={activeId} /> : null}
+                    </DragOverlay>
+                </DndContext>
+                {/*{*/}
+                {/*    files.map((file, i) => (*/}
+                {/*        <div className={"relative"} style={{ width: (one ? "100%" : "30%"), height: "200px" }} key={i}>*/}
+                {/*            <img style={{ width: "100%", height: "100%", objectFit: "cover" }}*/}
+                {/*                 src={file.preview}*/}
+                {/*                 alt="image"*/}
+                {/*            />*/}
+                {/*            {deleteImg &&*/}
+                {/*                <div style={{ position: "absolute", bottom: "5px", right: "5px", width: "50px", height: "50px", borderRadius: "50%", backgroundColor: "grey", display: "flex", justifyContent: "center", alignItems: "center" }} >*/}
+                {/*                    <svg onClick={() => onDelete(i)} style={{ position: "relative", right: "-0.5px", fill: "black" }} className={styles.delete} xmlns="http://www.w3.org/2000/svg" fill={"none"} width="25" height="25" viewBox="0 0 25 25">*/}
+                {/*                        <path d="M3 6v18h18v-18h-18zm5 14c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712z"/>*/}
+                {/*                    </svg>*/}
+                {/*                </div>*/}
+                {/*            }*/}
+                {/*        </div>*/}
+                {/*    ))*/}
+                {/*}*/}
             </div>
         </div>
     );

@@ -7,13 +7,11 @@ import Page from '@/utils/page.util';
 import Estate from '@/models/Estate';
 import District from '@/models/District';
 import City from '@/models/City';
-import cloudinary from "cloudinary";
+import { DeleteObjectCommand, S3Client } from "@aws-sdk/client-s3";
 
-cloudinary.v2.config({
-    cloud_name: "dv139dkum",
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET
-});
+const s3Client = new S3Client({ region: process.env.AWS_S3_REGION });
+const bucketName = process.env.AWS_S3_BUCKET;
+const publicUrl = `https://${bucketName}.s3.amazonaws.com/`
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
@@ -340,17 +338,27 @@ const estateDelete = async (req: NextApiRequest, res: NextApiResponse) => {
 
         // MAIN image delete
         // @ts-ignore
-        const publicId = estate.mainImage.split("/").pop().split(".")[0];
+        const publicId = estate.mainImage.split("/").pop();
 
-        // @ts-ignore
-        await cloudinary.uploader.destroy(publicId);
+
+        await s3Client.send(
+            new DeleteObjectCommand({
+                Bucket: bucketName,
+                Key: publicId
+            })
+        )
 
         // Images delete
         for (let image of estate.images) {
             // @ts-ignore
-            const publicId = image.split("/").pop().split(".")[0];
-            // @ts-ignore
-            await cloudinary.uploader.destroy(publicId);
+            const publicId = image.split("/").pop();
+
+            await s3Client.send(
+                new DeleteObjectCommand({
+                    Bucket: bucketName,
+                    Key: publicId
+                })
+            )
         }
 
         await Estate.findOneAndDelete({ _id: id })

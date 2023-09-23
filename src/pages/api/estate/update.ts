@@ -1,23 +1,25 @@
-import cloudinary from 'cloudinary';
 import formidable from 'formidable';
 import { NextApiRequest, NextApiResponse } from 'next';
 const transliteration = require('transliteration');
 import Estate from '@/models/Estate';
 import District from '@/models/District';
 import jwt from "jsonwebtoken";
-import { unlink } from "fs";
+import { readFileSync, unlink } from "fs";
+import { DeleteObjectCommand, PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import { v4 as uuidv4 } from "uuid";
+import slugify from "slugify";
+import { getUploadedFileType } from "./add";
 
-cloudinary.v2.config({
-    cloud_name: "dv139dkum",
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET
-});
 
 export const config = {
     api: {
         bodyParser: false,
     },
 };
+
+const s3Client = new S3Client({ region: process.env.AWS_S3_REGION });
+const bucketName = process.env.AWS_S3_BUCKET;
+const publicUrl = `https://${bucketName}.s3.amazonaws.com/`
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method !== "POST")
@@ -157,24 +159,54 @@ const addMainImage = async (estateObj: any, files: formidable.Files, req: NextAp
 
     // MAIN image delete
     // @ts-ignore
-    const publicId = estate.mainImage.split("/").pop().split(".")[0];
-    // @ts-ignore
-    await cloudinary.uploader.destroy(publicId);
+    const publicId = estate.mainImage.split("/").pop();
 
-    // MAIN image add
-    // @ts-ignore
-    let result = await cloudinary.uploader.upload(files.mainImage.filepath);
-    estate.mainImage = result.secure_url;
-    await estate.save();
+    const file = files.mainImage as formidable.File;
 
-    //@ts-ignore
-    await unlink(files.mainImage.filepath, (err) => {
-        if (err) {
-            console.error('File delete error', err);
+    const fileType = getUploadedFileType(file);
+    const slug = `${uuidv4()}-${slugify(file.originalFilename || "noName", { lower: true })}`;
+
+    const fileBuffer = readFileSync(file.filepath);
+
+    try {
+        if (publicId) {
+            try {
+                await s3Client.send(
+                    new DeleteObjectCommand({
+                        Bucket: bucketName,
+                        Key: publicId
+                    })
+                )
+            } catch (e) {
+                console.log(e)
+            }
         }
-    });
 
-    return res.status(200).json({ url: result.secure_url });
+        await s3Client.send(
+            new PutObjectCommand({
+                Bucket: bucketName,
+                Key: slug,
+                Body: fileBuffer,
+                ACL: 'public-read',
+                ContentType: fileType
+            })
+        )
+
+        estate.mainImage = publicUrl + slug;
+        await estate.save();
+
+    } catch (e) {
+        console.log(e)
+        throw "error with updating main image"
+    } finally {
+        await unlink(file.filepath, (err) => {
+            if (err) {
+                console.error('File delete error', err);
+            }
+        });
+    }
+
+    return res.status(200).json({ url: publicUrl + slug });
 }
 
 const addImage = async (estateObj: any, files: formidable.Files, req: NextApiRequest, res: NextApiResponse) => {
@@ -184,15 +216,27 @@ const addImage = async (estateObj: any, files: formidable.Files, req: NextApiReq
     let imageUrls = [];
 
     for (let i = 0; i < fileNames.length; i++) {
-        // @ts-ignore
-        let result = await cloudinary.uploader.upload(files[fileNames[i]].filepath);
-        if (!result.secure_url)
-            throw "no image secure_url"
 
-        imageUrls.push(result.secure_url);
+        const file = files[fileNames[i]] as formidable.File;
+        const fileType = getUploadedFileType(file);
+        const slug = `${uuidv4()}-${slugify(file.originalFilename || "noName", { lower: true })}`;
+
+        const fileBuffer = readFileSync(file.filepath);
+
+        await s3Client.send(
+            new PutObjectCommand({
+                Bucket: bucketName,
+                Key: slug,
+                Body: fileBuffer,
+                ACL: 'public-read',
+                ContentType: fileType
+            })
+        )
+
+        imageUrls.push(publicUrl + slug);
 
         //@ts-ignore
-        await unlink(files[fileNames[i]].filepath, (err) => {
+        await unlink(file.filepath, (err) => {
             if (err) {
                 console.error('File delete error', err);
             }
@@ -233,10 +277,14 @@ const deleteImage = async (estateObj: any, url: string, req: NextApiRequest, res
     }
 
     // @ts-ignore
-    const publicId = url.split("/").pop().split(".")[0];
+    const publicId = url.split("/").pop();
 
-    // @ts-ignore
-    await cloudinary.uploader.destroy(publicId);
+    await s3Client.send(
+        new DeleteObjectCommand({
+            Bucket: bucketName,
+            Key: publicId
+        })
+    )
 
     const tmpArr = estate.images;
     tmpArr.splice(index, 1);
@@ -246,7 +294,6 @@ const deleteImage = async (estateObj: any, url: string, req: NextApiRequest, res
     await estate.save();
 
     return res.status(200).json({ images: estate.images });
-    // return res.status(200).json({ url: result.secure_url });
 }
 
 const changeName = async (estate: any, req: NextApiRequest, res: NextApiResponse) => {

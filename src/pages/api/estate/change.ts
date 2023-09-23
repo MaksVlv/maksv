@@ -15,7 +15,31 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     try {
 
-        // await dbConnect();
+        await dbConnect();
+
+        // const objects = await Estate.find({ mainImage: /cloudinary/ });
+        // for (const object of objects) {
+        //     object.mainImage = 'https://maksv-images.s3.amazonaws.com/' + object.mainImage.split("/").pop();
+        //
+        //     try {
+        //         await object.save();
+        //     } catch (e) {
+        //         console.log(e)
+        //     }
+        // }
+
+        // const objects = await Estate.find({ 'images': { $regex: /cloudinary/ } });
+        // for (const object of objects) {
+        //
+        //     object.images = object.images.map((img) => 'https://maksv-images.s3.amazonaws.com/' + img.split("/").pop());
+        //
+        //     try {
+        //         await object.save();
+        //     } catch (e) {
+        //         console.log(e)
+        //     }
+        // }
+
         //
         // const oldEstate = await Estate.findOne({ "name.lv": "Bišu iela 6" }).lean();
         //

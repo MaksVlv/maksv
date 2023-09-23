@@ -1,24 +1,25 @@
-import cloudinary from 'cloudinary';
-import formidable from 'formidable';
+import formidable, { File } from 'formidable';
 import { NextApiRequest, NextApiResponse } from 'next';
 const transliteration = require('transliteration');
 import dbConnect from '@/utils/dbConnect';
 import Estate from '@/models/Estate';
 import District from '@/models/District';
 import jwt from "jsonwebtoken";
-import fs, { unlink } from "fs";
+import fs, { readFileSync, unlink } from "fs";
+import { v4 as uuidv4 } from 'uuid';
+import slugify from 'slugify';
+import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 
-cloudinary.v2.config({
-    cloud_name: "dv139dkum",
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET
-});
 
 export const config = {
     api: {
         bodyParser: false,
     },
 };
+
+const s3Client = new S3Client({ region: process.env.AWS_S3_REGION });
+const bucketName = process.env.AWS_S3_BUCKET;
+const publicUrl = `https://${bucketName}.s3.amazonaws.com/`
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method !== "POST")
@@ -121,22 +122,36 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
                 await dbConnect();
 
-                let mainImageUrl = '';
+                const file = files.mainImage as File;
 
-                // @ts-ignore
-                let result = await cloudinary.uploader.upload(files.mainImage.filepath);
-                mainImageUrl = result.secure_url;
+                const fileType = getUploadedFileType(file);
+                const slug = `${uuidv4()}-${slugify(file.originalFilename || "noName", { lower: true })}`;
 
-                //@ts-ignore
-                await unlink(files.mainImage.filepath, (err) => {
-                    if (err) {
-                        console.error('File delete error', err);
-                    }
-                });
+                const fileBuffer = readFileSync(file.filepath);
 
-                delete files.mainImage
+                try {
+                    await s3Client.send(
+                        new PutObjectCommand({
+                            Bucket: bucketName,
+                            Key: slug,
+                            Body: fileBuffer,
+                            ACL: 'public-read',
+                            ContentType: fileType
+                        })
+                    )
 
-                typedEstate.mainImage = mainImageUrl;
+                    typedEstate.mainImage = publicUrl + slug;
+
+                } catch (e) {
+                    console.log(e)
+                    throw "error with loading main image";
+                } finally {
+                    await unlink(file.filepath, (err) => {
+                        if (err) {
+                            console.error('File delete error', err);
+                        }
+                    });
+                }
 
                 if (JSON.parse(req.query.disabled as string) && req.query.disabled === "true")
                     typedEstate.disabled = true;
@@ -157,6 +172,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         console.log(error);
         return res.status(500).json({ err: error, message: 'Internal Server Error' });
     }
+}
+
+export const getUploadedFileType = (file: File): string => {
+    if (!file) throw "no file";
+    const fileType = file.mimetype;
+    if (!fileType) throw "no file type";
+
+    return fileType;
 }
 
 interface ILangText {

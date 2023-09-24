@@ -9,13 +9,15 @@ import SliderSection from '../components/main/slider/Slider';
 import SliderAboutUs from '../components/main/sliderOffer/SliderOffer';
 import InfoSection from '../components/main/info/InfoSection';
 import AddEstateSection from '../components/main/addEstate/AddEsateSection';
+import Form from "../components/contacts/form/Form";
 
 
 interface HomeProps {
-    estate: IEstate[]
+    estate: IEstate[],
+    emailJSPublic: string,
 }
 
-export default function Home({ estate }: HomeProps) {
+export default function Home({ estate, emailJSPublic }: HomeProps) {
 
     const { t } = useTranslation();
 
@@ -28,7 +30,7 @@ export default function Home({ estate }: HomeProps) {
             <SliderSection data={estate}/>
             <SliderAboutUs />
             <InfoSection />
-            <AddEstateSection />
+            <Form emailJSPublic={emailJSPublic} bg={true} />
         </MainContainer>
     )
 }
@@ -40,6 +42,7 @@ export async function getServerSideProps({ locale }: GetServerSidePropsContext) 
     return {
         props: {
             ...(await serverSideTranslations(locale as string)),
+            emailJSPublic: process.env.EMAIL_JS_PUBLIC || "",
             estate,
         },
     };

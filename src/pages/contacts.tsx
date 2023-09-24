@@ -29,8 +29,8 @@ export default function Contacts({ emailJSPublic }: ContactsProps) {
                     p={t("contactsPage:header.p")}
                     image={HeaderImage}
                 />
-                <ContactsSection />
                 <Form emailJSPublic={emailJSPublic} />
+                <ContactsSection />
             </div>
         </MainContainer>
     )

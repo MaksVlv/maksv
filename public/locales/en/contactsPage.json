@@ -8,6 +8,18 @@
     "title": "Our Contacts",
     "p": "We will assist you in all matters within <br/> our competence"
   },
+  "top": {
+    "title": "We will sell your real estate for the highest price!",
+    "info": {
+      "first": "More than 27 years of experience in the real estate market!",
+      "second": "Helping with real estate valuation and sales",
+      "third": "We'll help you with a deal from A to Z. You don't have to worry about anything!"
+    }
+  },
+  "bottom": {
+    "title": "Contact us for free advice from a specialist!",
+    "p": "We will evaluate your real estate and come up with possible options for cooperation"
+  },
   "p": "We await your call and are always ready to help!",
   "address": "Address",
   "tel": "Phone",

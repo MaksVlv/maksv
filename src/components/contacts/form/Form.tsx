@@ -52,7 +52,7 @@ export default function Form({ emailJSPublic, bg = false }: FormProps) {
     }
 
     return (
-        <div>
+        <div id={"contact-me"} style={bg ? { paddingTop: "80px" } : {}}>
             <div className={styles.top + " " + (bg ? styles.bg : "")}>
                 <div className={styles.formTop + " wrapper"}>
                     <h2>{t("contactsPage:top.title")}</h2>

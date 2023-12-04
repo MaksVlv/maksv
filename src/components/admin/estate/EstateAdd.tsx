@@ -14,9 +14,10 @@ import { useRouter } from "next/router";
 interface EstateAddProps {
     onCloseClick: () => void,
     onSave: () => void,
+    googleApi: string,
 }
 
-export default function EstateAdd({ onCloseClick, onSave }: EstateAddProps) {
+export default function EstateAdd({ onCloseClick, onSave, googleApi }: EstateAddProps) {
 
     const router = useRouter();
 
@@ -309,7 +310,7 @@ export default function EstateAdd({ onCloseClick, onSave }: EstateAddProps) {
 
                             <div style={{ height: '400px', width: '100%' }} className={"mt-4"}>
                                 <GoogleMapReact
-                                    bootstrapURLKeys={{ key: "" }}
+                                    bootstrapURLKeys={{ key: googleApi }}
                                     defaultCenter={{
                                         lat: 56.949802,
                                         lng: 24.175352

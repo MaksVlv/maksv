@@ -16,9 +16,10 @@ interface EstateUpdateProps {
     estateOld: IEstate,
     onCloseClick: () => void,
     onUpdate: () => void,
+    googleApi: string,
 }
 
-export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: EstateUpdateProps) {
+export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, googleApi }: EstateUpdateProps) {
 
     const router = useRouter();
 
@@ -473,7 +474,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate }: Esta
                             />
                             <div style={{ height: '400px', width: '100%' }} className={"mt-4 mb-6"}>
                                 <GoogleMapReact
-                                    bootstrapURLKeys={{ key: "" }}
+                                    bootstrapURLKeys={{ key: googleApi }}
                                     defaultCenter={{
                                         lat: estate.location.lat,
                                         lng: estate.location.lng

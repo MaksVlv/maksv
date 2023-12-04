@@ -13,7 +13,7 @@ interface IPagination {
     size: number
 }
 
-export default function Estates() {
+export default function Estates({ googleApi }: { googleApi: string }) {
 
     const [estates, setEstates] = useState<IEstate[]>([]);
     const [search, setSearch] = useState('');
@@ -118,8 +118,8 @@ export default function Estates() {
                     onPageChange={(page) => setPagination({ ...pagination, page: page - 1 })}
                 />
             </div>
-            {isOpenAdd && <EstateAdd onCloseClick={() => setIsOpenAdd(false)} onSave={() => {setForceUpdate(forceUpdate+1)}}/>}
-            {isOpenUp && <EstateUpdate estateOld={estates[Number(isOpenUp)]} onCloseClick={() => setIsOpenUp('')} onUpdate={() => {setForceUpdate(forceUpdate+1)}}/>}
+            {isOpenAdd && <EstateAdd googleApi={googleApi} onCloseClick={() => setIsOpenAdd(false)} onSave={() => {setForceUpdate(forceUpdate+1)}}/>}
+            {isOpenUp && <EstateUpdate googleApi={googleApi} estateOld={estates[Number(isOpenUp)]} onCloseClick={() => setIsOpenUp('')} onUpdate={() => {setForceUpdate(forceUpdate+1)}}/>}
 
         </section>
 

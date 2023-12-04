@@ -7,7 +7,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 
-export default function Index() {
+export default function Index({ googleApi }: { googleApi: string }) {
 
     const [loading, setLoading] = useState(true);
     const router = useRouter();
@@ -48,7 +48,7 @@ export default function Index() {
                 <h1 className="text-3xl font-bold mb-8">Maksv Admin Panel</h1>
 
                 <Cities />
-                <Estate />
+                <Estate googleApi={googleApi} />
 
             </div>
         </div>
@@ -60,6 +60,7 @@ export async function getServerSideProps({ locale = '' }) {
         props: {
             // set empty locale to disable localization
             locale: '',
+            googleApi: process.env.GOOGLE_API
         },
     };
 }

@@ -73,7 +73,8 @@
     "flat": "Dzīvoklis sērijveida",
     "spec": "Specprojektu dzīvoklis",
     "new": "Jaunais projekts",
-    "park": "Ja papildus stāvvieta vai noliktava",
+    "park": "Ja papildus stāvvieta",
+    "storage": "Ja papildus noliktava",
     "future2": "Ja nākotnes novērtējums"
   },
   "info": {

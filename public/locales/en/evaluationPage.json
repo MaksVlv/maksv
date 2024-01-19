@@ -73,7 +73,8 @@
     "flat": "Serial flat",
     "spec": "Specs apartment",
     "new": "New project",
-    "park": "If extra parking or storage",
+    "park": "If extra parking",
+    "storage": "If extra storage",
     "future2": "If future valuation"
   },
   "info": {

@@ -47,7 +47,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             return res.status(400).json({ message: "Update query is mandatory" });
 
 
-        const form = new formidable.IncomingForm({ maxFileSize: 4.5 * 1024 * 1024 });
+        const form = new formidable.IncomingForm({ maxFileSize: 200 * 1024 * 1024 });
         form.parse(req, async (err, fields, files) => {
             if (err) {
                 console.log(err)
@@ -121,6 +121,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                         break;
                     case "image":
                         return await addImage(estate, files, req, res);
+                        break;
+                    case "video":
+                        return await addVideo(estate, files, req, res);
                         break;
                     case "imageChangeOrder":
                         return await imageChangeOrder(estate, req, res);
@@ -207,6 +210,67 @@ const addMainImage = async (estateObj: any, files: formidable.Files, req: NextAp
     }
 
     return res.status(200).json({ url: publicUrl + slug });
+}
+
+const addVideo = async (estateObj: any, files: formidable.Files, req: NextApiRequest, res: NextApiResponse) => {
+
+    const estate = await Estate.findOne({ _id: estateObj._id });
+
+    const previousVideo = estate.video ? estate.video.split("/").pop() : null;
+
+    const file = files.video as formidable.File;
+
+    let resUrl = '';
+
+    try {
+        if (previousVideo) {
+            try {
+                await s3Client.send(
+                    new DeleteObjectCommand({
+                        Bucket: bucketName,
+                        Key: previousVideo
+                    })
+                )
+            } catch (e) {
+                console.log(e)
+            }
+        }
+
+        if (file) {
+            const fileType = getUploadedFileType(file);
+            const slug = `${uuidv4()}-${slugify(file.originalFilename || "noName", { lower: true })}`;
+            const fileBuffer = readFileSync(file.filepath);
+
+            await s3Client.send(
+                new PutObjectCommand({
+                    Bucket: bucketName,
+                    Key: slug,
+                    Body: fileBuffer,
+                    ACL: 'public-read',
+                    ContentType: fileType
+                })
+            )
+            await Estate.findOneAndUpdate({ _id: estateObj._id }, { $set: { video: publicUrl + slug } });
+            resUrl = publicUrl + slug;
+        } else {
+            await Estate.findOneAndUpdate({ _id: estateObj._id }, { $set: { video: "" } });
+            resUrl = "";
+        }
+
+    } catch (e) {
+        console.log(e)
+        throw "error with updating video"
+    } finally {
+        if (file) {
+            await unlink(file.filepath, (err) => {
+                if (err) {
+                    console.error('File delete error', err);
+                }
+            });
+        }
+    }
+
+    return res.status(200).json({ url: resUrl });
 }
 
 const addImage = async (estateObj: any, files: formidable.Files, req: NextApiRequest, res: NextApiResponse) => {

@@ -48,6 +48,10 @@
     display: none;
   }
 
+  .video {
+    width: 100%;
+  }
+
   @media screen and (max-width: $medium) {
     h2, .params {
       display: none;

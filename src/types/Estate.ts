@@ -45,6 +45,7 @@ export type IEstate = {
         ru: string,
         en: string,
     },
+    video?: string,
 
     rooms?: string,
     livingArea?: string,

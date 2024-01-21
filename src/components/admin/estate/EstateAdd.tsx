@@ -9,6 +9,7 @@ import GoogleMapReact from 'google-map-react';
 import axios from "axios";
 import FormData from "form-data";
 import { useRouter } from "next/router";
+import { VideoInput } from "@/components/service/VideoInput";
 
 
 interface EstateAddProps {
@@ -28,6 +29,7 @@ export default function EstateAdd({ onCloseClick, onSave, googleApi }: EstateAdd
     const [loading, setLoading] = useState<boolean>(false);
     const formRef = useRef<HTMLFormElement>(null);
 
+    const [estateVideo, setEstateVideo] = useState<File | null>(null);
 
     const handleSubmit = (event: React.SyntheticEvent | null, disabled = false) => {
         if (event) {
@@ -77,6 +79,16 @@ export default function EstateAdd({ onCloseClick, onSave, googleApi }: EstateAdd
                     })
                 }
             }
+
+            if (estateVideo) {
+                const formDataWithVideo = new FormData();
+                formDataWithVideo.append('estate', JSON.stringify({...res.data, images: [], mainImage: ''}));
+                formDataWithVideo.append('video', estateVideo);
+                await axios.post(`estate/update?update=video`, formDataWithVideo, { headers: { "Content-Type": 'multipart/form-data', Authorization: `Bearer ${localStorage.getItem("token")}` } }).catch(() => {
+                    toast.warn("Error with uploading video, please check estate later");
+                })
+            }
+
             toast.success("Estate added!")
             onSave();
             onCloseClick();
@@ -331,6 +343,9 @@ export default function EstateAdd({ onCloseClick, onSave, googleApi }: EstateAdd
 
                             <div className="block text-gray-700 font-bold mt-6">Images:</div>
                             <Upload onFileChange={(files: Image[]) => imagesChange(files)} loading={(state: boolean) => setLoading(state)} />
+
+                            <div className="block text-gray-700 font-bold mt-6">Video:</div>
+                            <VideoInput onChange={(video: File | null) => setEstateVideo(video)} />
 
                             <hr className={"mt-5 mb-6"}/>
 

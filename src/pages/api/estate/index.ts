@@ -348,6 +348,19 @@ const estateDelete = async (req: NextApiRequest, res: NextApiResponse) => {
             })
         )
 
+        // video delete
+        // @ts-ignore
+        const publicVideoId = estate.video ? estate.video.split("/").pop() : null;
+
+        if (publicVideoId) {
+            await s3Client.send(
+                new DeleteObjectCommand({
+                    Bucket: bucketName,
+                    Key: publicVideoId
+                })
+            )
+        }
+
         // Images delete
         for (let image of estate.images) {
             // @ts-ignore

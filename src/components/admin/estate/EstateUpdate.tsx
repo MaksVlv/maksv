@@ -10,6 +10,7 @@ import FormData from "form-data";
 import { assignment } from "./LandInputs";
 import { useRouter } from "next/router";
 import { types } from "./EstateAdd";
+import { VideoInput } from "@/components/service/VideoInput";
 
 
 interface EstateUpdateProps {
@@ -180,6 +181,28 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
             // @ts-ignore
             setEstate({...estate, images: res.data.images})
         }).finally(() => setLoading(false))
+    }
+
+    const videoChange = (video: File | null) => {
+        setLoading(true);
+        toast.warn("Changing video");
+        const formData = new FormData();
+        formData.append('estate', JSON.stringify({...estate, images: [], mainImage: '', video: ''}));
+        if (video) {
+            formData.append('video', video);
+        }
+        axios.post(`estate/update?update=video`, formData, { headers: { "Content-Type": 'multipart/form-data', Authorization: `Bearer ${localStorage.getItem("token")}` } }).then(res => {
+            toast.success(`Estate video updated - ` + estate.name.lv);
+            setEstate({...estate, video: res.data.url })
+        }, err => {
+            if (err.response?.status === 401) {
+                toast.error("Please renew session!")
+                localStorage.removeItem('token');
+                router.push('/admin/login', '/admin/login', { locale: 'lv' });
+                return;
+            }
+            toast.error(err.response?.data.message || "Error occurred")
+        }).finally(() => setLoading(false));
     }
 
     const imagesDelete = (files: Image[], url: string) => {
@@ -505,6 +528,9 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
 
                         <div className="block text-gray-700 font-bold mt-6">Images:</div>
                         <Upload onFileChange={(files: Image[], length: number | undefined) => imagesChange(files, length)} filesOld={estate.images} onDeleteImg={(files: Image[], url: string) => imagesDelete(files, url)} loading={(state: boolean) => setLoading(state)} />
+
+                        <div className="block text-gray-700 font-bold mt-6">Video:</div>
+                        <VideoInput file={estate.video} onChange={(video: File | null) => videoChange(video)} />
 
                         <hr className={"mt-6 mb-6"}/>
 

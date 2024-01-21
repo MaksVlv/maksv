@@ -168,6 +168,7 @@ export interface IEstate {
         ru: string,
         en: string,
     },
+    video?: string,
 
     rooms?: string,
     livingArea?: string,

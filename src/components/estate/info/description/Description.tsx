@@ -46,6 +46,17 @@ export default function Description({ estate, googleApi }: DescriptionProps) {
             </div>
             <h3>{t("estatePage:info.description")}</h3>
             <p dangerouslySetInnerHTML={{__html: estate.description[i18n.language]}}/>
+            {estate.video &&
+                <>
+                    <h3>{t("estatePage:info.video")}</h3>
+                    <video
+                        className={styles.video}
+                        src={estate.video}
+                        controls={true}
+                        controlsList={"nodownload"}
+                    />
+                </>
+            }
             <h3>{t("estatePage:info.location")}</h3>
             <div className={styles.map}>
                 <LoadScript googleMapsApiKey={googleApi}>

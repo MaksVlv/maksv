@@ -273,12 +273,15 @@ const estateGet = async (req: NextApiRequest, res: NextApiResponse) => {
                 [sortKey]: sortVal
             }
         })
-        aggregation.push({
-            $skip: page.Size * page.Page
-        })
-        aggregation.push({
-            $limit: page.Size
-        })
+
+        if (!req.query.map) {
+            aggregation.push({
+                $skip: page.Size * page.Page
+            })
+            aggregation.push({
+                $limit: page.Size
+            })
+        }
 
         const estates = await Estate.aggregate(aggregation);
 
@@ -291,6 +294,10 @@ const estateGet = async (req: NextApiRequest, res: NextApiResponse) => {
         else
             page.setCount(0)
         page.setData(estates)
+
+        if (req.query.map) {
+            page.setSize(estatesCount[0] ? estatesCount[0].totalCount : 0);
+        }
 
         return res.status(200).json(page.pageResponse());
 

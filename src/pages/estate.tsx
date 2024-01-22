@@ -13,7 +13,7 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 
 
-export default function Estate() {
+export default function Estate({ googleApi }: { googleApi: string }) {
 
     const { t } = useTranslation();
     const router = useRouter();
@@ -103,7 +103,7 @@ export default function Estate() {
             keywords={t("estatePage:seo.keywords")}
         >
             <HeaderSection />
-            <FilterSection pagination={pagination} filterStart={filter} onFilterSubmit={(filter: Filter) => {setFilter(filter); setPagination({...pagination, page: 0})}}/>
+            <FilterSection googleApi={googleApi} pagination={pagination} filterStart={filter} onFilterSubmit={(filter: Filter) => {setFilter(filter); setPagination({...pagination, page: 0})}}/>
             <Estates estate={estates} loading={loading} ref={estatesSectionRef}/>
             <Pagination count={pagination.count} totalPages={pagination.pages} activePage={pagination.page + 1} onPageChange={(page: number) => pageChange(page)}/>
         </MainContainer>
@@ -114,6 +114,7 @@ export async function getStaticProps({ locale }: any) {
     return {
         props: {
             ...(await serverSideTranslations(locale)),
+            googleApi: process.env.GOOGLE_API
         },
     };
 }

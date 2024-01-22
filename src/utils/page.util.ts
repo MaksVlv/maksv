@@ -49,4 +49,9 @@ export default class Page {
             count: this.count
         }
     }
+
+    setSize(size: number) {
+        this.size = size;
+    }
+
 }

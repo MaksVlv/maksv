@@ -5,6 +5,7 @@ import Select from './Select'
 import axios from "axios";
 import { series } from "../../admin/estate/FLatInputs";
 import { useRouter } from "next/router";
+import { EstatesMap } from "@/components/estate/filter/EstatesMap";
 
 
 interface City {
@@ -25,10 +26,11 @@ interface FilterSectionProps {
         page: number,
         size: number,
         count: number
-    }
+    },
+    googleApi: string,
 }
 
-const FilterSection = ({ onFilterSubmit, filterStart, pagination }: FilterSectionProps) => {
+const FilterSection = ({ onFilterSubmit, filterStart, pagination, googleApi }: FilterSectionProps) => {
 
     const { t, i18n } = useTranslation()
     const router = useRouter();
@@ -324,6 +326,8 @@ const FilterSection = ({ onFilterSubmit, filterStart, pagination }: FilterSectio
                     <button type={"submit"}>{t("estatePage:filter.search")}</button>
                 </div>
             </form>
+
+            <EstatesMap googleApi={googleApi} />
 
             <div className={style.sort}>
                 <label htmlFor="sort">{t("estatePage:filter.sort")}</label>

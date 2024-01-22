@@ -66,5 +66,6 @@
     "location": "Location",
     "similar": "Similar objects"
   },
-  "empty": "Nothing was found for your request"
+  "empty": "Nothing was found for your request",
+  "more": "Read more"
 }

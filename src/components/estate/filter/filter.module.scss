@@ -262,3 +262,63 @@
     }
   }
 }
+
+.map {
+  margin-top: 30px;
+  height: 400px;
+  width: 100%;
+  border-radius: 10px;
+
+  .marker {
+    position: relative;
+  }
+}
+
+.infoMarker {
+  .img {
+    width: 200px;
+    position: relative;
+    border-radius: 10px;
+
+    img {
+      width: 200px;
+      max-height: 150px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .type {
+      position: absolute;
+      bottom: 0;
+      padding: 5px 5px;
+      width: 100%;
+      border-bottom-left-radius: inherit;
+      border-bottom-right-radius: inherit;
+      background-color: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(5px);
+      font-weight: bold;
+      font-size: 11px;
+      color: #000;
+      text-align: center;
+    }
+  }
+  h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  p {
+    margin-top: 5px;
+    font-size: 14px;
+  }
+  .more {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    a {
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+  }
+}

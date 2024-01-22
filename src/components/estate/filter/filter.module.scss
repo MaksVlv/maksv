@@ -269,6 +269,11 @@
   width: 100%;
   border-radius: 10px;
 
+  &.fullLine {
+    margin-top: unset;
+    border-radius: unset;
+  }
+
   .marker {
     position: relative;
   }

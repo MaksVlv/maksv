@@ -1,6 +1,6 @@
 import styles from './filter.module.scss'
-import { GoogleMap, LoadScript, Marker, useGoogleMap } from "@react-google-maps/api";
-import React, { useEffect, useRef, useState } from "react";
+import { GoogleMap, LoadScript } from "@react-google-maps/api";
+import React, { useEffect, useState } from "react";
 import { IEstate } from "@/types";
 import axios from "axios";
 import { useRouter } from "next/router";
@@ -8,9 +8,10 @@ import { EstateMapMarker } from "@/components/estate/filter/EstateMapMarker";
 
 interface Props {
     googleApi: string;
+    fullLine?: boolean;
 }
 
-export const EstatesMap = ({ googleApi }: Props) => {
+export const EstatesMap = ({ googleApi, fullLine }: Props) => {
 
     const router = useRouter();
     const [estates, setEstates] = useState<IEstate[]>([]);
@@ -59,7 +60,7 @@ export const EstatesMap = ({ googleApi }: Props) => {
     }
 
     return (
-        <div className={styles.map} style={estates.length === 0 ? { display: "none" } : {}}>
+        <div className={`${styles.map} ${fullLine ? styles.fullLine : ""}`} style={estates.length === 0 ? { display: "none" } : {}}>
             <LoadScript googleMapsApiKey={googleApi}>
                 <GoogleMap
                     onLoad={(map) => {

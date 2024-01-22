@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { GetServerSidePropsContext } from 'next'
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
@@ -10,14 +10,16 @@ import SliderAboutUs from '../components/main/sliderOffer/SliderOffer';
 import InfoSection from '../components/main/info/InfoSection';
 import AddEstateSection from '../components/main/addEstate/AddEsateSection';
 import Form from "../components/contacts/form/Form";
+import { EstatesMap } from "@/components/estate/filter/EstatesMap";
 
 
 interface HomeProps {
     estate: IEstate[],
     emailJSPublic: string,
+    googleApi: string,
 }
 
-export default function Home({ estate, emailJSPublic }: HomeProps) {
+export default function Home({ estate, emailJSPublic, googleApi }: HomeProps) {
 
     const { t } = useTranslation();
 
@@ -29,6 +31,7 @@ export default function Home({ estate, emailJSPublic }: HomeProps) {
         >
             <SliderSection data={estate}/>
             <SliderAboutUs />
+            <EstatesMap googleApi={googleApi} fullLine={true} />
             <InfoSection />
             <Form emailJSPublic={emailJSPublic} bg={true} />
         </MainContainer>
@@ -43,6 +46,7 @@ export async function getServerSideProps({ locale }: GetServerSidePropsContext) 
         props: {
             ...(await serverSideTranslations(locale as string)),
             emailJSPublic: process.env.EMAIL_JS_PUBLIC || "",
+            googleApi: process.env.GOOGLE_API,
             estate,
         },
     };

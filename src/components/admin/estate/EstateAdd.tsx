@@ -344,8 +344,19 @@ export default function EstateAdd({ onCloseClick, onSave, googleApi }: EstateAdd
                             <div className="block text-gray-700 font-bold mt-6">Images:</div>
                             <Upload onFileChange={(files: Image[]) => imagesChange(files)} loading={(state: boolean) => setLoading(state)} />
 
+                            <div className="block text-gray-700 font-bold mt-6">Youtube video:</div>
+                            <input
+                                type="text"
+                                name="youtube_link"
+                                id="youtube_link"
+                                className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                placeholder="Enter youtube link to video"
+                                value={estate.youtube_link}
+                                onChange={(e) => setEstate({...estate, youtube_link: e.target.value})}
+                            />
+
                             <div className="block text-gray-700 font-bold mt-6">Video:</div>
-                            <VideoInput onChange={(video: File | null) => setEstateVideo(video)} />
+                            <VideoInput onChange={(video: File | null) => setEstateVideo(video)}/>
 
                             <hr className={"mt-5 mb-6"}/>
 
@@ -557,6 +568,7 @@ export interface Estate {
     },
     mainImage: Image,
     images: Image[],
+    youtube_link?: string,
     type: {
         lv: string,
         ru: string,

@@ -23,6 +23,7 @@ interface Estate extends Document {
         lng: number,
     },
     mainImage: string,
+    youtube_link?: string,
     video?: string,
     images: string[],
     type: {
@@ -129,6 +130,10 @@ const estateSchema: Schema = new Schema<Estate>({
     mainImage: {
         type: String,
         required: true
+    },
+    youtube_link: {
+        type: String,
+        required: false
     },
     video: {
         type: String,

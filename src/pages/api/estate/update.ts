@@ -122,6 +122,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     case "image":
                         return await addImage(estate, files, req, res);
                         break;
+                    case "youtube_link":
+                        return await changeYoutubeLink(estate, req, res);
+                        break;
                     case "video":
                         return await addVideo(estate, files, req, res);
                         break;
@@ -405,6 +408,13 @@ const changeDescription = async (estate: any, req: NextApiRequest, res: NextApiR
     estate.description.lv = estate.description.lv.replace(/\n/g, "<br/>");
 
     const newEstate = await Estate.findOneAndUpdate({ _id: estate._id }, { description: estate.description })
+    return res.status(200).json({ newEstate });
+}
+
+const changeYoutubeLink = async (estate: any, req: NextApiRequest, res: NextApiResponse) => {
+    estate.youtube_link = estate.youtube_link || '';
+
+    const newEstate = await Estate.findOneAndUpdate({ _id: estate._id }, { youtube_link: estate.youtube_link })
     return res.status(200).json({ newEstate });
 }
 

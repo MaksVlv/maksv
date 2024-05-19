@@ -45,6 +45,7 @@ export type IEstate = {
         ru: string,
         en: string,
     },
+    youtube_link?: string,
     video?: string,
 
     rooms?: string,

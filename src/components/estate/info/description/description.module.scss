@@ -52,6 +52,11 @@
     width: 100%;
   }
 
+  .iframe {
+    width: 100%;
+    aspect-ratio: 16/9;
+  }
+
   @media screen and (max-width: $medium) {
     h2, .params {
       display: none;

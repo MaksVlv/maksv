@@ -11,6 +11,7 @@ interface DescriptionProps {
     estate: IEstate,
     googleApi: string
 }
+
 const containerStyle = {
     width: '100%',
     height: '100%'

@@ -23,6 +23,7 @@ export default function Estates({ googleApi }: { googleApi: string }) {
         page: 0,
         size: 20
     });
+    const [sort, setSort] = useState<string>("createdAt:desc");
 
     const [loading, setLoading] = useState<boolean>(true);
     const [isOpenUp, setIsOpenUp] = useState('');
@@ -32,7 +33,7 @@ export default function Estates({ googleApi }: { googleApi: string }) {
 
 
     useEffect(() => {
-        getData(pagination, search)
+        getData(pagination, search, sort)
     }, [pagination.page, forceUpdate])
 
     const searchChange = (e: any) => {
@@ -41,17 +42,17 @@ export default function Estates({ googleApi }: { googleApi: string }) {
         setSearch(e.target.value);
 
         timeoutId.current = setTimeout(() => {
-            getData({...pagination, page: 0}, e.target.value, true);
+            getData({...pagination, page: 0}, e.target.value, sort, true);
         }, 700)
     }
 
-    const getData = (pagination: IPagination, search: string, reset: boolean = false) => {
+    const getData = (pagination: IPagination, search: string, sort: string, reset: boolean = false) => {
         setLoading(true)
         if (reset) {
             setPagination({...pagination, page: 0})
             setSearch(search)
         }
-        axios.get(`estate?size=${pagination.size}&page=${pagination.page}&search=${search}&disabled=true`).then(res => {
+        axios.get(`estate?size=${pagination.size}&page=${pagination.page}&search=${search}&disabled=true&sort=${sort}`).then(res => {
             setPagination({ ...pagination, pages: res.data.pages })
             setEstates(res.data.data)
             setLoading(false)
@@ -61,10 +62,15 @@ export default function Estates({ googleApi }: { googleApi: string }) {
         })
     }
 
+    const changeSort = (val: string) => {
+        setSort(val);
+        getData({ ...pagination, page: 0 }, search, val, true);
+    }
+
     return (
         <section className="bg-white rounded-lg w-full container mx-auto px-8 mt-10">
             <h1 className="w-full text-center text-2xl font-bold pt-8 pb-3">Estates</h1>
-            <div className="relative mb-6 z-0">
+            <div className="relative mb-6 z-0 flex">
                 <input
                     type="text"
                     className="block w-full h-full py-2 pr-4 pl-8 text-sm leading-5 rounded-full text-gray-900 placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:shadow-outline-blue focus:border-blue-300 focus:text-gray-900 sm:text-sm sm:leading-5 opacity-100"
@@ -84,6 +90,14 @@ export default function Estates({ googleApi }: { googleApi: string }) {
                             clipRule="evenodd"
                         />
                     </svg>
+                </div>
+                <div>
+                    <select name="sort_estates" id="sort_estates" value={sort} onChange={(e) => changeSort(e.target.value)}>
+                        <option value="createdAt:asc">Date asc</option>
+                        <option value="createdAt:desc">Date desc</option>
+                        <option value="name_translit:asc">Title asc</option>
+                        <option value="name_translit:desc">Title desc</option>
+                    </select>
                 </div>
             </div>
             {!loading ?

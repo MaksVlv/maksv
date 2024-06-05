@@ -54,7 +54,7 @@ const cityInfoGet = async (req: NextApiRequest, res: NextApiResponse) => {
                     foreignField: "city",
                     as: "districts",
                     pipeline: [
-                        { $sort: { "name.lv": 1 } }
+                        { $sort: { "name_translit": 1 } }
                     ]
                 }
             }

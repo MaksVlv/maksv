@@ -68,7 +68,7 @@ const FilterSection = ({ onFilterSubmit, filterStart, pagination, googleApi }: F
     }
 
     useEffect(() => {
-        axios.get("city?size=10000&sort=name.lv:asc").then(res => {
+        axios.get("city?size=10000&sort=name_translit:asc").then(res => {
             setCities(res.data.data)
         })
         axios.get("estate/filter").then(res => {
@@ -101,7 +101,7 @@ const FilterSection = ({ onFilterSubmit, filterStart, pagination, googleApi }: F
         setCity(id)
         if (change)
             setFilter({...filter, city: id, district: ''})
-        axios.get(`city/district?city=${id}&sort=name.lv:asc&withoutSpace=true`).then(res => {
+        axios.get(`city/district?city=${id}&sort=name_translit:asc&withoutSpace=true`).then(res => {
             setDistricts(res.data)
         })
     }

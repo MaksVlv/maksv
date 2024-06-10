@@ -673,11 +673,11 @@ export const types: ITypes = {
         ru: "Земля",
         en: "Land"
     },
-    '4': {
-        lv: "Rūpnīca",
-        ru: "Завод",
-        en: "Factory"
-    },
+    // '4': {
+    //     lv: "Rūpnīca",
+    //     ru: "Завод",
+    //     en: "Factory"
+    // },
     '5': {
         lv: "Komerciālais īpašums",
         ru: "Коммерческий обьект",
@@ -688,11 +688,11 @@ export const types: ITypes = {
         ru: "Чердак, подвал",
         en: "Attic, basement"
     },
-    '7': {
-        lv: "Darbnīcas, noliktavas, ražošanas telpas",
-        ru: "Цеха, склады, производственные помещения",
-        en: "Workshops, warehouses, production facilities"
-    },
+    // '7': {
+    //     lv: "Darbnīcas, noliktavas, ražošanas telpas",
+    //     ru: "Цеха, склады, производственные помещения",
+    //     en: "Workshops, warehouses, production facilities"
+    // },
     '8': {
         lv: "Garāža",
         ru: "Гараж",
@@ -703,11 +703,11 @@ export const types: ITypes = {
         ru: "Стоянка",
         en: "Parking"
     },
-    '10': {
-        lv: "Restorāni, kafejnīcas, biroji",
-        ru: "Рестораны, кафе, офисы",
-        en: "Restaurants, cafes, offices"
-    },
+    // '10': {
+    //     lv: "Restorāni, kafejnīcas, biroji",
+    //     ru: "Рестораны, кафе, офисы",
+    //     en: "Restaurants, cafes, offices"
+    // },
     '11': {
         lv: "Mežs",
         ru: "Лес",

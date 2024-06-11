@@ -10,6 +10,7 @@ interface Land {
         en: string
     },
     livingArea?: string
+    floor?: string
 }
 
 interface ILandInputs {
@@ -34,7 +35,7 @@ const LandInputs = ({ onParamChange, type }: ILandInputs) => {
             <div className="block text-gray-700 font-bold mb-4 text-center" style={{ textTransform: "uppercase" }}>{ type }</div>
             <div className="block text-gray-700 font-bold mb-2">Land Area:</div>
             <input
-                required={true}
+                required={false}
                 type={"number"}
                 min={0}
                 step={0.01}
@@ -57,13 +58,24 @@ const LandInputs = ({ onParamChange, type }: ILandInputs) => {
                         className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         placeholder="Enter room area"
                         value={land.livingArea}
-                        onChange={(e) => setLand({...land, livingArea: e.target.value })}
+                        onChange={(e) => setLand({...land, livingArea: e.target.value})}
+                    />
+                    <div className="block text-gray-700 font-bold mb-2">Floor:</div>
+                    <input
+                        required={false}
+                        type={"text"}
+                        name="flatFloor"
+                        id="flatFloor"
+                        className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        placeholder="Enter house floors"
+                        value={land.floor}
+                        onChange={(e) => setLand({...land, floor: e.target.value})}
                     />
                 </div>
             }
             <div className="block text-gray-700 font-bold mb-2">Cadastral number:</div>
             <input
-                required={true}
+                required={false}
                 type={"number"}
                 min={0}
                 name="landCadastralNumber"
@@ -71,13 +83,13 @@ const LandInputs = ({ onParamChange, type }: ILandInputs) => {
                 className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Enter land cadastral number"
                 value={land.cadastralNumber}
-                onChange={(e) => setLand({...land, cadastralNumber: e.target.value })}
+                onChange={(e) => setLand({...land, cadastralNumber: e.target.value})}
             />
             {type === "Land" &&
                 <div className={"mb-4"}>
-                    <div className="block text-gray-700 font-bold mb-2">Assignment: </div>
+                    <div className="block text-gray-700 font-bold mb-2">Assignment:</div>
                     <div className="relative inline-block w-full mb-4">
-                        <select
+                    <select
                             required={true}
                             name="estateType"
                             id="estateType"

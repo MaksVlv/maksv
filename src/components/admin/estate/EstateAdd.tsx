@@ -392,7 +392,7 @@ export default function EstateAdd({ onCloseClick, onSave, googleApi }: EstateAdd
                             }}/>}
                             {(estate.type.lv === "Rūpnīca" || estate.type.lv === "Zeme" || estate.type.lv === "Komerciālais īpašums")
                                 && <LandInputs type={estate.type.en} onParamChange={(land) => {
-                                    setEstate({...estate, landArea: land.landArea, cadastralNumber: land.cadastralNumber, assignment: land.assignment, livingArea: land.livingArea})
+                                    setEstate({...estate, landArea: land.landArea, cadastralNumber: land.cadastralNumber, assignment: land.assignment, livingArea: land.livingArea, floor: land.floor})
                             }}/>}
                             {(estate.type.lv === "Bēniņi, pagrabi" ||
                                 estate.type.lv === "Darbnīcas, noliktavas, ražošanas telpas" ||

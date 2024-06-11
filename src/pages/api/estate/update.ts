@@ -513,9 +513,9 @@ const changeLand = async (estate: any, req: NextApiRequest, res: NextApiResponse
             cadastralNumber: estate.cadastralNumber,
             landArea: estate.landArea,
             livingArea: estate.livingArea,
+            floor: estate.floor || '',
             $unset: {
                 rooms: 1,
-                floor: 1,
                 series: 1,
                 size: 1,
                 gateHeight: 1,
@@ -640,7 +640,7 @@ function validateFlat(flat: any): boolean {
 function validateLand(land: any): boolean {
     const { landArea, cadastralNumber } = land;
 
-    if (typeof landArea !== 'number' || landArea < 0 || typeof cadastralNumber !== 'string' || cadastralNumber.length === 0) {
+    if (typeof landArea !== 'number' || landArea < 0 || typeof cadastralNumber !== 'string') {
         return false;
     }
 

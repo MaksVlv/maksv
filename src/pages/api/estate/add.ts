@@ -309,7 +309,7 @@ function validateFlat(flat: any): boolean {
 function validateLand(land: any): boolean {
     const { landArea, cadastralNumber } = land;
 
-    if (typeof landArea !== 'number' || landArea < 0 || typeof cadastralNumber !== 'string' || cadastralNumber.length === 0) {
+    if (typeof landArea !== 'number' || landArea < 0 || typeof cadastralNumber !== 'string') {
         return false;
     }
 
@@ -397,14 +397,15 @@ const deleteForFlat = (flat: any) => {
 
 const deleteForLand = (land: any) => {
     delete land.rooms;
-    delete land.floor;
     delete land.series;
     delete land.size;
     delete land.gateHeight;
     if (land.type.en !== "Land")
         delete land.assignment;
-    if (land.type.en !== "Commercial object")
+    if (land.type.en !== "Commercial object") {
         delete land.livingArea;
+        delete land.floor;
+    }
 }
 
 const deleteForLandOnly = (land: any) => {

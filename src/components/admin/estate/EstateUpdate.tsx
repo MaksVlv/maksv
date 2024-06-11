@@ -773,7 +773,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                          style={{textTransform: "uppercase"}}>{estate.type.en}</div>
                                     <div className="block text-gray-700 font-bold mb-2">Land Area:</div>
                                     <input
-                                        required={true}
+                                        required={false}
                                         type={"number"}
                                         min={0}
                                         step={0.01}
@@ -785,24 +785,37 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                         onChange={(e) => setEstate({...estate, landArea: e.target.value})}
                                     />
                                     {estate.type.lv === "Komerciālais īpašums" &&
-                                        <div className={"mb-4"}>
-                                            <div className="block text-gray-700 font-bold mb-2">Room area:</div>
-                                            <input
-                                                type={"number"}
-                                                min={0}
-                                                step={0.01}
-                                                name="livingArea"
-                                                id="livingArea"
-                                                className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                                placeholder="Enter room area"
-                                                value={estate.livingArea}
-                                                onChange={(e) => setEstate({...estate, livingArea: e.target.value})}
-                                            />
-                                        </div>
+                                        <>
+                                            <div className={"mb-4"}>
+                                                <div className="block text-gray-700 font-bold mb-2">Room area:</div>
+                                                <input
+                                                    type={"number"}
+                                                    min={0}
+                                                    step={0.01}
+                                                    name="livingArea"
+                                                    id="livingArea"
+                                                    className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                    placeholder="Enter room area"
+                                                    value={estate.livingArea}
+                                                    onChange={(e) => setEstate({...estate, livingArea: e.target.value})}
+                                                />
+                                                <div className="block text-gray-700 font-bold mb-2">Floor:</div>
+                                                <input
+                                                    required={false}
+                                                    type={"text"}
+                                                    name="flatFloor"
+                                                    id="flatFloor"
+                                                    className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                    placeholder="Enter house floors"
+                                                    value={estate.floor}
+                                                    onChange={(e) => setEstate({...estate, floor: e.target.value})}
+                                                />
+                                            </div>
+                                        </>
                                     }
                                     <div className="block text-gray-700 font-bold mb-2">Cadastral number:</div>
                                     <input
-                                        required={true}
+                                        required={false}
                                         type={"number"}
                                         min={0}
                                         name="landCadastralNumber"

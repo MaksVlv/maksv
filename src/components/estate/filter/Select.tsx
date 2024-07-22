@@ -12,10 +12,11 @@ interface SelectProps {
     placeHolder: string,
     onSelect: (value: string) => void,
     disabled?: boolean
-    valueActual: string
+    valueActual: string,
+    ignoreActual?: boolean,
 }
 
-const Select = ({ options, placeHolder, onSelect, disabled, valueActual }: SelectProps) => {
+const Select = ({ options, placeHolder, onSelect, disabled, valueActual, ignoreActual }: SelectProps) => {
 
     const [ value, setValue ] = useState<Option>(options.find(option => option.value === valueActual) || {value: '', option: placeHolder})
     const [ isOpen, setIsOpen ] = useState<boolean>(false)
@@ -42,7 +43,9 @@ const Select = ({ options, placeHolder, onSelect, disabled, valueActual }: Selec
     }, [i18n.language])
 
     useEffect(() => {
-        setValue(options.find(option => option.value === valueActual) || {value: '', option: placeHolder});
+        if (!ignoreActual && value) {
+            setValue(options.find(option => option.value === valueActual) || {value: '', option: placeHolder});
+        }
     }, [valueActual, options])
 
     const selectOption = (opt: Option) => {

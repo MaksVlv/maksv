@@ -46,10 +46,19 @@ const FilterSection = ({ onFilterSubmit, filterStart, pagination, googleApi }: F
     const [city, setCity] = useState<string>('')
     const [type, setType] = useState<string>('')
 
-    const onSubmit = (e: React.SyntheticEvent) => {
-        e.preventDefault();
+    const onSubmit = (e?: React.SyntheticEvent) => {
+        e?.preventDefault();
 
         onFilterSubmit(filter);
+
+        changeFilter(filter);
+    }
+
+    const onPlus = () => {
+        setIsOpen(!isOpen);
+    }
+
+    const changeFilter = (filter: Filter) => {
         //@ts-ignore
         const queryParams = new URLSearchParams({
             ...filter,
@@ -61,10 +70,6 @@ const FilterSection = ({ onFilterSubmit, filterStart, pagination, googleApi }: F
             query: queryParams.toString()
         }, {scroll: false});
         setMobOpen(false)
-    }
-
-    const onPlus = () => {
-        setIsOpen(!isOpen);
     }
 
     useEffect(() => {
@@ -337,7 +342,8 @@ const FilterSection = ({ onFilterSubmit, filterStart, pagination, googleApi }: F
                         {option: t("estatePage:filter.dateDown"), value: "createdAt:desc"},
                         {option: t("estatePage:filter.dateUp"), value: "createdAt:asc"}]}
                     placeHolder={""}
-                    onSelect={(value: string) => {setFilter({...filter, sort: value}); onFilterSubmit({...filter, sort: value})}}
+                    ignoreActual={true}
+                    onSelect={(value: string) => {changeFilter({ ...filter, sort: value })}}
                     valueActual={filter.sort}
                 />
             </div>

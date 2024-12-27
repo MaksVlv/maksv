@@ -65,3 +65,14 @@ a:hover {
 .image-gallery-content.bottom.fullscreen .arrow path:nth-child(2) {
     stroke: white;
 }
+
+.gm-ui-hover-effect {
+    width: 25px !important;
+    height: 25px !important;
+}
+
+.gm-ui-hover-effect span {
+    margin: 0 !important;
+    width: 20px !important;
+    height: 20px !important;
+}

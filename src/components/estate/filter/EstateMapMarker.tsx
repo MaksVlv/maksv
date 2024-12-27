@@ -34,8 +34,10 @@ export const EstateMapMarker = ({ estate }: Props) => {
                     onCloseClick={() => setInfoWindowOpen(false)}
                     position={{ lat: estate.location.lat, lng: estate.location.lng }}
                 >
-                    <div
+                    <Link
                         className={styles.infoMarker}
+                        href={{ pathname: `/estate/[id]`, query: { id: estate._id } }}
+                        target={"_blank"}
                     >
                         <div className={styles.img}>
                             <img src={estate.mainImage} alt="img"/>
@@ -45,10 +47,10 @@ export const EstateMapMarker = ({ estate }: Props) => {
                         <p>
                             {Number(estate.price.toFixed(2)).toLocaleString('lv', { style: 'currency', currency: 'EUR' })} {estate.rent ? t("params:month") : ''}
                         </p>
-                        <div className={styles.more}>
-                            <Link href={{ pathname: `/estate/[id]`, query: { id: estate._id } }} target={"_blank"}>{t("estatePage:more")}</Link>
-                        </div>
-                    </div>
+                        {/*<div className={styles.more}>*/}
+                        {/*    <Link href={{ pathname: `/estate/[id]`, query: { id: estate._id } }} target={"_blank"}>{t("estatePage:more")}</Link>*/}
+                        {/*</div>*/}
+                    </Link>
                 </InfoWindow>
             )}
         </div>

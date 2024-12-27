@@ -29,11 +29,22 @@ export default function SliderSection({ images }: SliderSectionProps) {
 
         return () => {
             window.removeEventListener("resize", handleResize);
+            const header = document.getElementById("headerBlock");
+
+            if (header) {
+                header.style.display = 'block';
+            }
         };
     }, []);
 
     const handleScreenChange = (isFullscreen: boolean) => {
         setIsFullScreen(isFullscreen);
+
+        const header = document.getElementById("headerBlock");
+
+        if (header) {
+            header.style.display = isFullscreen ? 'none' : 'block';
+        }
     };
 
     return (

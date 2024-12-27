@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import styles from './slider.module.scss';
 import ImageGallery from "react-image-gallery";
 
@@ -15,6 +15,26 @@ interface IImg {
 export default function SliderSection({ images }: SliderSectionProps) {
 
     const [img, setImg] = useState<IImg[]>(images.map((img: string) => ({ original: img, thumbnail: img })));
+    const [isFullScreen, setIsFullScreen] = useState<boolean>(false);
+
+    const [isMobile, setIsMobile] = useState<boolean>(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 1100);
+        };
+
+        handleResize();
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
+
+    const handleScreenChange = (isFullscreen: boolean) => {
+        setIsFullScreen(isFullscreen);
+    };
 
     return (
         <div className={styles.sliderSection}>
@@ -22,6 +42,8 @@ export default function SliderSection({ images }: SliderSectionProps) {
                 items={img}
                 swipeThreshold={50}
                 showPlayButton={false}
+                showThumbnails={!isFullScreen || !isMobile}
+                onScreenChange={handleScreenChange}
                 renderLeftNav={(onClick) => <CustomLeftNav onClick={onClick} />}
                 renderRightNav={(onClick) => <CustomRightNav onClick={onClick} />}
             />

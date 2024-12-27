@@ -282,12 +282,13 @@
 .infoMarker {
   .img {
     width: 200px;
+    height: 80px;
     position: relative;
     border-radius: 10px;
 
     img {
-      width: 200px;
-      max-height: 150px;
+      width: inherit;
+      height: inherit;
       border-radius: 10px;
       object-fit: cover;
     }

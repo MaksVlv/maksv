@@ -12,6 +12,8 @@ import { appWithTranslation } from 'next-i18next';
 import { GoogleAnalytics } from "nextjs-google-analytics";
 import Cookies from 'js-cookie';
 import axios from "axios";
+import {Hotjar} from "@/components/analytics/Hotjar";
+import GTM from "@/components/analytics/GTM";
 
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_SERVER_BASE_URL
 
@@ -28,6 +30,8 @@ const App = ({ Component, pageProps }: AppProps) => {
     return (
         <>
             <GoogleAnalytics gaMeasurementId={"G-SEE6PLQD7W"}/>
+            <Hotjar />
+            <GTM />
             <Component {...pageProps} />
             <ToastContainer />
         </>

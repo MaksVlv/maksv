@@ -26,6 +26,7 @@ export default function Home({ estate, emailJSPublic }: HomeProps) {
             title={t("homePage:seo.title")}
             description={t("homePage:seo.description")}
             keywords={t("homePage:seo.keywords")}
+            headerBackgroundDefault={true}
         >
             <SliderSection data={estate}/>
             <SliderAboutUs />

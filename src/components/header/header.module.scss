@@ -108,8 +108,13 @@
         }
       }
 
-      .nav, .languages {
+      .nav .link, .languages {
         display: none;
+      }
+
+      .phone {
+        display: block !important;
+        margin: auto;
       }
 
       .burger {

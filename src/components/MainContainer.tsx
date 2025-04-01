@@ -23,7 +23,7 @@ const MainContainer = ({ children, title, description, keywords, headerBackgroun
             <Head>
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <meta name="theme-color" content="#FFF" />
-                <meta name="author" content="maksv" />
+                <meta name="author" content="maksV" />
                 {title && <title>{ title }</title>}
                 {description && <meta name="description" content={ description } />}
                 {keywords && <meta name="keywords" content={ keywords } />}
@@ -38,7 +38,7 @@ const MainContainer = ({ children, title, description, keywords, headerBackgroun
                 {title && <meta property="og:title" content={ title } />}
                 {description && <meta property="og:description" content={ description } />}
                 <meta property="og:locale" content={router.locale} />
-                <meta property="og:site_name" content="Maksv Real estate" />
+                <meta property="og:site_name" content="MaksV Real estate" />
 
                 <link rel="alternate" hrefLang="en" href={"https://www.maksv.lv" + router.pathname}/>
                 <link rel="alternate" hrefLang="lv" href={"https://www.maksv.lv/lv" + router.pathname}/>

@@ -64,7 +64,7 @@ const Header = ({ backgroundDefault }: HeaderProps) => {
                     <a href={"/estate"} className={style.link + " " + (router.pathname === "/estate" ? style.active : "")}>{t("header:estate")}</a>
                     <Link href={"/evaluation"} className={style.link + " " + (router.pathname === "/evaluation" ? style.active : "")}>{t("header:evaluation")}</Link>
                     <Link href={"/construction"} className={style.link + " " + (router.pathname === "/construction" ? style.active : "")}>{t("header:construction")}</Link>
-                    <Link href={"tel:+37167818686"} className={style.link}>+371 67818686</Link>
+                    <Link href={"tel:+37167818686"} className={style.link + " " + style.phone}>+371 67818686</Link>
                 </nav>
                 <div className={style.languages}>
                     <Link href={{pathname: router.pathname, query: router.query}} locale={"en"} style={{ display: i18n.language.includes("en") ? "none" : "block" }} onClick={() => Cookies.set('language', "en")}>

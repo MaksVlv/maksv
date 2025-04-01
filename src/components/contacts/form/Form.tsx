@@ -94,11 +94,11 @@ export default function Form({ emailJSPublic, bg = false }: FormProps) {
                 </div>
             </div>
             <div className={styles.bottom + " " + (bg ? styles.bg : "")}>
-                {bg &&
-                    <div className={styles.back}>
-                        <Image src={formBg} alt={"formBg"} />
-                    </div>
-                }
+                {/*{bg &&*/}
+                {/*    <div className={styles.back}>*/}
+                {/*        <Image src={formBg} alt={"formBg"} />*/}
+                {/*    </div>*/}
+                {/*}*/}
                 <form onSubmit={e => onSubmit(e)} className={styles.form + " wrapper"} ref={formRef}>
                     <h2>{t("contactsPage:bottom.title")}</h2>
                     <p>{t("contactsPage:bottom.p")}</p>

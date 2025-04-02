@@ -105,23 +105,23 @@ export default function Form({ emailJSPublic, bg = false }: FormProps) {
                     <div className={styles.row}>
                         <div className={styles.input}>
                             <label htmlFor="name">{t("contactsPage:form.name")}</label>
-                            <input type="text" id={"name"} name={"name"} placeholder={t("contactsPage:form.namePlaceholder") || "Your Name / Surname"} required={true}/>
+                            <input type="text" id={"name"} name={"name"} placeholder={t("contactsPage:form.namePlaceholder") || "Your Name / Surname"}/>
                         </div>
                         <div className={styles.input}>
                             <label htmlFor="phone">{t("contactsPage:form.phone")}</label>
-                            <input type="number" name={"phone"} id={"phone"} placeholder={t("contactsPage:form.phonePlaceholder") || "Your Phone Number"}/>
+                            <input type="number" name={"phone"} id={"phone"} placeholder={t("contactsPage:form.phonePlaceholder") || "Your Phone Number"} required={true}/>
                         </div>
                     </div>
                     <div className={styles.row}>
                         <div className={styles.input}>
                             <label htmlFor="email">{t("contactsPage:form.email")}</label>
-                            <input type="email" name={"email"} id={"email"} placeholder={t("contactsPage:form.emailPlaceholder") || "Your email"} required={true}/>
+                            <input type="email" name={"email"} id={"email"} placeholder={t("contactsPage:form.emailPlaceholder") || "Your email"}/>
                         </div>
                     </div>
                     <div className={styles.row}>
                         <div className={styles.input}>
                             <label htmlFor="message">{t("contactsPage:form.message")}</label>
-                            <textarea name="message" id="message" placeholder={t("contactsPage:form.messagePlaceholder") || "Let us know about your dreams"} required={true} />
+                            <textarea name="message" id="message" placeholder={t("contactsPage:form.messagePlaceholder") || "Let us know about your dreams"} />
                         </div>
                     </div>
                     <div className={styles.rowButton}>

@@ -101,6 +101,7 @@ export default function Estate({ googleApi }: { googleApi: string }) {
             title={t("estatePage:seo.title")}
             description={t("estatePage:seo.description")}
             keywords={t("estatePage:seo.keywords")}
+            headerBackgroundDefault={true}
         >
             <HeaderSection />
             <FilterSection googleApi={googleApi} pagination={pagination} filterStart={filter} onFilterSubmit={(filter: Filter) => {setFilter(filter); setPagination({...pagination, page: 0})}}/>

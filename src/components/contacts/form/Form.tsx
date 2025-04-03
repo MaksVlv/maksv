@@ -99,33 +99,33 @@ export default function Form({ emailJSPublic, bg = false }: FormProps) {
                 {/*        <Image src={formBg} alt={"formBg"} />*/}
                 {/*    </div>*/}
                 {/*}*/}
-                <form onSubmit={e => onSubmit(e)} className={styles.form + " wrapper"} ref={formRef}>
+                <form onSubmit={e => onSubmit(e)} className={styles.form + " wrapper"} ref={formRef} id={"contact_form"}>
                     <h2>{t("contactsPage:bottom.title")}</h2>
                     <p>{t("contactsPage:bottom.p")}</p>
                     <div className={styles.row}>
                         <div className={styles.input}>
                             <label htmlFor="name">{t("contactsPage:form.name")}</label>
-                            <input type="text" id={"name"} name={"name"} placeholder={t("contactsPage:form.namePlaceholder") || "Your Name / Surname"}/>
+                            <input id={"form_name"} type="text" name={"name"} placeholder={t("contactsPage:form.namePlaceholder") || "Your Name / Surname"}/>
                         </div>
                         <div className={styles.input}>
                             <label htmlFor="phone">{t("contactsPage:form.phone")}</label>
-                            <input type="number" name={"phone"} id={"phone"} placeholder={t("contactsPage:form.phonePlaceholder") || "Your Phone Number"} required={true}/>
+                            <input id={"form_phone"} type="number" name={"phone"} placeholder={t("contactsPage:form.phonePlaceholder") || "Your Phone Number"} required={true}/>
                         </div>
                     </div>
                     <div className={styles.row}>
                         <div className={styles.input}>
                             <label htmlFor="email">{t("contactsPage:form.email")}</label>
-                            <input type="email" name={"email"} id={"email"} placeholder={t("contactsPage:form.emailPlaceholder") || "Your email"}/>
+                            <input id={"form_email"} type="email" name={"email"} placeholder={t("contactsPage:form.emailPlaceholder") || "Your email"}/>
                         </div>
                     </div>
                     <div className={styles.row}>
                         <div className={styles.input}>
                             <label htmlFor="message">{t("contactsPage:form.message")}</label>
-                            <textarea name="message" id="message" placeholder={t("contactsPage:form.messagePlaceholder") || "Let us know about your dreams"} />
+                            <textarea id={"form_message"} name="message" placeholder={t("contactsPage:form.messagePlaceholder") || "Let us know about your dreams"} />
                         </div>
                     </div>
                     <div className={styles.rowButton}>
-                        <button type={"submit"} ref={buttonRef}>{t(`contactsPage:form.${formStatus}`)}</button>
+                        <button type={"submit"} id={"form_submit_button"} ref={buttonRef}>{t(`contactsPage:form.${formStatus}`)}</button>
                     </div>
                 </form>
             </div>

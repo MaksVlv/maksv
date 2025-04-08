@@ -202,8 +202,8 @@ const FilterSection = ({ onFilterSubmit, filterStart, pagination, googleApi }: F
                             <div className={style.input}>
                                 <label htmlFor="city">{t("estatePage:filter.city")}</label>
                                 <Select
-                                    options={cities.map((city => ({ option: city.name[i18n.language], value: city._id })))}
-                                    disabled={cities.length < 1} placeHolder={"-"}
+                                    options={cities?.map((city => ({ option: city.name[i18n.language], value: city._id })))}
+                                    disabled={cities?.length < 1} placeHolder={"-"}
                                     onSelect={(id: string) => cityChange(id)}
                                     valueActual={filter.city}
                                 />

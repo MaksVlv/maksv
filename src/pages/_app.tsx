@@ -23,7 +23,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     useEffect(() => {
         const lang = Cookies.get('language');
 
-        if (!router.pathname.includes('admin'))
+        if (!router.pathname.includes('admin') && (router.pathname === '/' || router.pathname.startsWith('/estate') || router.pathname.startsWith('/construction') || router.pathname.startsWith('/contacts') || router.pathname.startsWith('/evaluation')))
             router.push(router.asPath, router.asPath, { locale: lang });
     }, []);
 

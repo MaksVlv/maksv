@@ -60,7 +60,7 @@ export const EstatesMap = ({ googleApi, fullLine }: Props) => {
     }
 
     return (
-        <div className={`${styles.map} ${fullLine ? styles.fullLine : ""}`} style={estates.length === 0 ? { display: "none" } : {}}>
+        <div className={`${styles.map} ${fullLine ? styles.fullLine : ""}`} style={estates?.length === 0 ? { display: "none" } : {}}>
             <LoadScript googleMapsApiKey={googleApi}>
                 <GoogleMap
                     onLoad={(map) => {
@@ -78,7 +78,7 @@ export const EstatesMap = ({ googleApi, fullLine }: Props) => {
                         mapTypeControl: false,
                     }}
                 >
-                    {estates.map((estate: IEstate, i: number) => (
+                    {estates?.map((estate: IEstate, i: number) => (
                         <React.Fragment key={i}>
                             <EstateMapMarker estate={estate} />
                         </React.Fragment>

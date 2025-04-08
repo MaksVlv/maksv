@@ -30,7 +30,7 @@ const Estates = forwardRef<HTMLDivElement, EstatesProps>(
             </div>
         )
 
-    if (estate.length === 0)
+    if (estate?.length === 0)
         return (
             <div className={style.empty + " wrapper"}>
                 <svg width="57" height="57" viewBox="0 0 57 57" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -46,7 +46,7 @@ const Estates = forwardRef<HTMLDivElement, EstatesProps>(
     return (
         <div ref={ref} className={style.estates + " wrapper"}>
             {
-                estate.map((estate: IEstate, i: number) => (
+                estate?.map((estate: IEstate, i: number) => (
                     <Link className={style.estate} key={i} href={{ pathname: `/estate/[id]`, query: { id: estate._id } }}>
                         <img src={estate.mainImage} alt={"Estate Image"} />
                         <p className={style.pSmall}>{estate.type[i18n.language]}</p>

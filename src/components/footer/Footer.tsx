@@ -28,7 +28,7 @@ const Header = () => {
                     <div className={style.info + " " + style.rights}>© {new Date().getFullYear()} Maks V. All rights are
                         reserved
                     </div>
-                    <a href="https://www.stepinweb.com/?utm_source=c8&utm_medium=websitefooter">
+                    <a href="https://www.stepinweb.com/?utm_source=c8&utm_medium=websitefooter" className={'m-auto lg:m-0'}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="222" height="18" viewBox="0 0 222 18" fill="none">
                             <g clipPath="url(#clip0_23096_6050)">
                                 <path

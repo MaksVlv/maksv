@@ -14,6 +14,7 @@ import Cookies from 'js-cookie';
 import axios from "axios";
 import {Hotjar} from "@/components/analytics/Hotjar";
 import GTM from "@/components/analytics/GTM";
+import {CookieBanner} from "@/components/header/CookitBanner";
 
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_SERVER_BASE_URL
 
@@ -34,6 +35,7 @@ const App = ({ Component, pageProps }: AppProps) => {
             <GTM />
             <Component {...pageProps} />
             <ToastContainer />
+            <CookieBanner />
         </>
     )
 }

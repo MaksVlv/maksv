@@ -67,13 +67,13 @@ const Header = ({ backgroundDefault }: HeaderProps) => {
                     <Link href={"tel:+37167818686"} className={style.link + " " + style.phone}>+371 67818686</Link>
                 </nav>
                 <div className={style.languages}>
-                    <Link href={{pathname: router.pathname, query: router.query}} locale={"en"} style={{ display: i18n.language.includes("en") ? "none" : "block" }} onClick={() => Cookies.set('language', "en")}>
+                    <Link href={{pathname: router.pathname, query: router.query}} locale={"en"} style={{ display: i18n.language?.includes("en") ? "none" : "block" }} onClick={() => Cookies.set('language', "en")}>
                         <Image src={En} alt={"EN"}/>
                     </Link>
-                    <Link href={{pathname: router.pathname, query: router.query}} locale={"ru"} style={{ display: i18n.language.includes("ru") ? "none" : "block" }} onClick={() => Cookies.set('language', "ru")}>
+                    <Link href={{pathname: router.pathname, query: router.query}} locale={"ru"} style={{ display: i18n.language?.includes("ru") ? "none" : "block" }} onClick={() => Cookies.set('language', "ru")}>
                         <Image src={Ru} alt={"RU"}/>
                     </Link>
-                    <Link href={{pathname: router.pathname, query: router.query}} locale={"lv"} style={{ display: i18n.language.includes("lv") ? "none" : "block" }} onClick={() => Cookies.set('language', "lv")}>
+                    <Link href={{pathname: router.pathname, query: router.query}} locale={"lv"} style={{ display: i18n.language?.includes("lv") ? "none" : "block" }} onClick={() => Cookies.set('language', "lv")}>
                         <Image src={Lv} alt={"LV"}/>
                     </Link>
                 </div>

@@ -31,7 +31,7 @@ export const CookieBanner = () => {
                     </div>
 
                     <div className={'w-full lg:w-fit flex flex-col gap-2'}>
-                        <button className={'w-full lg:w-fit order-2 lg:order-1 py-3 px-24 bg-[#FFC53C] rounded-[18px] whitespace-nowrap hover:bg-white hover:text-[#FFC53C] border border-[#FFC53C]'} onClick={() => onAgreeClick()}>{t('cookie.button')}</button>
+                        <button className={'w-full lg:w-fit order-2 lg:order-1 py-3 px-24 bg-[#FFC53C] rounded-[10px] whitespace-nowrap hover:bg-white hover:text-[#FFC53C] border border-[#FFC53C]'} onClick={() => onAgreeClick()}>{t('cookie.button')}</button>
                         <Link className={'underline order-1 lg:order-2 text-center font-semibold lg:font-normal'} href={'/policies'}>{t('cookie.policy')}</Link>
                     </div>
                 </div>

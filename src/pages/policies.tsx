@@ -15,7 +15,7 @@ export default function Policies() {
         headerBackgroundDefault={true}
       >
           <div className={"minusHeader"}>
-              <div className={'wrapper pt-10'}>
+              <div className={'wrapper pt-10 text-[#133348]'}>
                   <h2 className={'!text-3xl font-semibold mb-4'}>{t('policy.title')}</h2>
 
                   <h3 className={'!text-xl font-semibold mt-2'}>{t('policy._1')}</h3>

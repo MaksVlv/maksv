@@ -26,7 +26,7 @@ const Header = () => {
                 <Link href={"mailto:info@maksv.lv"} className={style.info}>info@maksv.lv</Link>
                 <div className={'flex flex-col justify-between lg:flex-row gap-[75px] lg:gap-0 mb-[75px] lg:mb-0'}>
                     <div className={style.info + " " + style.rights}>© {new Date().getFullYear()} Maks V. All rights are
-                        reserved
+                        reserved. <Link href={'/policies'} className={'underline'}>{t('header:policy')}</Link>
                     </div>
                     <a href="https://www.stepinweb.com/?utm_source=c8&utm_medium=websitefooter" className={'m-auto lg:m-0'}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="222" height="18" viewBox="0 0 222 18" fill="none">

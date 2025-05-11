@@ -3,13 +3,19 @@ import { useContext, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import {useTranslation} from "next-i18next";
 import Link from "next/link";
+import {usePathname} from "next/navigation";
 
 export const CookieBanner = () => {
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const { t, i18n } = useTranslation('policy')
+    const pathname = usePathname();
 
     useEffect(() => {
+        if (!pathname) {
+            setIsOpen(false);
+            return;
+        }
         if (!window.localStorage.getItem("cookies_makvs")) {
             setIsOpen(true);
         }

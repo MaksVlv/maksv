@@ -1,6 +1,6 @@
-export const LogoSvg = () => {
+export const LogoSvg = ({ width, height }: { width?: number, height?: number }) => {
     return (
-        <svg width="328" height="200" viewBox="0 0 328 200" fill="none" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+        <svg width={width ?? "328"} height={height ?? "200"} viewBox="0 0 328 200" fill="none" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
             <rect y="0.5" width="328" height="199" fill="url(#pattern0)"/>
             <defs>
                 <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">

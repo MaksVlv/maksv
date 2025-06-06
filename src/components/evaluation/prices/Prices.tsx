@@ -42,12 +42,12 @@ export default function Prices() {
                     </div>
                     <div className={styles.row}>
                         <div className={styles.name}>{t("evaluationPage:prices.h100")}</div>
-                        <div className={styles.price}>215€</div>
+                        <div className={styles.price}>250€</div>
                         <div className={styles.range}>5-7 {t("evaluationPage:prices.workDays")}</div>
                     </div>
                     <div className={styles.row}>
                         <div className={styles.name}>{t("evaluationPage:prices.h200")}</div>
-                        <div className={styles.price}>250€</div>
+                        <div className={styles.price}>270€</div>
                         <div className={styles.range}>5-7 {t("evaluationPage:prices.workDays")}</div>
                     </div>
                     <div className={styles.row}>
@@ -67,17 +67,17 @@ export default function Prices() {
                     </div>
                     <div className={styles.row}>
                         <div className={styles.name}>{t("evaluationPage:prices.flat")}</div>
-                        <div className={styles.price}>150€</div>
+                        <div className={styles.price}>170€</div>
                         <div className={styles.range}>2-3 {t("evaluationPage:prices.workDays")}</div>
                     </div>
                     <div className={styles.row}>
                         <div className={styles.name}>{t("evaluationPage:prices.spec")}</div>
-                        <div className={styles.price}>170€</div>
+                        <div className={styles.price}>200€</div>
                         <div className={styles.range}>3-4 {t("evaluationPage:prices.workDays")}</div>
                     </div>
                     <div className={styles.row}>
                         <div className={styles.name}>{t("evaluationPage:prices.new")}</div>
-                        <div className={styles.price}>170€</div>
+                        <div className={styles.price}>220-270€</div>
                         <div className={styles.range}>3-4 {t("evaluationPage:prices.workDays")}</div>
                     </div>
                     <div className={styles.row}>
@@ -92,7 +92,7 @@ export default function Prices() {
                     </div>
                     <div className={styles.row}>
                         <div className={styles.name}>{t("evaluationPage:prices.future2")}</div>
-                        <div className={styles.price}>+70€</div>
+                        <div className={styles.price}>+100€</div>
                         <div className={styles.range}></div>
                     </div>
                 </div>

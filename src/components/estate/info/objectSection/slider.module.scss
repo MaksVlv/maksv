@@ -13,9 +13,16 @@
     //display: none;
     opacity: 0.7;
     position: absolute;
-    right: 20px;
-    top: 50%;
+    right: 0;
+    top: 0;
     z-index: 2;
+    height: 100%;
+    width: 20%;
+
+    svg {
+      margin-left: auto;
+      padding-right: 20px;
+    }
 
     &:hover {
       opacity: 1;
@@ -26,9 +33,15 @@
     //display: none;
     opacity: 0.7;
     position: absolute;
-    left: 20px;
-    top: 50%;
+    left: 0;
+    top: 0;
     z-index: 2;
+    height: 100%;
+    width: 20%;
+
+    svg {
+      padding-left: 20px;
+    }
 
     &:hover {
       opacity: 1;

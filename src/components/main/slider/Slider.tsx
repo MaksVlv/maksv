@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect, useRef} from "react";
 import { useTranslation } from "next-i18next";
 import { IEstate } from '../../../types';
 import Slider from 'react-slick';
@@ -14,9 +14,9 @@ const settings = {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,
+    // autoplay: true,
     autoplaySpeed: 4000,
-    arrows: false
+    arrows: false,
 };
 
 interface SliderSectionProps {
@@ -29,6 +29,7 @@ export default function SliderSection({ data }: SliderSectionProps) {
 
     const [isHovered, setIsHovered] = useState(false);
     const [time, setTime] = useState<number>(0);
+    const sliderRef = useRef<Slider>(null);
 
     const handleMouseEnter = () => {
         setIsHovered(true);
@@ -54,28 +55,30 @@ export default function SliderSection({ data }: SliderSectionProps) {
         return () => clearInterval(intervalId);
     }, [isHovered]);
 
+    useEffect(() => {
+        if (time > 4000) {
+            sliderRef?.current?.slickNext();
+        }
+    }, [time]);
+
     const beforeChangeHandler = () => {
         setTime(0);
     };
 
     return (
-        <div className={styles.slider}
-             onMouseEnter={handleMouseEnter}
-             onMouseLeave={handleMouseLeave}
-        >
+        <div className={styles.slider}>
             <Slider
                 {...settings}
                 // autoplay={!isHovered}
                 beforeChange={beforeChangeHandler}
+                ref={sliderRef}
             >
                 {data.map((estate, i) =>
                     <div className={styles.slide} key={i}>
                         <img src={estate.mainImage} alt={"estate"}/>
-                        <div className={styles.buttonBlock + " wrapper"}>
-                            <h1>{t("homePage:slider.h1")}</h1>
-                            <Link href={`/estate/${estate._id}`} tabIndex={-1} className={styles.button}>{t("homePage:button.info")}</Link>
-                        </div>
-                        <div className={styles.info}>
+                        <div className={styles.info}
+                             onMouseEnter={handleMouseEnter}
+                             onMouseLeave={handleMouseLeave}>
                             <div className={styles.name}>
                                 <p>{estate.name[i18n.language]}</p>
                             </div>
@@ -130,6 +133,11 @@ export default function SliderSection({ data }: SliderSectionProps) {
                                 {estate.gateHeight && (<div className={styles.param}><span><GateHeight /></span>{estate.gateHeight} m</div>)}
                                 {estate.size && (<div className={styles.param}><span><Size /></span>{estate.size}</div>)}
                             </div>
+
+                            <div>
+                                <Link href={`/estate/${estate._id}`} tabIndex={-1} className={styles.button}>{t("homePage:button.info")}</Link>
+                            </div>
+
                             <div className={styles.progress}>
                                 <progress value={time} max={settings.autoplaySpeed}/>
                             </div>

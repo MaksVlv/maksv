@@ -76,3 +76,11 @@ a:hover {
     width: 20px !important;
     height: 20px !important;
 }
+
+.image-gallery-thumbnail.active, .image-gallery-thumbnail:focus {
+    border-color: #FFC53C !important;
+}
+
+.image-gallery-fullscreen-button .image-gallery-svg, .image-gallery-play-button .image-gallery-svg {
+    stroke: #FFC53C !important;
+}

@@ -64,6 +64,7 @@ const Header = ({ backgroundDefault }: HeaderProps) => {
                     <a href={"/estate"} className={style.link + " " + (router.pathname === "/estate" ? style.active : "")}>{t("header:estate")}</a>
                     <Link href={"/evaluation"} className={style.link + " " + (router.pathname === "/evaluation" ? style.active : "")}>{t("header:evaluation")}</Link>
                     <Link href={"/construction"} className={style.link + " " + (router.pathname === "/construction" ? style.active : "")}>{t("header:construction")}</Link>
+                    <Link href={"/contacts"} className={style.link + " " + (router.pathname === "/contacts" ? style.active : "")}>{t("header:contacts")}</Link>
                     <Link href={"tel:+37167818686"} className={style.link + " " + style.phone}>+371 67818686</Link>
                 </nav>
                 <div className={style.languages}>
@@ -100,6 +101,7 @@ const Header = ({ backgroundDefault }: HeaderProps) => {
                             <a href={"/estate"} className={style.link + " " + (router.pathname === "/estate" ? style.active : "")}>{t("header:estate")}</a>
                             <Link href={"/evaluation"} className={style.link + " " + (router.pathname === "/evaluation" ? style.active : "")}>{t("header:evaluation")}</Link>
                             <Link href={"/construction"} className={style.link + " " + (router.pathname === "/construction" ? style.active : "")}>{t("header:construction")}</Link>
+                            <Link href={"/contacts"} className={style.link + " " + (router.pathname === "/contacts" ? style.active : "")}>{t("header:contacts")}</Link>
                             {/*<Link href={"tel:+37167818686"} className={style.link}>+371 67818686</Link>*/}
                         </nav>
                     </div>

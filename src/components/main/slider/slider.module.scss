@@ -30,24 +30,6 @@
         width: 50%;
         margin-bottom: 40px;
       }
-
-      .button {
-        display: block;
-        text-align: center;
-        background-color: $bg-highlighted;
-        color: $bg-main;
-        padding: 10px 32px;
-        width: 300px;
-        border-radius: 10px;
-        border: 1px solid $bg-highlighted;
-        font-weight: bold;
-
-        &:hover {
-          background-color: $bg-main;
-          color: $bg-highlighted;
-          border: 1px solid $bg-highlighted;
-        }
-      }
     }
 
     .info {
@@ -59,16 +41,38 @@
       padding: 10px 25px 10px 25px;
       font-size: 1.4em;
       max-width: 700px;
+      transform: translateY(-150px);
 
       .price {
         font-size: 1.9em;
         font-weight: bold;
       }
 
+      .button {
+        margin-top: 20px;
+        display: block;
+        text-align: center;
+        background-color: $bg-highlighted;
+        color: $bg-main;
+        padding: 10px 32px;
+        border-radius: 10px;
+        border: 1px solid $bg-highlighted;
+        font-weight: bold;
+        width: 100%;
+        max-width: 500px;
+
+        &:hover {
+          background-color: $bg-main;
+          color: $bg-highlighted;
+          border: 1px solid $bg-highlighted;
+        }
+      }
+
       .params {
-        //height: 120px;
         max-width: 550px;
-        display: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 0;
         margin-top: 20px;
 
         .param {
@@ -79,16 +83,6 @@
           span {
             margin-right: 10px;
           }
-        }
-      }
-
-      &:hover {
-        transform: translateY(-80px);
-
-        .params {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 10px 0;
         }
       }
 
@@ -155,8 +149,13 @@
     @media screen and (max-width: $small) {
       .info {
         width: 90%;
-        bottom: 49.5px;
+        bottom: 0px;
         top: unset;
+        transform: unset;
+
+        .button {
+          width: 100%;
+        }
 
         .price {
           font-size: 1.6em;

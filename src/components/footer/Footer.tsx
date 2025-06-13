@@ -25,7 +25,7 @@ const Header = () => {
                 <Link href={"tel:+37167818686"} className={style.info}>+371 67818686</Link>
                 <Link href={"mailto:info@maksv.lv"} className={style.info}>info@maksv.lv</Link>
                 <div className={'flex flex-col justify-between lg:flex-row gap-[75px] lg:gap-0 mb-[75px] lg:mb-0'}>
-                    <div className={style.info + " " + style.rights}>© {new Date().getFullYear()} Maks V. All rights are
+                    <div className={style.info + " " + style.rights}>© {new Date().getFullYear()} MaksV. All rights are
                         reserved. <Link href={'/policies'} className={'underline'}>{t('header:policy')}</Link>
                     </div>
                     <a href="https://www.stepinweb.com/?utm_source=c8&utm_medium=websitefooter" className={'m-auto lg:m-0'}>

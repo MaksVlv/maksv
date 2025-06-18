@@ -9,7 +9,7 @@
 
     img {
       width: 100vw;
-      height: 70vh;
+      height: 80vh;
       min-height: 400px;
       max-height: 880px;
       object-fit: cover;
@@ -35,7 +35,7 @@
     .info {
       position: absolute;
       background-color: $bg-dark;
-      top: 50%;
+      top: 35%;
       right: 0;
       color: $bg-main;
       padding: 10px 25px 10px 25px;

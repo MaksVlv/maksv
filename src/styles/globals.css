@@ -77,7 +77,7 @@ a:hover {
     height: 20px !important;
 }
 
-.image-gallery-thumbnail.active, .image-gallery-thumbnail:focus {
+.image-gallery-thumbnail.active, .image-gallery-thumbnail:focus, .image-gallery-thumbnail:hover {
     border-color: #FFC53C !important;
 }
 

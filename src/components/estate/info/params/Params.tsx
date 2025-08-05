@@ -83,7 +83,7 @@ export default function Params ({ estate, dark }: ParamsProps) {
             {(estate.livingArea || (Number(estate.livingArea) > 0)) && (
                 <div className={style.param}>
                     <div className={style.label + ` ${dark ? style.dark : ""}`}>
-                        {estate.type.en === "Commercial object" ? t("estatePage:filter.roomArea") : t("estatePage:filter.livingArea")}
+                        {estate.type.en === "Commercial object" ? t("estatePage:filter.commonArea") : t("estatePage:filter.livingArea")}
                     </div>
                     <div className={style.value + ` ${dark ? style.dark : ""}`}>
                         <span><LivingArea /></span>{estate.livingArea} m²

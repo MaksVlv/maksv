@@ -74,7 +74,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 estate.landArea = Number(estate.landArea)
                 estate.livingArea = Number(estate.livingArea)
                 estate.rooms = Number(estate.rooms)
-                if (type !== "Flat")
+                if (type !== "Flat" && type !== "Commercial object")
                     estate.floor = Number(estate.floor)
                 estate.gateHeight = Number(estate.gateHeight)
 

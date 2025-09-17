@@ -61,9 +61,10 @@ const Header = ({ backgroundDefault }: HeaderProps) => {
                     <Image src={Logo} alt={"logo"}/>
                 </Link>
                 <nav className={style.nav}>
+                    <a href={`https://sellwith.maksv.lv/${router.locale}`} className={style.link}>{t("header:sell")}</a>
                     <a href={"/estate"} className={style.link + " " + (router.pathname === "/estate" ? style.active : "")}>{t("header:estate")}</a>
                     <Link href={"/evaluation"} className={style.link + " " + (router.pathname === "/evaluation" ? style.active : "")}>{t("header:evaluation")}</Link>
-                    <Link href={"/construction"} className={style.link + " " + (router.pathname === "/construction" ? style.active : "")}>{t("header:construction")}</Link>
+                    {/*<Link href={"/construction"} className={style.link + " " + (router.pathname === "/construction" ? style.active : "")}>{t("header:construction")}</Link>*/}
                     <Link href={"/contacts"} className={style.link + " " + (router.pathname === "/contacts" ? style.active : "")}>{t("header:contacts")}</Link>
                     <Link href={"tel:+37167818686"} className={style.link + " " + style.phone}>+371 67818686</Link>
                 </nav>
@@ -88,20 +89,31 @@ const Header = ({ backgroundDefault }: HeaderProps) => {
                     <div className="wrapper">
                         <nav className={style.navMobile}>
                             <div className={style.languages}>
-                                <Link href={{pathname: router.pathname, query: router.query}} locale={"en"} style={{ display: i18n.language.includes("en") ? "none" : "block" }} onClick={() => Cookies.set('language', "en")}>
+                                <Link href={{pathname: router.pathname, query: router.query}} locale={"en"}
+                                      style={{display: i18n.language.includes("en") ? "none" : "block"}}
+                                      onClick={() => Cookies.set('language', "en")}>
                                     <Image src={En} alt={"EN"}/>
                                 </Link>
-                                <Link href={{pathname: router.pathname, query: router.query}} locale={"ru"} style={{ display: i18n.language.includes("ru") ? "none" : "block" }} onClick={() => Cookies.set('language', "ru")}>
+                                <Link href={{pathname: router.pathname, query: router.query}} locale={"ru"}
+                                      style={{display: i18n.language.includes("ru") ? "none" : "block"}}
+                                      onClick={() => Cookies.set('language', "ru")}>
                                     <Image src={Ru} alt={"RU"}/>
                                 </Link>
-                                <Link href={{pathname: router.pathname, query: router.query}} locale={"lv"} style={{ display: i18n.language.includes("lv") ? "none" : "block" }} onClick={() => Cookies.set('language', "lv")}>
+                                <Link href={{pathname: router.pathname, query: router.query}} locale={"lv"}
+                                      style={{display: i18n.language.includes("lv") ? "none" : "block"}}
+                                      onClick={() => Cookies.set('language', "lv")}>
                                     <Image src={Lv} alt={"LV"}/>
                                 </Link>
                             </div>
-                            <a href={"/estate"} className={style.link + " " + (router.pathname === "/estate" ? style.active : "")}>{t("header:estate")}</a>
-                            <Link href={"/evaluation"} className={style.link + " " + (router.pathname === "/evaluation" ? style.active : "")}>{t("header:evaluation")}</Link>
-                            <Link href={"/construction"} className={style.link + " " + (router.pathname === "/construction" ? style.active : "")}>{t("header:construction")}</Link>
-                            <Link href={"/contacts"} className={style.link + " " + (router.pathname === "/contacts" ? style.active : "")}>{t("header:contacts")}</Link>
+                            <a href={`https://sellwith.maksv.lv/${router.locale}`}
+                               className={style.link}>{t("header:sell")}</a>
+                            <a href={"/estate"}
+                               className={style.link + " " + (router.pathname === "/estate" ? style.active : "")}>{t("header:estate")}</a>
+                            <Link href={"/evaluation"}
+                                  className={style.link + " " + (router.pathname === "/evaluation" ? style.active : "")}>{t("header:evaluation")}</Link>
+                            {/*<Link href={"/construction"} className={style.link + " " + (router.pathname === "/construction" ? style.active : "")}>{t("header:construction")}</Link>*/}
+                            <Link href={"/contacts"}
+                                  className={style.link + " " + (router.pathname === "/contacts" ? style.active : "")}>{t("header:contacts")}</Link>
                             {/*<Link href={"tel:+37167818686"} className={style.link}>+371 67818686</Link>*/}
                         </nav>
                     </div>

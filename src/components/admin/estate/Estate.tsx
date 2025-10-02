@@ -68,12 +68,12 @@ export default function Estates({ googleApi }: { googleApi: string }) {
     }
 
     return (
-        <section className="bg-white rounded-lg w-full container mx-auto px-8 mt-10">
+        <section className="bg-white w-full container mx-auto px-8 mt-10">
             <h1 className="w-full text-center text-2xl font-bold pt-8 pb-3">Estates</h1>
             <div className="relative mb-6 z-0 flex">
                 <input
                     type="text"
-                    className="block w-full h-full py-2 pr-4 pl-8 text-sm leading-5 rounded-full text-gray-900 placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:shadow-outline-blue focus:border-blue-300 focus:text-gray-900 sm:text-sm sm:leading-5 opacity-100"
+                    className="block w-full h-full py-2 pr-4 pl-8 text-sm leading-5 text-gray-900 placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:shadow-outline-blue focus:border-blue-300 focus:text-gray-900 sm:text-sm sm:leading-5 opacity-100"
                     placeholder="Search"
                     value={search}
                     onChange={(e) => {searchChange(e)}}
@@ -105,12 +105,12 @@ export default function Estates({ googleApi }: { googleApi: string }) {
                     {estates.length > 0 ?
                         estates.map((estate, i) =>
                             <div className={styles.row} style={{ backgroundColor: `${estate.disabled ? "#FFCDD2" : ""}` }} key={i} onClick={() => {setIsOpenUp(i.toString())}}>
-                                <div className={"text-black font-bold text-1xl " + styles.info} style={{ width: "5%" }}><img src={estate.mainImage} alt={estate.name.lv +"MainImage"}/></div>
-                                <div className={"text-black font-bold text-1xl " + styles.info}>{estate.name.lv}</div>
-                                <div className={"text-black font-bold text-1xl " + styles.info} style={{ width: "7%" }}>{estate.type.en}</div>
-                                <div className={"text-black font-bold text-1xl " + styles.info} style={{ width: "5%" }}>{estate.rent ? "RENT" : "SELL"}</div>
-                                <div className={"text-black font-bold text-1xl " + styles.info} style={{ width: "8%" }}>{Number(estate.price.toFixed(2)).toLocaleString('en-US', { style: 'currency', currency: 'EUR' })}</div>
-                                <div className={"text-black font-bold text-1xl " + styles.info}>{estate.city.name.lv}</div>
+                                <div className={"text-[#1E1E1E] font-bold text-1xl " + styles.info} style={{ width: "5%" }}><img src={estate.mainImage} alt={estate.name.lv +"MainImage"}/></div>
+                                <div className={"text-[#1E1E1E] font-bold text-1xl " + styles.info}>{estate.name.lv}</div>
+                                <div className={"text-[#1E1E1E] font-bold text-1xl " + styles.info} style={{ width: "7%" }}>{estate.type.en}</div>
+                                <div className={"text-[#1E1E1E] font-bold text-1xl " + styles.info} style={{ width: "5%" }}>{estate.rent ? "RENT" : "SELL"}</div>
+                                <div className={"text-[#1E1E1E] font-bold text-1xl " + styles.info} style={{ width: "8%" }}>{Number(estate.price.toFixed(2)).toLocaleString('en-US', { style: 'currency', currency: 'EUR' })}</div>
+                                <div className={"text-[#1E1E1E] font-bold text-1xl " + styles.info}>{estate.city.name.lv}</div>
                             </div>
                         )
                         :
@@ -123,7 +123,7 @@ export default function Estates({ googleApi }: { googleApi: string }) {
                 </div>
             }
             <div className={styles.bottom}>
-                <button onClick={() => setIsOpenAdd(true)} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                <button onClick={() => setIsOpenAdd(true)} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4">
                     Add
                 </button>
                 <Pagination

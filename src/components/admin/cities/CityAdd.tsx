@@ -69,7 +69,7 @@ export default function CityAdd({ onCloseClick, onSave }: CityAddProps) {
         <>
             <div className="fixed inset-0 bg-gray-900 opacity-50" style={{ zIndex: 1 }}/>
             <div className="fixed inset-0 flex items-center justify-center z-10">
-                <div className="bg-white rounded-lg shadow-lg p-8 w-full" style={{maxHeight: "90vh", maxWidth: "800px", overflow: "auto"}}>
+                <div className="bg-white shadow-lg p-8 w-full" style={{maxHeight: "90vh", maxWidth: "800px", overflow: "auto"}}>
                     <div className="text-lg font-medium mb-4">Jauna pilsēta/novads & pagasts/mikrorajons</div>
                     <div className="mb-6">
                         <form onSubmit={handleSubmit}>
@@ -81,7 +81,7 @@ export default function CityAdd({ onCloseClick, onSave }: CityAddProps) {
                                         type="text"
                                         name="cityName-lv"
                                         id="cityName-lv"
-                                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        className="shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         placeholder="Enter city name LV"
                                         value={city.lv}
                                         onChange={(e) => setCity({...city, lv: e.target.value})}
@@ -93,7 +93,7 @@ export default function CityAdd({ onCloseClick, onSave }: CityAddProps) {
                                         type="text"
                                         name="cityName-ru"
                                         id="cityName-ru"
-                                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        className="shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         placeholder="Enter city name RU"
                                         value={city.ru}
                                         onChange={(e) => setCity({...city, ru: e.target.value})}
@@ -105,7 +105,7 @@ export default function CityAdd({ onCloseClick, onSave }: CityAddProps) {
                                         type="text"
                                         name="cityName-en"
                                         id="cityName-en"
-                                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        className="shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         placeholder="Enter city name EN"
                                         value={city.en}
                                         onChange={(e) => setCity({...city, en: e.target.value})}
@@ -125,7 +125,7 @@ export default function CityAdd({ onCloseClick, onSave }: CityAddProps) {
                                                 name={`district-${index}-lv`}
                                                 placeholder="Enter district name LV"
                                                 value={district.lv}
-                                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline pr-10"
+                                                className="shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline pr-10"
                                                 onChange={(event) => handleDistrictChange(event, index, "lv")}
                                             />
                                         </div>
@@ -137,7 +137,7 @@ export default function CityAdd({ onCloseClick, onSave }: CityAddProps) {
                                                 name={`district-${index}-ru`}
                                                 placeholder="Enter district name RU"
                                                 value={district.ru}
-                                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline pr-10"
+                                                className="shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline pr-10"
                                                 onChange={(event) => handleDistrictChange(event, index, "ru")}
                                             />
                                         </div>
@@ -149,7 +149,7 @@ export default function CityAdd({ onCloseClick, onSave }: CityAddProps) {
                                                 name={`district-${index}-en`}
                                                 placeholder="Enter district name EN"
                                                 value={district.en}
-                                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline pr-10"
+                                                className="shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline pr-10"
                                                 onChange={(event) => handleDistrictChange(event, index, "en")}
                                             />
                                         </div>
@@ -169,7 +169,7 @@ export default function CityAdd({ onCloseClick, onSave }: CityAddProps) {
                                     </div>
                                 </div>
                             ))}
-                            <button type="button" onClick={addDistrict} className="inline-flex items-center justify-center w-8 h-8 text-gray-600 bg-gray-200 rounded-full hover:bg-gray-300">
+                            <button type="button" onClick={addDistrict} className="inline-flex items-center justify-center w-8 h-8 text-gray-600 bg-gray-200 hover:bg-gray-300">
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
                                 </svg>
@@ -177,13 +177,13 @@ export default function CityAdd({ onCloseClick, onSave }: CityAddProps) {
                             <div className="flex justify-end">
                                 <button
                                     type="submit"
-                                    className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+                                    className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4"
                                 >
                                     Save
                                 </button>
                                 <button
                                     type="button"
-                                    className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded ml-4"
+                                    className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 ml-4"
                                     onClick={() => onCloseClick()}
                                 >
                                     Cancel

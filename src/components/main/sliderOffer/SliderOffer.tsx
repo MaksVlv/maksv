@@ -71,7 +71,7 @@ export default function SliderOffer() {
                             <div className={styles.info}>
                                 <h3>{t("homePage:offer.estate.h3")}</h3>
                                 <p>{t("homePage:offer.estate.p")}</p>
-                                <Link href={"/estate"} className={styles.button}>{t("homePage:button.info")}</Link>
+                                <Link href={"/src/pages_backup_old/estate.tsx"} className={styles.button}>{t("homePage:button.info")}</Link>
                             </div>
                         </div>
                     </div>
@@ -81,7 +81,7 @@ export default function SliderOffer() {
                             <div className={styles.info}>
                                 <h3>{t("homePage:offer.evaluation.h3")}</h3>
                                 <p>{t("homePage:offer.evaluation.p")}</p>
-                                <Link href={"/evaluation"} className={styles.button}>{t("homePage:button.info")}</Link>
+                                <Link href={"/src/pages_backup_old/evaluation.tsx"} className={styles.button}>{t("homePage:button.info")}</Link>
                             </div>
                         </div>
                     </div>
@@ -91,7 +91,7 @@ export default function SliderOffer() {
                             <div className={styles.info}>
                                 <h3>{t("homePage:offer.construction.h3")}</h3>
                                 <p>{t("homePage:offer.construction.p")}</p>
-                                <Link href={"/construction"} className={styles.button}>{t("homePage:button.info")}</Link>
+                                <Link href={"/src/pages_backup_old/construction.tsx"} className={styles.button}>{t("homePage:button.info")}</Link>
                             </div>
                         </div>
                     </div>

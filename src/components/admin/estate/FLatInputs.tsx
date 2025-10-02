@@ -38,7 +38,7 @@ const FlatInputs = ({ onParamChange }: IFlatInputs) => {
                 min={0}
                 name="flatRooms"
                 id="flatRooms"
-                className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="mb-4 shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Enter flat rooms"
                 value={flat.rooms}
                 onChange={(e) => setFlat({...flat, rooms: e.target.value })}
@@ -49,7 +49,7 @@ const FlatInputs = ({ onParamChange }: IFlatInputs) => {
                 type={"text"}
                 name="flatFloor"
                 id="flatFloor"
-                className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="mb-4 shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Enter house floors"
                 value={flat.floor}
                 onChange={(e) => setFlat({...flat, floor: e.target.value })}
@@ -62,7 +62,7 @@ const FlatInputs = ({ onParamChange }: IFlatInputs) => {
                 step={0.01}
                 name="flatLivingArea"
                 id="flatLivingArea"
-                className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="mb-4 shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Enter house living area"
                 value={flat.livingArea}
                 onChange={(e) => setFlat({...flat, livingArea: e.target.value })}
@@ -73,7 +73,7 @@ const FlatInputs = ({ onParamChange }: IFlatInputs) => {
                     required={true}
                     name="estateType"
                     id="estateType"
-                    className="block disabled:cursor-not-allowed appearance-none w-full bg-white border focus:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                    className="block disabled:cursor-not-allowed appearance-none w-full bg-white border focus:border-gray-500 px-4 py-2 pr-8 shadow leading-tight focus:outline-none focus:shadow-outline"
                     onChange={(e) => changeSeries(e)}
                     defaultValue={""}
                 >

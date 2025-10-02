@@ -55,7 +55,6 @@
         background-color: $bg-highlighted;
         color: $bg-main;
         padding: 10px 32px;
-        border-radius: 10px;
         border: 1px solid $bg-highlighted;
         font-weight: bold;
         width: 100%;
@@ -95,17 +94,14 @@
 
           &::-webkit-progress-value {
             background-color: $bg-main;
-            border-radius: 5px;
           }
 
           &::-moz-progress-bar {
             background-color: $bg-main;
-            border-radius: 5px;
           }
 
           &::-ms-fill {
             background-color: $bg-main;
-            border-radius: 5px;
           }
         }
       }
@@ -134,7 +130,6 @@
           position: absolute;
           right: 0;
           bottom: -45.59vh;
-          border-radius: 0;
           width: 100vw;
           height: 50px;
           font-size: 1.4em;

@@ -68,7 +68,7 @@ const CustomLeftNav = ({ onClick }: any) => (
       <svg width="50" height="50" viewBox="0 0 268 268" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M267.333 117.333H64.5L157.583 24.25L134 0.666626L0.666626 134L134 267.333L157.583 243.75L64.5 150.667H267.333V117.333Z"
-            fill="#FFC53C"/>
+            fill="#FFD700"/>
       </svg>
   </button>
 );
@@ -78,7 +78,7 @@ const CustomRightNav = ({onClick}: any) => (
     <svg width="50" height="50" viewBox="0 0 268 268" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M0.666697 150.667L203.5 150.667L110.417 243.75L134 267.333L267.333 134L134 0.666736L110.417 24.2501L203.5 117.333L0.6667 117.333L0.666697 150.667Z"
-        fill="#FFC53C"/>
+        fill="#FFD700"/>
     </svg>
   </button>
 );

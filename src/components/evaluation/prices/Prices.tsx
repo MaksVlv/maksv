@@ -126,7 +126,7 @@ export default function Prices() {
                             <Link href={"https://wa.me/+37167818686"}>+371 67818686</Link>
                         </p>
                     </div>
-                    <Link href={"/contacts"} className={styles.button}>{t("homePage:button.contactUs")}</Link>
+                    <Link href={"/src/pages_backup_old/contacts.tsx"} className={styles.button}>{t("homePage:button.contactUs")}</Link>
                 </div>
             </div>
         </div>

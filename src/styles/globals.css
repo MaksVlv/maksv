@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Arsenal:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,9 +11,10 @@
 }
 
 body {
-    font-family: 'Arsenal', sans-serif;
+    font-family: "Roboto", sans-serif;
     min-width: 310px;
     overflow-x: hidden;
+    color: #133348;
 }
 
 html {
@@ -37,7 +38,7 @@ html {
 }
 
 a:hover {
-    color: #FFC53C;
+    color: #FFD700;
 }
 
 .slick-track {
@@ -78,9 +79,9 @@ a:hover {
 }
 
 .image-gallery-thumbnail.active, .image-gallery-thumbnail:focus, .image-gallery-thumbnail:hover {
-    border-color: #FFC53C !important;
+    border-color: #FFD700 !important;
 }
 
 .image-gallery-fullscreen-button .image-gallery-svg, .image-gallery-play-button .image-gallery-svg {
-    stroke: #FFC53C !important;
+    stroke: #FFD700 !important;
 }

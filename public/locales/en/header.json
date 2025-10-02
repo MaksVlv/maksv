@@ -1,8 +1,10 @@
 {
   "estate": "Real estate",
-  "evaluation": "Evaluation",
+  "evaluation": "Valuation",
   "construction": "Construction",
   "contacts": "Contacts",
   "policy": "Website policy",
-  "sell": "Sell property"
+  "policyStart": "Maks V. All rights reserved.",
+  "sell": "Sell Real Estate",
+  "find_estate": "Property search"
 }

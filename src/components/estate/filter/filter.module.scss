@@ -19,7 +19,6 @@
   .filter {
     width: 100%;
     background-color: $bg-main;
-    border-radius: 10px;
     border: 2px solid #F0F0F0;
     //box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.33);
     padding: 30px;
@@ -86,7 +85,6 @@
           height: 45px;
           padding: 0 50px;
           border: 1px solid #BCBCBC;
-          border-radius: 5px;
         }
 
         svg {
@@ -108,7 +106,6 @@
         align-items: center;
         background-color: $bg-highlighted;
         height: 45px;
-        border-radius: 5px;
         color: $bg-main;
         border: 1px solid $bg-highlighted;
 
@@ -178,6 +175,7 @@
     margin-bottom: 30px;
 
     .mobSearch {
+      width: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -267,7 +265,6 @@
   margin-top: 30px;
   height: 400px;
   width: 100%;
-  border-radius: 10px;
 
   &.fullLine {
     margin-top: unset;
@@ -283,12 +280,10 @@
   .img {
     width: 200px;
     position: relative;
-    border-radius: 10px;
 
     img {
       width: 200px;
       max-height: 150px;
-      border-radius: 10px;
       object-fit: cover;
     }
 
@@ -303,7 +298,7 @@
       backdrop-filter: blur(5px);
       font-weight: bold;
       font-size: 11px;
-      color: #000;
+      color: $bg-dark;
       text-align: center;
     }
   }

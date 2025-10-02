@@ -279,7 +279,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
         <>
             <div className="fixed inset-0 bg-gray-900 opacity-50" style={{ zIndex: 1 }}/>
             <div className="fixed inset-0 flex items-center justify-center z-10">
-                <div className="bg-white rounded-lg shadow-lg p-8 w-full relative" style={{maxHeight: "90vh", maxWidth: "800px", overflow: "auto"}}>
+                <div className="bg-white shadow-lg p-8 w-full relative" style={{maxHeight: "90vh", maxWidth: "800px", overflow: "auto"}}>
                     <svg onClick={deleteEstate} className={styles.delete} xmlns="http://www.w3.org/2000/svg" fill={"none"} width="24" height="24" viewBox="0 0 24 24">
                         <path d="M3 6v18h18v-18h-18zm5 14c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712z"/>
                     </svg>
@@ -294,7 +294,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                         type="text"
                                         name="estateName-lv"
                                         id="estateName-lv"
-                                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        className="shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         placeholder="Enter estate name LV"
                                         value={estate.name.lv}
                                         onChange={(e) => setEstate({
@@ -309,7 +309,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                         type="text"
                                         name="estateName-ru"
                                         id="estateName-ru"
-                                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        className="shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         placeholder="Enter estate name RU"
                                         value={estate.name.ru}
                                         onChange={(e) => setEstate({
@@ -324,7 +324,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                         type="text"
                                         name="estateName-en"
                                         id="estateName-en"
-                                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        className="shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         placeholder="Enter estate name EN"
                                         value={estate.name.en}
                                         onChange={(e) => setEstate({
@@ -336,7 +336,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                 <div className="flex justify-end relative">
                                     <button
                                         type="submit"
-                                        className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded disabled:cursor-not-allowed"
+                                        className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 disabled:cursor-not-allowed"
                                         disabled={loading}
                                     >
                                         Save
@@ -353,7 +353,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                         required={true}
                                         name="estateDescription-lv"
                                         id="estateDescription-lv"
-                                        className="flex-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        className="flex-1 shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         style={{minHeight: "100px"}}
                                         placeholder="Enter estate description LV"
                                         value={estate.description.lv}
@@ -368,7 +368,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                         required={true}
                                         name="estateDescription-ru"
                                         id="estateDescription-ru"
-                                        className="flex-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        className="flex-1 shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         style={{minHeight: "100px"}}
                                         placeholder="Enter estate description RU"
                                         value={estate.description.ru}
@@ -383,7 +383,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                         required={true}
                                         name="estateDescription-en"
                                         id="estateDescription-en"
-                                        className="flex-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        className="flex-1 shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         style={{minHeight: "100px"}}
                                         placeholder="Enter estate description EN"
                                         value={estate.description.en}
@@ -396,7 +396,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                 <div className="flex justify-end relative">
                                     <button
                                         type="submit"
-                                        className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded disabled:cursor-not-allowed"
+                                        className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 disabled:cursor-not-allowed"
                                         disabled={loading}
                                     >
                                         Save
@@ -415,7 +415,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                     step={0.01}
                                     name="estatePrice"
                                     id="estatePrice"
-                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    className="shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                     placeholder="Enter estate price"
                                     value={estate.price}
                                     onChange={(e) => setEstate({...estate, price: Number(e.target.value)})}
@@ -423,7 +423,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                 <div className="flex justify-end relative">
                                     <button
                                         type="submit"
-                                        className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded disabled:cursor-not-allowed"
+                                        className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 disabled:cursor-not-allowed"
                                         disabled={loading}
                                     >
                                         Save
@@ -443,7 +443,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                 <div className="flex justify-end relative">
                                     <button
                                         type="submit"
-                                        className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded disabled:cursor-not-allowed"
+                                        className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 disabled:cursor-not-allowed"
                                         disabled={loading}
                                     >
                                         Save
@@ -459,7 +459,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                     required={true}
                                     name="estateCity"
                                     id="estateCity"
-                                    className="block appearance-none w-full bg-white border focus:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                                    className="block appearance-none w-full bg-white border focus:border-gray-500 px-4 py-2 pr-8 shadow leading-tight focus:outline-none focus:shadow-outline"
                                     value={estate.city._id}
                                     onChange={(e) => {
                                         getDistricts(e.target.value)
@@ -486,7 +486,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                     required={true}
                                     name="estateDistrict"
                                     id="estateDistrict"
-                                    className="block disabled:cursor-not-allowed appearance-none w-full bg-white border focus:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                                    className="block disabled:cursor-not-allowed appearance-none w-full bg-white border focus:border-gray-500 px-4 py-2 pr-8 shadow leading-tight focus:outline-none focus:shadow-outline"
                                     value={estate.district._id}
                                     onChange={(e) => setEstate({
                                         ...estate,
@@ -514,7 +514,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                 type="text"
                                 name="estateStreet"
                                 id="estateStreet"
-                                className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                className="mb-4 shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 placeholder="Enter estate street"
                                 value={estate.street}
                                 onChange={(e) => setEstate({...estate, street: e.target.value})}
@@ -541,7 +541,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                             <div className="flex justify-end relative">
                                 <button
                                     type="submit"
-                                    className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded disabled:cursor-not-allowed"
+                                    className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 disabled:cursor-not-allowed"
                                     disabled={loading}
                                 >
                                     Save
@@ -568,7 +568,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                 type="text"
                                 name="youtube_link"
                                 id="youtube_link"
-                                className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                className="mb-4 shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 placeholder="Enter youtube link to video"
                                 value={estate.youtube_link}
                                 onChange={(e) => setEstate({...estate, youtube_link: e.target.value})}
@@ -576,7 +576,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                             <div className="flex justify-end relative">
                                 <button
                                     type="submit"
-                                    className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded disabled:cursor-not-allowed"
+                                    className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 disabled:cursor-not-allowed"
                                     disabled={loading}
                                 >
                                     Save
@@ -595,7 +595,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                 required={true}
                                 name="estateType"
                                 id="estateType"
-                                className="block disabled:cursor-not-allowed appearance-none w-full bg-white border focus:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                                className="block disabled:cursor-not-allowed appearance-none w-full bg-white border focus:border-gray-500 px-4 py-2 pr-8 shadow leading-tight focus:outline-none focus:shadow-outline"
                                 onChange={(e) => changeType(e)}
                                 defaultValue={Object.keys(types).find((key) => types[key].lv === estate.type.lv)}
                             >
@@ -625,7 +625,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                         min={0}
                                         name="houseRooms"
                                         id="houseRooms"
-                                        className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        className="mb-4 shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         placeholder="Enter house rooms"
                                         value={estate.rooms}
                                         onChange={(e) => setEstate({...estate, rooms: e.target.value})}
@@ -637,7 +637,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                         min={0}
                                         name="houseFloors"
                                         id="houseFloors"
-                                        className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        className="mb-4 shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         placeholder="Enter house floors"
                                         value={estate.floor}
                                         onChange={(e) => setEstate({...estate, floor: e.target.value})}
@@ -650,7 +650,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                         step={0.01}
                                         name="houseLivingArea"
                                         id="houseLivingArea"
-                                        className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        className="mb-4 shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         placeholder="Enter house living area"
                                         value={estate.livingArea}
                                         onChange={(e) => setEstate({...estate, livingArea: e.target.value})}
@@ -663,7 +663,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                         step={0.01}
                                         name="houseLandArea"
                                         id="houseLandArea"
-                                        className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        className="mb-4 shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         placeholder="Enter house land area"
                                         value={estate.landArea}
                                         onChange={(e) => setEstate({...estate, landArea: e.target.value})}
@@ -674,7 +674,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                         min={0}
                                         name="landCadastralNumber"
                                         id="landCadastralNumber"
-                                        className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        className="mb-4 shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         placeholder="Enter land cadastral number"
                                         value={estate.cadastralNumber}
                                         onChange={(e) => setEstate({...estate, cadastralNumber: e.target.value})}
@@ -683,7 +683,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                 <div className="flex justify-end relative">
                                     <button
                                         type="submit"
-                                        className="mt-5 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded disabled:cursor-not-allowed"
+                                        className="mt-5 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 disabled:cursor-not-allowed"
                                         disabled={loading}
                                     >
                                         Save
@@ -702,7 +702,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                         min={0}
                                         name="flatRooms"
                                         id="flatRooms"
-                                        className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        className="mb-4 shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         placeholder="Enter flat rooms"
                                         value={estate.rooms}
                                         onChange={(e) => setEstate({...estate, rooms: e.target.value})}
@@ -713,7 +713,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                         type={"text"}
                                         name="flatFloor"
                                         id="flatFloor"
-                                        className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        className="mb-4 shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         placeholder="Enter house floors"
                                         value={estate.floor}
                                         onChange={(e) => setEstate({...estate, floor: e.target.value})}
@@ -726,7 +726,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                         step={0.01}
                                         name="flatLivingArea"
                                         id="flatLivingArea"
-                                        className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        className="mb-4 shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         placeholder="Enter house living area"
                                         value={estate.livingArea}
                                         onChange={(e) => setEstate({...estate, livingArea: e.target.value})}
@@ -737,7 +737,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                             required={true}
                                             name="estateType"
                                             id="estateType"
-                                            className="block disabled:cursor-not-allowed appearance-none w-full bg-white border focus:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                                            className="block disabled:cursor-not-allowed appearance-none w-full bg-white border focus:border-gray-500 px-4 py-2 pr-8 shadow leading-tight focus:outline-none focus:shadow-outline"
                                             onChange={(e) => changeSeries(e)}
                                             defaultValue={Object.keys(series).findIndex(key => series[key].en === estate.series?.en) + 1}
                                         >
@@ -758,7 +758,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                 <div className="flex justify-end relative">
                                     <button
                                         type="submit"
-                                        className="mt-5 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded disabled:cursor-not-allowed"
+                                        className="mt-5 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 disabled:cursor-not-allowed"
                                         disabled={loading}
                                     >
                                         Save
@@ -779,7 +779,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                         step={0.01}
                                         name="landArea"
                                         id="landArea"
-                                        className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        className="mb-4 shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         placeholder="Enter land area"
                                         value={estate.landArea}
                                         onChange={(e) => setEstate({...estate, landArea: e.target.value})}
@@ -794,7 +794,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                                     step={0.01}
                                                     name="livingArea"
                                                     id="livingArea"
-                                                    className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                    className="mb-4 shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                                     placeholder="Enter room area"
                                                     value={estate.livingArea}
                                                     onChange={(e) => setEstate({...estate, livingArea: e.target.value})}
@@ -805,7 +805,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                                     type={"text"}
                                                     name="flatFloor"
                                                     id="flatFloor"
-                                                    className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                    className="mb-4 shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                                     placeholder="Enter house floors"
                                                     value={estate.floor}
                                                     onChange={(e) => setEstate({...estate, floor: e.target.value})}
@@ -820,7 +820,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                         min={0}
                                         name="landCadastralNumber"
                                         id="landCadastralNumber"
-                                        className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        className="mb-4 shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         placeholder="Enter land cadastral number"
                                         value={estate.cadastralNumber}
                                         onChange={(e) => setEstate({...estate, cadastralNumber: e.target.value})}
@@ -833,7 +833,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                                     required={true}
                                                     name="estateType"
                                                     id="estateType"
-                                                    className="block disabled:cursor-not-allowed appearance-none w-full bg-white border focus:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                                                    className="block disabled:cursor-not-allowed appearance-none w-full bg-white border focus:border-gray-500 px-4 py-2 pr-8 shadow leading-tight focus:outline-none focus:shadow-outline"
                                                     onChange={(e) => changeAssignment(e)}
                                                     defaultValue={Object.keys(assignment).findIndex(key => assignment[key].en === estate.assignment?.en) + 1}
                                                 >
@@ -857,7 +857,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                 <div className="flex justify-end relative">
                                     <button
                                         type="submit"
-                                        className="mt-5 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded disabled:cursor-not-allowed"
+                                        className="mt-5 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 disabled:cursor-not-allowed"
                                         disabled={loading}
                                     >
                                         Save
@@ -882,7 +882,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                         step={0.01}
                                         name="landArea"
                                         id="landArea"
-                                        className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        className="mb-4 shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         placeholder="Enter land area"
                                         value={estate.landArea}
                                         onChange={(e) => setEstate({...estate, landArea: e.target.value})}
@@ -891,7 +891,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                 <div className="flex justify-end relative">
                                     <button
                                         type="submit"
-                                        className="mt-5 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded disabled:cursor-not-allowed"
+                                        className="mt-5 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 disabled:cursor-not-allowed"
                                         disabled={loading}
                                     >
                                         Save
@@ -912,7 +912,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                         min={0}
                                         name="landArea"
                                         id="landArea"
-                                        className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        className="mb-4 shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         placeholder="Enter size - 300x200"
                                         value={estate.size}
                                         onChange={(e) => setEstate({...estate, size: e.target.value})}
@@ -925,7 +925,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                         step={0.01}
                                         name="landArea"
                                         id="landArea"
-                                        className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        className="mb-4 shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         placeholder="Enter gate height"
                                         value={estate.gateHeight}
                                         onChange={(e) => setEstate({...estate, gateHeight: Number(e.target.value)})}
@@ -934,7 +934,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                 <div className="flex justify-end relative">
                                     <button
                                         type="submit"
-                                        className="mt-5 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded disabled:cursor-not-allowed"
+                                        className="mt-5 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 disabled:cursor-not-allowed"
                                         disabled={loading}
                                     >
                                         Save
@@ -956,7 +956,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                         step={0.01}
                                         name="landArea"
                                         id="landArea"
-                                        className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        className="mb-4 shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         placeholder="Enter land area"
                                         value={estate.landArea}
                                         onChange={(e) => setEstate({...estate, landArea: e.target.value})}
@@ -968,7 +968,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                         min={0}
                                         name="floor"
                                         id="floor"
-                                        className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        className="mb-4 shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         placeholder="Enter floor"
                                         value={estate.floor}
                                         onChange={(e) => setEstate({...estate, floor: e.target.value})}
@@ -977,7 +977,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                 <div className="flex justify-end relative">
                                     <button
                                         type="submit"
-                                        className="mt-5 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded disabled:cursor-not-allowed"
+                                        className="mt-5 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 disabled:cursor-not-allowed"
                                         disabled={loading}
                                     >
                                         Save
@@ -999,7 +999,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                         step={0.01}
                                         name="landArea"
                                         id="landArea"
-                                        className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        className="mb-4 shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         placeholder="Enter land area"
                                         value={estate.landArea}
                                         onChange={(e) => setEstate({...estate, landArea: e.target.value})}
@@ -1010,7 +1010,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                         min={0}
                                         name="landCadastralNumber"
                                         id="landCadastralNumber"
-                                        className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        className="mb-4 shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         placeholder="Enter forest cadastral number"
                                         value={estate.cadastralNumber}
                                         onChange={(e) => setEstate({...estate, cadastralNumber: e.target.value})}
@@ -1019,7 +1019,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                                 <div className="flex justify-end relative">
                                     <button
                                         type="submit"
-                                        className="mt-5 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded disabled:cursor-not-allowed"
+                                        className="mt-5 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 disabled:cursor-not-allowed"
                                         disabled={loading}
                                     >
                                         Save
@@ -1032,7 +1032,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                     <div className="flex justify-end relative mt-10">
                         {!estate.disabled &&
                             <button
-                                className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded disabled:cursor-not-allowed"
+                                className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 disabled:cursor-not-allowed"
                                 disabled={loading}
                                 style={{marginRight: "auto"}}
                                 onClick={() => changeDraft(true)}
@@ -1042,7 +1042,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                         }
                         {estate.disabled &&
                             <button
-                                className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded disabled:cursor-not-allowed"
+                                className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 disabled:cursor-not-allowed"
                                 disabled={loading}
                                 onClick={() => changeDraft(false)}
                             >
@@ -1051,7 +1051,7 @@ export default function EstateUpdate({ estateOld, onCloseClick, onUpdate, google
                         }
                         <button
                             type="button"
-                            className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded ml-4 disabled:cursor-not-allowed"
+                            className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 ml-4 disabled:cursor-not-allowed"
                             onClick={() => onCloseClick()}
                             disabled={loading}
                         >

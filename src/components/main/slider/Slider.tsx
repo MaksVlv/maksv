@@ -135,7 +135,7 @@ export default function SliderSection({ data }: SliderSectionProps) {
                             </div>
 
                             <div>
-                                <Link href={`/estate/${estate._id}`} tabIndex={-1} className={styles.button}>{t("homePage:button.info")}</Link>
+                                <Link href={`/src/pages_backup_old/estate.tsx/${estate._id}`} tabIndex={-1} className={styles.button}>{t("homePage:button.info")}</Link>
                             </div>
 
                             <div className={styles.progress}>

@@ -38,7 +38,7 @@ const MainContainer = ({ children, title, description, keywords, headerBackgroun
                 {title && <meta property="og:title" content={ title } />}
                 {description && <meta property="og:description" content={ description } />}
                 <meta property="og:locale" content={router.locale} />
-                <meta property="og:site_name" content="MaksV Real estate" />
+                <meta property="og:site_name" content="Maks V Real estate" />
 
                 <link rel="alternate" hrefLang="en" href={"https://www.maksv.lv" + router.pathname}/>
                 <link rel="alternate" hrefLang="lv" href={"https://www.maksv.lv/lv" + router.pathname}/>

@@ -6,7 +6,8 @@
   width: 100%;
   font-weight: bold;
   transition: background-color 0.5s ease;
-  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0)); /* Градиентное затемнение от 50% прозрачности к 70% */
+  //background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0)); /* Градиентное затемнение от 50% прозрачности к 70% */
+  background-color: $bg-dark;
 
   .header {
     display: flex;
@@ -14,6 +15,8 @@
 
     .logo {
       height: 80px;
+      display: flex;
+      align-items: center;
     }
 
     .nav {
@@ -26,7 +29,7 @@
 
       .link {
         font-weight: 600;
-        color: $bg-dark;
+        color: $bg-main;
 
         &.active {
           color: $bg-highlighted;
@@ -65,7 +68,6 @@
         width: 100%;
         height: 6px;
         background-color: $bg-dark;
-        border-radius: 1px;
       }
 
       .del {

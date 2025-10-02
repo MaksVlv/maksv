@@ -41,7 +41,7 @@ const LandInputs = ({ onParamChange, type }: ILandInputs) => {
                 step={0.01}
                 name="landArea"
                 id="landArea"
-                className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="mb-4 shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Enter land area"
                 value={land.landArea}
                 onChange={(e) => setLand({...land, landArea: e.target.value })}
@@ -55,7 +55,7 @@ const LandInputs = ({ onParamChange, type }: ILandInputs) => {
                         step={0.01}
                         name="livingArea"
                         id="livingArea"
-                        className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        className="mb-4 shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         placeholder="Enter room area"
                         value={land.livingArea}
                         onChange={(e) => setLand({...land, livingArea: e.target.value})}
@@ -66,7 +66,7 @@ const LandInputs = ({ onParamChange, type }: ILandInputs) => {
                         type={"text"}
                         name="flatFloor"
                         id="flatFloor"
-                        className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        className="mb-4 shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         placeholder="Enter house floors"
                         value={land.floor}
                         onChange={(e) => setLand({...land, floor: e.target.value})}
@@ -80,7 +80,7 @@ const LandInputs = ({ onParamChange, type }: ILandInputs) => {
                 min={0}
                 name="landCadastralNumber"
                 id="landCadastralNumber"
-                className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="mb-4 shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Enter land cadastral number"
                 value={land.cadastralNumber}
                 onChange={(e) => setLand({...land, cadastralNumber: e.target.value})}
@@ -93,7 +93,7 @@ const LandInputs = ({ onParamChange, type }: ILandInputs) => {
                             required={true}
                             name="estateType"
                             id="estateType"
-                            className="block disabled:cursor-not-allowed appearance-none w-full bg-white border focus:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                            className="block disabled:cursor-not-allowed appearance-none w-full bg-white border focus:border-gray-500 px-4 py-2 pr-8 shadow leading-tight focus:outline-none focus:shadow-outline"
                             onChange={(e) => changeAssignment(e)}
                             defaultValue={""}
                         >

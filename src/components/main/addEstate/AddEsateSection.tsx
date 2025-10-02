@@ -26,7 +26,7 @@ export default function AddEstateSection() {
                                 <p>{t("homePage:sell.p1")}</p>
                                 <p>{t("homePage:sell.p2")}</p>
                             </div>
-                            <Link href={"/contacts"} className={styles.button}>{t("homePage:button.contactUs")}</Link>
+                            <Link href={"/src/pages_backup_old/contacts.tsx"} className={styles.button}>{t("homePage:button.contactUs")}</Link>
                         </div>
                     </div>
                 </div>

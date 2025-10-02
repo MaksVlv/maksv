@@ -1,7 +1,7 @@
 import Script from "next/script"
 
 
-const GTM_ID = "GTM-WV5VDNR9";
+const GTM_ID = "GTM-M4L8MK3T";
 
 export default function GTM() {
     return (

@@ -35,7 +35,7 @@ const App = ({ Component, pageProps }: AppProps) => {
             <GTM />
             <Component {...pageProps} />
             <ToastContainer />
-            <CookieBanner />
+            {/*<CookieBanner />*/}
         </>
     )
 }

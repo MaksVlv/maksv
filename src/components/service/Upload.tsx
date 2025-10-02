@@ -178,7 +178,7 @@ const Upload = ({ onFileChange, one = false, filesOld = [], deleteImg = true, on
 
     return (
         <div className={one ? "flex gap-8 items-center" : ""}>
-            <div className={"w-full border-dashed border-2 border-gray-400 bg-gray-100 rounded-md mt-2"} style={{ width: (one ? "40%" : "100%") }}>
+            <div className={"w-full border-dashed border-2 border-gray-400 bg-gray-100 mt-2"} style={{ width: (one ? "40%" : "100%") }}>
                 <FileUpload
                     onError={onError}
                     // @ts-ignore
@@ -221,7 +221,7 @@ const Upload = ({ onFileChange, one = false, filesOld = [], deleteImg = true, on
                 {/*            />*/}
                 {/*            {deleteImg &&*/}
                 {/*                <div style={{ position: "absolute", bottom: "5px", right: "5px", width: "50px", height: "50px", borderRadius: "50%", backgroundColor: "grey", display: "flex", justifyContent: "center", alignItems: "center" }} >*/}
-                {/*                    <svg onClick={() => onDelete(i)} style={{ position: "relative", right: "-0.5px", fill: "black" }} className={styles.delete} xmlns="http://www.w3.org/2000/svg" fill={"none"} width="25" height="25" viewBox="0 0 25 25">*/}
+                {/*                    <svg onClick={() => onDelete(i)} style={{ position: "relative", right: "-0.5px", fill: "#1E1E1E" }} className={styles.delete} xmlns="http://www.w3.org/2000/svg" fill={"none"} width="25" height="25" viewBox="0 0 25 25">*/}
                 {/*                        <path d="M3 6v18h18v-18h-18zm5 14c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712z"/>*/}
                 {/*                    </svg>*/}
                 {/*                </div>*/}

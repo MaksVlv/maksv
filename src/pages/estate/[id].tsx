@@ -21,7 +21,7 @@ export default function EstatePage({ estate, googleApi }: EstatePageProps) {
 
     return (
         <MainContainer
-            title={`${estate.name[i18n.language]} | MaksV`}
+            title={`${estate.name[i18n.language]} - Maks V`}
             description={estate.description[i18n.language]}
             ogImage={estate.mainImage}
             headerBackgroundDefault={true}

@@ -31,7 +31,7 @@ const HouseInputs = ({ onParamChange }: IHouseInputs) => {
                 min={0}
                 name="houseRooms"
                 id="houseRooms"
-                className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="mb-4 shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Enter house rooms"
                 value={house.rooms}
                 onChange={(e) => setHouse({...house, rooms: e.target.value })}
@@ -43,7 +43,7 @@ const HouseInputs = ({ onParamChange }: IHouseInputs) => {
                 min={0}
                 name="houseFloors"
                 id="houseFloors"
-                className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="mb-4 shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Enter house floors"
                 value={house.floor}
                 onChange={(e) => setHouse({...house, floor: e.target.value })}
@@ -56,7 +56,7 @@ const HouseInputs = ({ onParamChange }: IHouseInputs) => {
                 step={0.01}
                 name="houseLivingArea"
                 id="houseLivingArea"
-                className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="mb-4 shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Enter house living area"
                 value={house.livingArea}
                 onChange={(e) => setHouse({...house, livingArea: e.target.value })}
@@ -69,7 +69,7 @@ const HouseInputs = ({ onParamChange }: IHouseInputs) => {
                 step={0.01}
                 name="houseLandArea"
                 id="houseLandArea"
-                className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="mb-4 shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Enter house land area"
                 value={house.landArea}
                 onChange={(e) => setHouse({...house, landArea: e.target.value })}
@@ -80,7 +80,7 @@ const HouseInputs = ({ onParamChange }: IHouseInputs) => {
                 min={0}
                 name="landCadastralNumber"
                 id="landCadastralNumber"
-                className="mb-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="mb-4 shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Enter land cadastral number"
                 value={house.cadastralNumber}
                 onChange={(e) => setHouse({...house, cadastralNumber: e.target.value })}

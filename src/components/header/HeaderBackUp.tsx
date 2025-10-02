@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { useTranslation } from 'next-i18next';
 import { useRouter } from "next/router";
 import Cookies from 'js-cookie';
-import Logo from '@/assets/logo/maskvlogoheader.svg';
+import Logo from '@/assets/logo/logo.png';
 import { Ru, Lv, En } from '@/assets/languages';
 import style from './header.module.scss'
 import Link from "next/link";
@@ -54,22 +54,19 @@ const Header = ({ backgroundDefault }: HeaderProps) => {
 
     return (
         <header className={style.headerContainer}
-                id={"headerBlock"}>
+                id={"headerBlock"}
+                style={{ backgroundColor: `${backgroundDefault ? "#FFF" : background ? background : 'transparent'}`, filter: `${background ? 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))' : 'initial'}` }}>
             <div className={"wrapper " + style.header}>
                 <Link href={"/"} className={style.logo}>
-                    <Image src={Logo} width={200} alt={"logo"}/>
+                    <Image src={Logo} alt={"logo"}/>
                 </Link>
                 <nav className={style.nav}>
-                    <Link href={"/"} className={style.link + " " + (router.pathname === "/" ? style.active : "")}>{t("header:find_estate")}</Link>
-                    <a href={`https://www.maksv.lv/${router.locale === "lv" ? '' : router.locale + '/'}evaluation`} className={style.link}>{t("header:evaluation")}</a>
-                    <a href={`https://www.maksv.lv/${router.locale === "lv" ? '' : router.locale + '/'}construction`} className={style.link}>{t("header:construction")}</a>
-                    <a href={`https://www.maksv.lv/${router.locale === "lv" ? '' : router.locale + '/'}sell-real-estate`} className={style.link}>{t("header:sell")}</a>
-                    <Link href={"tel:+37167818686"} className={style.link + " " + style.phone}>+371 67-818-686</Link>
-                    {/*<a href={`https://sellwith.maksv.lv/${router.locale}`} className={style.link}>{t("header:sell")}</a>*/}
-                    {/*<a href={"/estate"} className={style.link + " " + (router.pathname === "/estate" ? style.active : "")}>{t("header:estate")}</a>*/}
-                    {/*<Link href={"/src/pages_backup_old/evaluation.tsx"} className={style.link + " " + (router.pathname === "/evaluation" ? style.active : "")}>{t("header:evaluation")}</Link>*/}
+                    <a href={`https://sellwith.maksv.lv/${router.locale}`} className={style.link}>{t("header:sell")}</a>
+                    <a href={"/estate"} className={style.link + " " + (router.pathname === "/estate" ? style.active : "")}>{t("header:estate")}</a>
+                    <Link href={"/src/pages_backup_old/evaluation.tsx"} className={style.link + " " + (router.pathname === "/evaluation" ? style.active : "")}>{t("header:evaluation")}</Link>
                     {/*<Link href={"/construction"} className={style.link + " " + (router.pathname === "/construction" ? style.active : "")}>{t("header:construction")}</Link>*/}
-                    {/*<Link href={"/src/pages_backup_old/contacts.tsx"} className={style.link + " " + (router.pathname === "/contacts" ? style.active : "")}>{t("header:contacts")}</Link>*/}
+                    <Link href={"/src/pages_backup_old/contacts.tsx"} className={style.link + " " + (router.pathname === "/contacts" ? style.active : "")}>{t("header:contacts")}</Link>
+                    <Link href={"tel:+37167818686"} className={style.link + " " + style.phone}>+371 67-818-686</Link>
                 </nav>
                 <div className={style.languages}>
                     <Link href={{pathname: router.pathname, query: router.query}} locale={"en"} style={{ display: i18n.language?.includes("en") ? "none" : "block" }} onClick={() => Cookies.set('language', "en")}>

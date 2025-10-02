@@ -149,7 +149,7 @@ export default function CityUpdate({ cityId, onCloseClick, onUpdate }: CityUpdat
         <>
             <div className="fixed inset-0 bg-gray-900 opacity-50" style={{ zIndex: 1 }}/>
             <div className="fixed inset-0 flex items-center justify-center z-10">
-                <div className="bg-white rounded-lg shadow-lg p-8 w-full relative" style={{maxHeight: "90vh", maxWidth: "800px", overflow: "auto"}}>
+                <div className="bg-white shadow-lg p-8 w-full relative" style={{maxHeight: "90vh", maxWidth: "800px", overflow: "auto"}}>
                     <svg onClick={deleteCity} className={styles.delete} xmlns="http://www.w3.org/2000/svg" fill={"none"} width="24" height="24" viewBox="0 0 24 24">
                         <path d="M3 6v18h18v-18h-18zm5 14c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712z"/>
                     </svg>
@@ -164,7 +164,7 @@ export default function CityUpdate({ cityId, onCloseClick, onUpdate }: CityUpdat
                                         type="text"
                                         name="cityName-lv"
                                         id="cityName-lv"
-                                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        className="shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         placeholder="Enter city name LV"
                                         value={city.city.lv}
                                         onChange={(e) => setCity({...city, city: { ...city.city, lv: e.target.value}})}
@@ -176,7 +176,7 @@ export default function CityUpdate({ cityId, onCloseClick, onUpdate }: CityUpdat
                                         type="text"
                                         name="cityName-ru"
                                         id="cityName-ru"
-                                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        className="shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         placeholder="Enter city name RU"
                                         value={city.city.ru}
                                         onChange={(e) => setCity({...city, city: { ...city.city, ru: e.target.value}})}
@@ -188,7 +188,7 @@ export default function CityUpdate({ cityId, onCloseClick, onUpdate }: CityUpdat
                                         type="text"
                                         name="cityName-en"
                                         id="cityName-en"
-                                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        className="shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                         placeholder="Enter city name EN"
                                         value={city.city.en}
                                         onChange={(e) => setCity({...city, city: { ...city.city, en: e.target.value}})}
@@ -208,7 +208,7 @@ export default function CityUpdate({ cityId, onCloseClick, onUpdate }: CityUpdat
                                                 name={`district-${index}-lv`}
                                                 placeholder="Enter district name LV"
                                                 value={district.name.lv}
-                                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline pr-10"
+                                                className="shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline pr-10"
                                                 onChange={(event) => handleDistrictChange(event, index, "lv")}
                                             />
                                         </div>
@@ -220,7 +220,7 @@ export default function CityUpdate({ cityId, onCloseClick, onUpdate }: CityUpdat
                                                 name={`district-${index}-ru`}
                                                 placeholder="Enter district name RU"
                                                 value={district.name.ru}
-                                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline pr-10"
+                                                className="shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline pr-10"
                                                 onChange={(event) => handleDistrictChange(event, index, "ru")}
                                             />
                                         </div>
@@ -232,7 +232,7 @@ export default function CityUpdate({ cityId, onCloseClick, onUpdate }: CityUpdat
                                                 name={`district-${index}-en`}
                                                 placeholder="Enter district name EN"
                                                 value={district.name.en}
-                                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline pr-10"
+                                                className="shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline pr-10"
                                                 onChange={(event) => handleDistrictChange(event, index, "en")}
                                             />
                                         </div>
@@ -252,7 +252,7 @@ export default function CityUpdate({ cityId, onCloseClick, onUpdate }: CityUpdat
                                     </div>
                                 </div>
                             ))}
-                            <button type="button" onClick={addDistrict} className="inline-flex items-center justify-center w-8 h-8 text-gray-600 bg-gray-200 rounded-full hover:bg-gray-300">
+                            <button type="button" onClick={addDistrict} className="inline-flex items-center justify-center w-8 h-8 text-gray-600 bg-gray-200 hover:bg-gray-300">
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
                                 </svg>
@@ -260,13 +260,13 @@ export default function CityUpdate({ cityId, onCloseClick, onUpdate }: CityUpdat
                             <div className="flex justify-end">
                                 <button
                                     type="submit"
-                                    className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+                                    className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4"
                                 >
                                     Save
                                 </button>
                                 <button
                                     type="button"
-                                    className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded ml-4"
+                                    className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 ml-4"
                                     onClick={() => onCloseClick()}
                                 >
                                     Cancel

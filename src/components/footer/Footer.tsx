@@ -1,13 +1,15 @@
 import React from "react";
 import { useTranslation } from 'next-i18next';
-import Logo from '@/assets/logo/logoBig.png';
+import Logo from '@/assets/logo/maksvlogofooter.svg';
 import style from './footer.module.scss'
 import Link from "next/link";
 import Image from "next/image";
+import {useRouter} from "next/router";
 
 
 const Header = () => {
 
+    const router = useRouter();
     const { t } = useTranslation()
 
 
@@ -15,18 +17,18 @@ const Header = () => {
         <footer className={style.footerContainer}>
             <div className={"wrapper " + style.footer}>
                 <Image src={Logo} alt={"logo"} className={style.logo}/>
-                <div className={style.links}>
-                    <a href={"/estate"} className={style.link}>{t("header:estate")}</a>
-                    <Link href={"/evaluation"} className={style.link}>{t("header:evaluation")}</Link>
-                    <Link href={"/construction"} className={style.link}>{t("header:construction")}</Link>
-                    <Link href={"/contacts"} className={style.link}>{t("header:contacts")}</Link>
-                </div>
-                <Link href={"https://goo.gl/maps/NDsMu6p2Ne5XRHCU8"} target={"_blank"} className={style.info}>G. Zemgala gatve 68, Rīga,1039 LV, Latvija</Link>
-                <Link href={"tel:+37167818686"} className={style.info}>+371 67818686</Link>
+                {/*<div className={style.links}>*/}
+                    {/*<a href={"/estate"} className={style.link}>{t("header:estate")}</a>*/}
+                    {/*<Link href={"/evaluation"} className={style.link}>{t("header:evaluation")}</Link>*/}
+                    {/*<Link href={"/construction"} className={style.link}>{t("header:construction")}</Link>*/}
+                    {/*<Link href={"/contacts"} className={style.link}>{t("header:contacts")}</Link>*/}
+                {/*</div>*/}
+                <Link href={"https://maps.app.goo.gl/LpkoHcskNbt5H2HYA"} target={"_blank"} className={style.info}>G. Zemgala gatve 68, Rīga,1039 LV, Latvija</Link>
+                <Link href={"tel:+37167818686"} className={style.info}>+371 67-818-686</Link>
                 <Link href={"mailto:info@maksv.lv"} className={style.info}>info@maksv.lv</Link>
                 <div className={'flex flex-col justify-between lg:flex-row gap-[75px] lg:gap-0 mb-[75px] lg:mb-0'}>
-                    <div className={style.info + " " + style.rights}>© {new Date().getFullYear()} MaksV. All rights are
-                        reserved. <Link href={'/policies'} className={'underline'}>{t('header:policy')}</Link>
+                    <div className={style.info + " " + style.rights}>
+                        © {new Date().getFullYear()} {t('header:policyStart')} <Link href={`https://www.maksv.lv/${router.locale === "lv" ? '' : router.locale + '/'}policies`} className={'underline'}>{t('header:policy')}</Link>
                     </div>
                     {/*<a href="https://www.stepinweb.com/?utm_source=c8&utm_medium=websitefooter" className={'m-auto lg:m-0'}>*/}
                     {/*    <svg xmlns="http://www.w3.org/2000/svg" width="222" height="18" viewBox="0 0 222 18" fill="none">*/}

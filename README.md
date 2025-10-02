@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img width="192" height="192" src="./public/favicon.ico" alt=""><br>
+    <img width="192" height="192" src="./public/favicon.png" alt=""><br>
     Maksv
 </h1>
 

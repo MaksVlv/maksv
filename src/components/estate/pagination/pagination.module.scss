@@ -15,7 +15,6 @@
 .page {
   width: 33px;
   height: 36px;
-  border-radius: 5px;
   background-color: $bg-main;
   color: $neutral;
   border: 1px solid $neutral;
@@ -33,7 +32,6 @@
   margin-left: 20px;
   padding: 4px 11px;
   border: 1px solid $neutral;
-  border-radius: 5px;
   font-weight: bold;
   color: $neutral;
   display: flex;
@@ -45,7 +43,6 @@
   padding: 4px 11px;
   border: 1px solid $bg-dark;
   background-color: $bg-dark;
-  border-radius: 5px;
   font-weight: bold;
   color: $bg-main;
   display: flex;

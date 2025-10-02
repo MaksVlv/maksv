@@ -27,7 +27,7 @@ export const Pagination = ({ totalPages, activePage, onPageChange }: PaginationP
         return pageNumbers.slice(startPage - 1, endPage).map((page) => (
             <button
                 key={page}
-                className={`mx-1 rounded-md py-2 px-4 ${
+                className={`mx-1 py-2 px-4 ${
                     activePage === page ? 'bg-blue-500 text-white' : 'bg-white text-gray-500 hover:bg-gray-100'
                 }`}
                 onClick={() => handleClick(page)}
@@ -45,7 +45,7 @@ export const Pagination = ({ totalPages, activePage, onPageChange }: PaginationP
         <div className="flex justify-center">
             <div className="flex items-center">
                 <button
-                    className={`mx-1 rounded-md py-2 px-4 ${
+                    className={`mx-1 py-2 px-4 ${
                         activePage === 1 ? 'bg-gray-300 cursor-not-allowed' : 'bg-white hover:bg-gray-100'
                     }`}
                     disabled={activePage === 1}
@@ -55,7 +55,7 @@ export const Pagination = ({ totalPages, activePage, onPageChange }: PaginationP
                 </button>
                 {renderPageNumbers()}
                 <button
-                    className={`mx-1 rounded-md py-2 px-4 ${
+                    className={`mx-1 py-2 px-4 ${
                         activePage === totalPages ? 'bg-gray-300 cursor-not-allowed' : 'bg-white hover:bg-gray-100'
                     }`}
                     disabled={activePage === totalPages}

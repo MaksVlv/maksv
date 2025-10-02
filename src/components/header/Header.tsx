@@ -56,7 +56,7 @@ const Header = ({ backgroundDefault }: HeaderProps) => {
         <header className={style.headerContainer}
                 id={"headerBlock"}>
             <div className={"wrapper " + style.header}>
-                <Link href={"/"} className={style.logo}>
+                <Link href={`https://www.maksv.lv/${router.locale === "lv" ? '' : router.locale + '/'}`} className={style.logo}>
                     <Image src={Logo} width={200} alt={"logo"}/>
                 </Link>
                 <nav className={style.nav}>
@@ -88,11 +88,11 @@ const Header = ({ backgroundDefault }: HeaderProps) => {
                     <div className={style.line + ` ${burgerStatus ? style.del : ""}`}/>
                 </div>
                 {burgerStatus &&
-                <div className={style.burgerOpen}>
-                    <div className="wrapper">
-                        <nav className={style.navMobile}>
-                            <div className={style.languages}>
-                                <Link href={{pathname: router.pathname, query: router.query}} locale={"en"}
+                  <div className={style.burgerOpen}>
+                      <div className="wrapper">
+                          <nav className={style.navMobile}>
+                              <div className={style.languages}>
+                                  <Link href={{pathname: router.pathname, query: router.query}} locale={"en"}
                                       style={{display: i18n.language.includes("en") ? "none" : "block"}}
                                       onClick={() => Cookies.set('language', "en")}>
                                     <Image src={En} alt={"EN"}/>
@@ -108,15 +108,19 @@ const Header = ({ backgroundDefault }: HeaderProps) => {
                                     <Image src={Lv} alt={"LV"}/>
                                 </Link>
                             </div>
-                            <a href={`https://sellwith.maksv.lv/${router.locale}`}
-                               className={style.link}>{t("header:sell")}</a>
-                            <a href={"/estate"}
-                               className={style.link + " " + (router.pathname === "/estate" ? style.active : "")}>{t("header:estate")}</a>
-                            <Link href={"/src/pages_backup_old/evaluation.tsx"}
-                                  className={style.link + " " + (router.pathname === "/evaluation" ? style.active : "")}>{t("header:evaluation")}</Link>
+                            <Link href={"/"} className={style.link + " " + (router.pathname === "/" ? style.active : "")}>{t("header:find_estate")}</Link>
+                            <a href={`https://www.maksv.lv/${router.locale === "lv" ? '' : router.locale + '/'}evaluation`} className={style.link}>{t("header:evaluation")}</a>
+                            <a href={`https://www.maksv.lv/${router.locale === "lv" ? '' : router.locale + '/'}construction`} className={style.link}>{t("header:construction")}</a>
+                            <a href={`https://www.maksv.lv/${router.locale === "lv" ? '' : router.locale + '/'}sell-real-estate`} className={style.link}>{t("header:sell")}</a>
+                            {/*<a href={`https://sellwith.maksv.lv/${router.locale}`}*/}
+                            {/*   className={style.link}>{t("header:sell")}</a>*/}
+                            {/*<a href={"/estate"}*/}
+                            {/*   className={style.link + " " + (router.pathname === "/estate" ? style.active : "")}>{t("header:estate")}</a>*/}
+                            {/*<Link href={"/src/pages_backup_old/evaluation.tsx"}*/}
+                            {/*      className={style.link + " " + (router.pathname === "/evaluation" ? style.active : "")}>{t("header:evaluation")}</Link>*/}
                             {/*<Link href={"/construction"} className={style.link + " " + (router.pathname === "/construction" ? style.active : "")}>{t("header:construction")}</Link>*/}
-                            <Link href={"/src/pages_backup_old/contacts.tsx"}
-                                  className={style.link + " " + (router.pathname === "/contacts" ? style.active : "")}>{t("header:contacts")}</Link>
+                            {/*<Link href={"/src/pages_backup_old/contacts.tsx"}*/}
+                            {/*      className={style.link + " " + (router.pathname === "/contacts" ? style.active : "")}>{t("header:contacts")}</Link>*/}
                             {/*<Link href={"tel:+37167818686"} className={style.link}>+371 67818686</Link>*/}
                         </nav>
                     </div>

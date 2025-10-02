@@ -67,7 +67,7 @@
       .line {
         width: 100%;
         height: 6px;
-        background-color: $bg-dark;
+        background-color: $bg-main;
       }
 
       .del {
@@ -103,10 +103,8 @@
       justify-content: space-between;
 
       .logo {
-        height: 60px;
         img {
-          height: 60px;
-          width: 99px;
+          width: 155px;
         }
       }
 
@@ -131,11 +129,11 @@
 
       .burgerOpen {
         position: absolute;
-        top: 80px;
+        top: 79px;
         left: 0;
         width: 100%;
-        background-color: $bg-main;
-        color: $bg-dark;
+        background-color: $bg-dark;
+        color: $bg-main;
 
         .navMobile {
           display: flex;
@@ -160,6 +158,12 @@
           }
 
         }
+      }
+    }
+
+    @media screen and (max-width: $small - 100px) {
+      .phone {
+        display: none !important;
       }
     }
 

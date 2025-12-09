@@ -6,7 +6,7 @@ export default function Estate({ googleApi }: { googleApi: string }) {
   return <EstatesMap googleApi={googleApi} isFullScreen={true} />;
 }
 
-export async function getStaticProps({ locale }: any) {
+export async function getServerSideProps({ locale }: any) {
   return {
     props: {
       ...(await serverSideTranslations(locale)),

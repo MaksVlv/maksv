@@ -7,3 +7,4 @@ Host: https://properties.maksv.lv
 
 # Sitemaps
 Sitemap: https://properties.maksv.lv/sitemap.xml
+Sitemap: https://properties.maksv.lv/server-sitemap.xml

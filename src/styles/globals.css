@@ -9,6 +9,9 @@
 .file_container {
     width: 100%;
 }
+.pac-container {
+    z-index: 999999 !important;
+}
 
 body {
     font-family: "Roboto", sans-serif;

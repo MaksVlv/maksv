@@ -11,6 +11,7 @@ import { assignment } from './LandInputs';
 import { useRouter } from 'next/router';
 import { types } from './EstateAdd';
 import { VideoInput } from '@/components/service/VideoInput';
+import { GoogleAutocomplete } from '@/components/admin/estate/GoogleAutocomplete';
 
 interface EstateUpdateProps {
   estateOld: IEstate;
@@ -27,6 +28,8 @@ export default function EstateUpdate({
 }: EstateUpdateProps) {
   const router = useRouter();
 
+  const [isGoogleApiLoaded, setIsGoogleApiLoaded] = useState(false);
+
   const [loading, setLoading] = useState(true);
   const [changedType, setChangedType] = useState<boolean>(false);
   const [estate, setEstate] = useState<IEstate>(estateOld);
@@ -34,6 +37,8 @@ export default function EstateUpdate({
   const [cities, setCities] = useState<ICity[]>([
     { _id: '', name: { lv: '', ru: '', en: '' } },
   ]);
+
+  const [combinedAddress, setCombinedAddress] = useState<string>('');
 
   useEffect(() => {
     axios.get(`estate/info?id=${estateOld._id}&disabled=true`).then(
@@ -406,6 +411,17 @@ export default function EstateUpdate({
     setLoading(false);
   };
 
+  const getCombinedAddress = () => {
+    return [
+      estate.street,
+      cities.find((city) => city._id === estate.city?._id)?.name?.lv,
+      districts.find((district) => district._id === estate.district?._id)?.name
+        ?.lv,
+    ]
+      .filter(Boolean)
+      .join(', ');
+  };
+
   if (loading)
     return (
       <>
@@ -737,12 +753,35 @@ export default function EstateUpdate({
                   setEstate({ ...estate, street: e.target.value })
                 }
               />
+              {isGoogleApiLoaded && (
+                <div className={'flex items-center gap-2'}>
+                  <GoogleAutocomplete
+                    initialValue={combinedAddress}
+                    onSelect={({ lat, lng }) => {
+                      setEstate((prevState) => ({
+                        ...prevState,
+                        location: { lat, lng },
+                      }));
+                    }}
+                  />
+
+                  <div>
+                    <button
+                      type={'button'}
+                      className="bg-blue-500 hover:bg-blue-600 text-white py-1 px-2"
+                      onClick={() => setCombinedAddress(getCombinedAddress())}
+                    >
+                      Complete
+                    </button>
+                  </div>
+                </div>
+              )}
               <div
                 style={{ height: '400px', width: '100%' }}
                 className={'mt-4 mb-6'}
               >
                 <GoogleMapReact
-                  bootstrapURLKeys={{ key: googleApi }}
+                  bootstrapURLKeys={{ key: googleApi, libraries: ['places'] }}
                   defaultCenter={{
                     lat: estate.location.lat,
                     lng: estate.location.lng,
@@ -752,6 +791,7 @@ export default function EstateUpdate({
                     setEstate({ ...estate, location: { lat, lng } });
                   }}
                   options={{ fullscreenControl: false }}
+                  onGoogleApiLoaded={() => setIsGoogleApiLoaded(true)}
                 >
                   {estate.location.lat && estate.location.lng && (
                     <Marker

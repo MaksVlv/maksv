@@ -500,6 +500,45 @@ export default function EstateAdd({
                 </div>
               )}
 
+              <div className={'flex items-center gap-2 mt-2'}>
+                <input
+                  required={true}
+                  type="text"
+                  name="lat"
+                  id="lat"
+                  className="mb-4 shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  placeholder="Lat"
+                  value={estate.location.lat}
+                  onChange={(e) =>
+                    setEstate({
+                      ...estate,
+                      location: {
+                        ...estate.location,
+                        lat: Number(e.target.value),
+                      },
+                    })
+                  }
+                />
+                <input
+                  required={true}
+                  type="text"
+                  name="lng"
+                  id="lng"
+                  className="mb-4 shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  placeholder="Lng"
+                  value={estate.location.lng}
+                  onChange={(e) =>
+                    setEstate({
+                      ...estate,
+                      location: {
+                        ...estate.location,
+                        lng: Number(e.target.value),
+                      },
+                    })
+                  }
+                />
+              </div>
+
               <div
                 style={{ height: '400px', width: '100%' }}
                 className={'mt-4'}
